@@ -18,7 +18,6 @@ public class CommonDB {
 	 **/
 	public static ResultSet getRouteAll() {
 		try {
-			//DBへ接続
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			Statement stmt = connect.createStatement();
@@ -38,7 +37,6 @@ public class CommonDB {
 	 **/
 	public static ResultSet getTransitAll() {
 		try {
-			//DBへ接続
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			Statement stmt = connect.createStatement();
@@ -56,7 +54,8 @@ public class CommonDB {
 	 *	登録、編集画面から使用
 	 *	交通機関、出発駅、到着駅を受け取り、LIKE句をかけて絞り込む
 	 **/
-	public static ResultSet getTransitDataAll(String transit_no, String from_st, String to_st, int limitSta) {
+	public static ResultSet getTransitDataAll(String transit_no, String from_st, String to_st,
+			int user_id, int limitSta) {
 		try {
 			/**
 			 * 受け取った値の確認
@@ -66,13 +65,13 @@ public class CommonDB {
 			transit_no = (transit_no == null) ? "'%%' " : "'%" + transit_no + "%' ";
 			from_st = (from_st == null) ? "'%%' " : "'%" + from_st + "%' ";
 			to_st = (to_st == null) ? "'%%' " : "'%" + to_st + "%' ";
-			//DBへ接続
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			Statement stmt = connect.createStatement();
 			String getQuery = "SELECT transit_data.data_id,transit_data.transit_no,transit.transit_name,transit_data.from_st,transit_data.to_st,transit_data.price "
 					+ "FROM transit_data , transit "
 					+ "WHERE transit_data.transit_no = transit.transit_no "
+					+ "AND transit_data.user_id = " + user_id + " "
 					+ "AND transit_data.transit_no LIKE " + transit_no
 					+ "AND transit_data.from_st LIKE " + from_st
 					+ "AND transit_data.to_st LIKE " + to_st
@@ -92,23 +91,23 @@ public class CommonDB {
 	 *	交通機関、出発駅、到着駅を受け取り、LIKE句をかけて絞り込む
 	 *	絞り込んだ件数を返す
 	 **/
-	public static int getTransitDataCnt(String transit_no, String from_st, String to_st) {
+	public static int getTransitDataCnt(String transit_no, String from_st, String to_st, int user_id) {
 		try {
 			/**
 			 * 受け取った値の確認
 			 * 受け取った値がnullであれば空文字("")を代入
 			 * そうでなければそのまま代入する
 			 **/
-			transit_no = (transit_no == null) ? "'%%' " : "'%" + transit_no + "%' ";
-			from_st = (from_st == null) ? "'%%' " : "'%" + from_st + "%' ";
-			to_st = (to_st == null) ? "'%%' " : "'%" + to_st + "%' ";
-			//DBへ接続
+			transit_no = (transit_no == null || transit_no.equals("")) ? "'%%' " : "'%" + transit_no + "%' ";
+			from_st = (from_st == null || from_st.equals("")) ? "'%%' " : "'%" + from_st + "%' ";
+			to_st = (to_st == null || to_st.equals("")) ? "'%%' " : "'%" + to_st + "%' ";
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			Statement stmt = connect.createStatement();
 			String getQuery = "SELECT count(*) AS count "
 					+ "FROM transit_data , transit "
 					+ "WHERE transit_data.transit_no = transit.transit_no "
+					+ "AND transit_data.user_id = " + user_id + " "
 					+ "AND transit_data.transit_no LIKE " + transit_no
 					+ "AND transit_data.from_st LIKE " + from_st
 					+ "AND transit_data.to_st LIKE " + to_st
@@ -127,9 +126,8 @@ public class CommonDB {
 	/**
 	 *	一覧画面で使用
 	 **/
-	public static ResultSet getTransitListAll() {
+	public static ResultSet getTransitListAll(int limitSta, int user_id) {
 		try {
-			//DBへ接続
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			Statement stmt = connect.createStatement();
@@ -138,7 +136,9 @@ public class CommonDB {
 					"FROM transit_list,route,transit " +
 					"WHERE transit_list.route_no = route.route_no " +
 					"AND transit_list.transit_no = transit.transit_no " +
-					"ORDER BY day ASC;";
+					"AND transit_list.user_id = " + user_id + " " +
+					"ORDER BY day ASC " +
+					"LIMIT " + limitSta + " , 10;";
 			return stmt.executeQuery(getQuery);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -146,6 +146,31 @@ public class CommonDB {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	/**
+	 *	一覧画面で使用
+	 **/
+	public static int getTransitListCnt(int user_id) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			Statement stmt = connect.createStatement();
+			String getQuery = "SELECT count(*) AS count" +
+					"FROM transit_list,route,transit " +
+					"WHERE transit_list.route_no = route.route_no " +
+					"AND transit_list.transit_no = transit.transit_no " +
+					"AND transit_list.user_id = " + user_id + " " +
+					"ORDER BY day ASC;";
+			ResultSet rs = stmt.executeQuery(getQuery);
+			rs.next();
+			return rs.getInt("count");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 
 	/**
@@ -192,7 +217,6 @@ public class CommonDB {
 	 **/
 	public static ResultSet getUserCategoryAll() {
 		try {
-			//DBへ接続
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			Statement stmt = connect.createStatement();
@@ -205,4 +229,48 @@ public class CommonDB {
 		}
 		return null;
 	}
+
+	/**
+	 *	各画面で使用
+	 *
+	 * 	現在利用しているユーザーidを取得する
+	 *
+	 * 	発見できなかった場合0を返す
+	 **/
+	public static int getUserId(int id) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			Statement stmt = connect.createStatement();
+			String getQuery = "SELECT user_id FROM user WHERE user_id = " + id + ";";
+			ResultSet rs = stmt.executeQuery(getQuery);
+			rs.next();
+			return rs.getInt("user_id");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	public static int getUserId(String address, String password) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			Statement stmt = connect.createStatement();
+			String getQuery = "SELECT user_id FROM user "
+					+ "WHERE address LIKE '" + address + "' "
+					+ "AND password LIKE '" + password + "';";
+			ResultSet rs = stmt.executeQuery(getQuery);
+			rs.next();
+			return rs.getInt("user_id");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
 }
