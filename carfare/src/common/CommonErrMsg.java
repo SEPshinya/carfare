@@ -13,8 +13,8 @@ public class CommonErrMsg {
 		}
 		if (isBytes(password)) {
 			return "パスワードに全角を使用しないでください";
-		} else if (stringDigits(password) > 254) {
-			return "メールアドレスは半角254文字以内で入力してください";
+		} else if (stringDigits(password) > 16) {
+			return "メールアドレスは半角16文字以内で入力してください";
 		}
 		try {
 			return CommonDB.isUser(address, password) ? "" : "メールアドレスもしくはパスワードが間違っているか入力されていません。";

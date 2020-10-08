@@ -48,13 +48,13 @@ public class Login extends HttpServlet {
 	    //取得したパスワードをソルト化してハッシュ化したもの
 	    String loginKey=null;
 
-
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection connect = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/carfare?characterEncoding=UTF-8&serverTimezone=JST", "root", "");
 			String getQuery = "SELECT * FROM user "+ "WHERE address LIKE '" + address + "';";
 			ps=connect.prepareStatement(getQuery);
 			rs=ps.executeQuery();
+			//rs=CommonDB.getUser(address);
 			rs.next();
 			Key=rs.getString("password");
 			salt=rs.getString("salt");
@@ -83,6 +83,7 @@ public class Login extends HttpServlet {
 //比較
 	    if(loginKey.equals(Key)) {
 	    	message="ログイン成功";
+	    	//user_id取得
 	    }else{
 	    	message="ログイン失敗";
 	    }
