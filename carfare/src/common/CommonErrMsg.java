@@ -2,6 +2,10 @@ package common;
 
 public class CommonErrMsg {
 	/**
+	 * テストコミット
+	 * */
+
+	/**
 	 * 	ログイン画面で使用
 	 *	入力データのエラーチェック
 	 **/
@@ -31,36 +35,6 @@ public class CommonErrMsg {
 	 * 	登録、編集画面で使用
 	 *	入力データのエラーチェック
 	 **/
-	public static String getErrMsg(String className, String value) {
-		switch (className) {
-		case "day":
-			if (value.equals("")) {
-				return "日付は必須項目です";
-			}
-			return value.matches("^\\d{4}/\\d{2}/\\d{2}$") ? "" : "日付は「yyyy/mm/dd」の形式で入力してください";
-		case "route":
-			return value.equals("") ? "片道or往復は必須項目です" : "";
-		case "transit":
-			return value.equals("") ? "交通機関は必須項目です" : "";
-		case "from_st":
-			if (value.equals("")) {
-				return "";
-			}
-			return stringDigits(value) > 20 ? "出発駅は全角10文字以内で入力してください" : "";
-		case "to_st":
-			if (value.equals("")) {
-				return "";
-			}
-			return stringDigits(value) > 20 ? "到着駅は全角10文字以内で入力してください" : "";
-		case "price":
-			if (value.equals("")) {
-				return "";
-			}
-			return value.matches("[0-9]+") ? "" : "金額は数値で入力してください";
-		default:
-			return "";
-		}
-	}
 
 	//入力データのバイトチャック
 	private static int stringDigits(String s) {
