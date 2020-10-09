@@ -19,28 +19,28 @@ import common.CommonDB;
 public class TransitdataList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public TransitdataList() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public TransitdataList() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
 		/** ユーザーID取得 **/
 		//String user_id=(String)request.getAttribute("user_id");
-		String user_id="1";
+		String user_id = "1";
 
 		/** 登録か編集かの登録値の受け渡し**/
 		//String menulist = request.getParameter("menulist");
-		String menulist ="1";
-
+		String menulist = "1";
 
 		/** ページング **/
 		//ページ数取得
@@ -56,40 +56,38 @@ public class TransitdataList extends HttpServlet {
 		int now = Integer.parseInt(nowPage);
 
 		//LIMIT句の値
-		int limitSta =(now - 1)*10;;
+		int limitSta = (now - 1) * 10;
+		;
 
 		/** 検索値の取得**/
 		//交通機関No
-		String transit_no=request.getParameter("transit_no");
+		String transit_no = request.getParameter("transit_no");
 		//int transit_no=Integer.parseInt(transit_no_int);
 
-		if(transit_no==null) {
-			transit_no=null;
+		if (transit_no == null) {
+			transit_no = null;
 		}
 
-
 		//出発駅
-		String from_st=request.getParameter("from_st");
+		String from_st = request.getParameter("from_st");
 
-		if(from_st==null) {
-			from_st=null;
+		if (from_st == null) {
+			from_st = null;
 		}
 
 		//到着駅
-		String to_st=request.getParameter("to_st");
+		String to_st = request.getParameter("to_st");
 
-		if(to_st==null) {
-			to_st=null;
+		if (to_st == null) {
+			to_st = null;
 		}
-
 
 		/** DBの取得 **/
 		//Transit_dataを取得(総数取得)
-		int listCnt=CommonDB.getTransitDataCnt(transit_no, from_st, to_st);
+		int listCnt = CommonDB.getTransitDataCnt(transit_no, from_st, to_st, 0);
 
 		//Transit_dataを取得(一覧取得)
-		ResultSet rs =CommonDB.getTransitDataAll(transit_no, from_st, to_st,limitSta);
-
+		ResultSet rs = CommonDB.getTransitDataAll(transit_no, from_st, to_st, limitSta, 0);
 
 		/** 送る用の値 **/
 
@@ -105,7 +103,6 @@ public class TransitdataList extends HttpServlet {
 		request.setAttribute("listCnt", listC);
 		request.setAttribute("page", noww);
 
-
 		//交通手段一覧取得用
 		request.setAttribute("rs", rs);
 
@@ -118,12 +115,13 @@ public class TransitdataList extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("/transitDataList.jsp");
 		rd.forward(request, response);
 
-
 	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

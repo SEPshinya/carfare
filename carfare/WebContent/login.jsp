@@ -17,11 +17,15 @@
       </tr>
       <tr>
         <th>パスワード:</th>
-        <td><input type="text" name="pass"></td>
+        <td><input type="password" name="password"></td>
       </tr>
      </table>
   		<input type="submit"  value="ログイン">
   	</form>
+<% String getErr=(String)request.getAttribute("message"); %>
+<%if(getErr!=null){ %>
+<%=getErr%>
+<%}%>
 
 </body>
 </html>

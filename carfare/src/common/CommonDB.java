@@ -179,14 +179,13 @@ public class CommonDB {
 	 *	一致するものがあれば ユーザー情報を返す
 	 *	一致するものがなければ nullを返す
 	 **/
-	public static ResultSet getUser(String address, String password) {
+	public static ResultSet getUserPass(String loginKey) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			Statement stmt = connect.createStatement();
 			String getQuery = "SELECT * FROM user "
-					+ "WHERE address LIKE '" + address + "' "
-					+ "AND password LIKE '" + password + "';";
+					+ "WHERE  password LIKE '" + loginKey + "';";
 			return stmt.executeQuery(getQuery);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -224,9 +223,9 @@ public class CommonDB {
 	 *	一致するものがあれば trueを返す
 	 *	一致するものがなければ falseを返す
 	 **/
-	public static Boolean isUser(String address, String password) {
+	public static Boolean isUser(String loginKey) {
 		try {
-			return getUser(address, password).next();
+			return getUserPass(loginKey).next();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
