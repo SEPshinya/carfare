@@ -50,7 +50,8 @@ String menu=(String)request.getAttribute("menulist");
 int menuNo= Integer.parseInt(menu);
 
 /** ユーザーID **/
-String user_id=(String)request.getAttribute("user_id");
+//String user_id=(String)request.getAttribute("user_id");
+int user_id=(int)session.getAttribute("user_id");
 String searchword="&from_st_encoded="+from_st_encoded+"&to_st_encoded="+to_st_encoded+"&transit_no="+transit_no;
 %>
 <!DOCTYPE html>

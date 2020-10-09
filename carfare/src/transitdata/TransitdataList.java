@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import common.CommonDB;
 
@@ -39,9 +40,8 @@ public class TransitdataList extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 
 		/** ユーザーID取得 **/
-		//String userid=(String)request.getAttribute("user_id");
-		String userid = "1";
-		int user_id = Integer.parseInt(userid);
+		HttpSession session = request.getSession();
+		int user_id=(int)session.getAttribute("User_id");
 
 		/** 登録か編集かの登録値の受け渡し**/
 		//String menulist = request.getParameter("menulist");
@@ -63,7 +63,6 @@ public class TransitdataList extends HttpServlet {
 
 		//LIMIT句の値
 		int limitSta = (now - 1) * 10;
-		;
 
 		/** 検索値の取得**/
 		//交通機関No
@@ -107,10 +106,10 @@ public class TransitdataList extends HttpServlet {
 
 		/** DBの取得 **/
 		//Transit_dataを取得(総数取得)
-		int listCnt = CommonDB.getTransitDataCnt(transit_no, from_st, to_st, 0);
+		int listCnt = CommonDB.getTransitDataCnt(transit_no, from_st, to_st, user_id);
 
 		//Transit_dataを取得(一覧取得)
-		ResultSet rs = CommonDB.getTransitDataAll(transit_no, from_st, to_st, limitSta, 0);
+		ResultSet rs = CommonDB.getTransitDataAll(transit_no, from_st, to_st, limitSta, user_id);
 
 		/** 送る用の値 **/
 
