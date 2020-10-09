@@ -7,7 +7,7 @@
 	ResultSet rs = (ResultSet)request.getAttribute("rs");
 	String nowPage=(String)request.getAttribute("nowPage");
 	int listCnt=(int)request.getAttribute("listCnt");
-	int np=(int)request.getAttribute("np");
+	int np=(int)request.getAttribute("now");
 
 %>
 <%   int maxPage=0; %>

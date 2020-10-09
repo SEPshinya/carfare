@@ -22,6 +22,9 @@
      </table>
   		<input type="submit"  value="ログイン">
   	</form>
+  	<p>原
+add harashinya1192
+pass hara1192</p>
 <% String getErr=(String)request.getAttribute("message"); %>
 <%if(getErr!=null){ %>
 <%=getErr%>

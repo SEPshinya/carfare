@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import common.CommonDB;
 import common.CommonErrMsg;
@@ -29,26 +30,26 @@ public class Login extends HttpServlet {
 
 		String address = request.getParameter("address");//ログイン画面で入力したアドレス
 		String password = request.getParameter("password"); //PassWord
+
 		String Key = null; //userパス
 		String salt = null; //ソルト
-		String ErrMsg = CommonErrMsg.getLoginErr(address, password);
-		ResultSet rs = CommonDB.getUser(address);
 
-		if (ErrMsg != null) {
+		String ErrMsg = CommonErrMsg.getLoginErr(address, password);
+
+		if (!ErrMsg.equals("")) {
 			request.setAttribute("message", ErrMsg);
 			getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
 		}
-
+		ResultSet rs = CommonDB.getUser(address);
 		try {
 			rs.next();
-			Key = rs.getString("password");
 			salt = rs.getString("salt");
 		} catch (SQLException e1) {
-			e1.printStackTrace();
 		}
 		//ハッシュ化
 		String loginKey = null;
 		String saltpass = null;
+
 		saltpass = salt + password;
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -57,17 +58,20 @@ public class Login extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		Boolean Sigin=CommonDB.isUser(loginKey);
-		if() {
-			l
+		ErrMsg=CommonErrMsg.getLoginErr(loginKey);
+		if (!ErrMsg.equals("")) {
+			request.setAttribute("message", ErrMsg);
+			getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
 		}
+		int User_id=CommonDB.getUserId(address,loginKey);
 
-		//ログイン処理
-		if (loginKey.equals(Key)) {
-			getServletContext().getRequestDispatcher("/logincheck.jsp").forward(request, response);
-			//user_id取得
-		}
-		getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+
+	    HttpSession session = request.getSession();
+	    session.setAttribute("User_id",User_id);
+
+
+
+		getServletContext().getRequestDispatcher("/logincheck.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
