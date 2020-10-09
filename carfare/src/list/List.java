@@ -1,78 +1,94 @@
 
 package list;
-
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import common.CommonDB;
 
+/**
+ * Servlet implementation class ListBL
+ */
 @WebServlet("/List")
 public class List extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public List() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
-	@SuppressWarnings("null")
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.setCharacterEncoding("UTF-8");
-		Connection connect=null;
-		Statement stmt=null;
-		PreparedStatement ps=null;
-		int limitSta=0;          //検索開始位置
-		ResultSet rs=null;
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Connection connect=null;  //接続
+    	request.setCharacterEncoding("UTF-8");
+		//Statement stmt=null;       //接続
+		//PreparedStatement ps=null; //接続
+		//ResultSet rs=null;         //取得
+		//LIMIT句の値
+
+    	/** ページング **/
+		//ページ数取得
+		//String Page = request.getParameter("Page");
+
 		//現在のページ
-		String nowPage=null;
+		//String nowPage = "";
+		//if (Page != null) {
+			String nowPage = "1";
+		//} else {
+		//	nowPage = "1";
+		//}
+		//int now = Integer.parseInt(nowPage);
+
+		//int limitSta = (now - 1) * 10;
+
+
+		int user_id=1;
+
 		//総件数
-		int listCnt = 0;
-		//取得対象全件数
-		String CntQuery="SELECT COUNT(*) count FROM transit_list";
-		//String nowPage="";
-		final String URL
-	    = "jdbc:mysql://localhost:3306/carfare?serverTimezone=JST";
-	    final String USER = "root";
-	    final String PASS = "";
+		//String SelectQuery=null; //表取得
+		//String CntQuery=null;    //件数取得
+		//String nowPage=null;     //現在のページ
+		//String SerchName=null;   //検索用文字列
+		//int limitSta=0;          //検索開始位置
 
-		nowPage = request.getParameter("page");
-		if(nowPage==null) {
-		nowPage="1";
-		}
-		int np =Integer.parseInt(nowPage);
-		request.setAttribute("np", np);
-		if(np>1) {
-		limitSta=(np-1)*10;
-		};
+		int limitSta = 10;
+		/** DBの取得 **/
+		//Transit_dataを取得(総数取得)
+		int listCnt = CommonDB.getTransitListCnt(user_id);
 
-	    try {
-			 CntQuery="SELECT COUNT(*) count FROM transit_list";
-			 stmt=connect.createStatement();
-			 rs = stmt.executeQuery(CntQuery);
-			 rs.next();
-			 listCnt = rs.getInt("id");
-			 request.setAttribute("listCnt", listCnt);
-	  //引数のSQLを設定したものがps（変数）に入ってる、sqlの実行準備ができた
-			 //表取得
-		String SelectQuery="SELECT * FROM `transit_list` WHERE limit "+limitSta+",10";
-			ps= connect.prepareStatement(SelectQuery);
-			rs= ps.executeQuery();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		request.setAttribute("Result",rs);
+		ResultSet rs=CommonDB.getTransitListAll(limitSta,user_id);
 
-		//List.jspへ画面遷移
-		getServletContext().getRequestDispatcher("/list.jsp").forward(request,response);
-	}
+		//ページング関連
+		//String listC = String.valueOf(listCnt);
+		//String noww = String.valueOf(now);
+		//request.setAttribute("listCnt", listC);
+		//request.setAttribute("page", noww);
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//交通手段一覧取得用
+		request.setAttribute("rs", rs);
+		//request.setAttribute("Page",Page);
+
+
+		/**交通手段一覧のページへ遷移**/
+		RequestDispatcher rd = request.getRequestDispatcher("/list.jsp");
+		rd.forward(request, response);
+
+
+    }
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
