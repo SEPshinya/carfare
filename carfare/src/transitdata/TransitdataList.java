@@ -1,6 +1,7 @@
 package transitdata;
 
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.sql.ResultSet;
 
 import javax.servlet.RequestDispatcher;
@@ -34,13 +35,18 @@ public class TransitdataList extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+
 		/** ユーザーID取得 **/
-		//String user_id=(String)request.getAttribute("user_id");
-		String user_id = "1";
+		//String userid=(String)request.getAttribute("user_id");
+		String userid = "1";
+		int user_id = Integer.parseInt(userid);
 
 		/** 登録か編集かの登録値の受け渡し**/
 		//String menulist = request.getParameter("menulist");
 		String menulist = "1";
+
 
 		/** ページング **/
 		//ページ数取得
@@ -65,21 +71,38 @@ public class TransitdataList extends HttpServlet {
 		//int transit_no=Integer.parseInt(transit_no_int);
 
 		if (transit_no == null) {
-			transit_no = null;
+			transit_no ="";
 		}
 
 		//出発駅
 		String from_st = request.getParameter("from_st");
 
 		if (from_st == null) {
-			from_st = null;
+			from_st ="";
+		}
+
+		//出発駅（エンコード版）
+		String from_st_encoded=request.getParameter("from_st_encoded");
+		//String from_st_encoded="%E6%8A%BC%E4%B8%8A";
+
+		//エンコードからデコードへ変換
+		if(from_st_encoded!=null) {
+			from_st= URLDecoder.decode(from_st_encoded, "UTF-8");
 		}
 
 		//到着駅
 		String to_st = request.getParameter("to_st");
 
 		if (to_st == null) {
-			to_st = null;
+			to_st ="";
+		}
+
+		//到着駅（エンコード版）
+		String to_st_encoded=request.getParameter("to_st_encoded");
+
+		//エンコードからデコードへ変換
+		if(to_st_encoded!=null) {
+			to_st= URLDecoder.decode(to_st_encoded, "UTF-8");
 		}
 
 		/** DBの取得 **/
