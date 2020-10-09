@@ -58,20 +58,17 @@ public class Login extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		ErrMsg=CommonErrMsg.getLoginErr(loginKey);
+		ErrMsg = CommonErrMsg.getLoginErr(loginKey);
 		if (!ErrMsg.equals("")) {
 			request.setAttribute("message", ErrMsg);
 			getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
 		}
-		int User_id=CommonDB.getUserId(address,loginKey);
+		int User_id = CommonDB.getUserId(address, loginKey);
 
+		HttpSession session = request.getSession();
+		session.setAttribute("User_id", User_id);
 
-	    HttpSession session = request.getSession();
-	    session.setAttribute("User_id",User_id);
-
-
-
-		getServletContext().getRequestDispatcher("/logincheck.jsp").forward(request, response);
+		getServletContext().getRequestDispatcher("/List").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
