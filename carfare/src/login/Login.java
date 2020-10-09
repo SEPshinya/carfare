@@ -57,6 +57,10 @@ public class Login extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		Boolean Sigin=CommonDB.isUser(loginKey);
+		if() {
+			l
+		}
 
 		//ログイン処理
 		if (loginKey.equals(Key)) {

@@ -179,28 +179,6 @@ public class CommonDB {
 	 *	一致するものがあれば ユーザー情報を返す
 	 *	一致するものがなければ nullを返す
 	 **/
-	public static ResultSet getUserPass(String loginKey) {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-			Statement stmt = connect.createStatement();
-			String getQuery = "SELECT * FROM user "
-					+ "WHERE  password LIKE '" + loginKey + "';";
-			return stmt.executeQuery(getQuery);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	/**
-	 *	ログイン画面で使用
-	 *	ログイン時に入力された値を受け取る
-	 *	一致するものがあれば ユーザー情報を返す
-	 *	一致するものがなければ nullを返す
-	 **/
 	public static ResultSet getUser(String address) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -223,6 +201,22 @@ public class CommonDB {
 	 *	一致するものがあれば trueを返す
 	 *	一致するものがなければ falseを返す
 	 **/
+	public static ResultSet getUserPass(String loginKey) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			Statement stmt = connect.createStatement();
+			String getQuery = "SELECT * FROM user "
+					+ "WHERE  password LIKE '" + loginKey + "';";
+			return stmt.executeQuery(getQuery);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	public static Boolean isUser(String loginKey) {
 		try {
 			return getUserPass(loginKey).next();

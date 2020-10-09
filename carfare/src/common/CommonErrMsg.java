@@ -16,8 +16,12 @@ public class CommonErrMsg {
 		} else if (stringDigits(password) > 16) {
 			return "メールアドレスは半角16文字以内で入力してください";
 		}
+		return "";
+	}
+	
+	public static String getLoginErr(String loginKey) {
 		try {
-			return CommonDB.isUser(address) ? "" : "メールアドレスもしくはパスワードが間違っているか入力されていません。";
+			return CommonDB.isUser(loginKey) ? "" : "メールアドレスもしくはパスワードが間違っているか入力されていません。";
 		} catch (Exception e) {
 			return "例外が発生しました:" + e.toString();
 		}
