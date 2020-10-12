@@ -128,8 +128,12 @@ public class Add extends HttpServlet {
 			request.setAttribute("to_st", to_st);
 			request.setAttribute("price",price);
 
+			/** DBの取得 **/
+			String route_name=CommonDB.getRouteName(route_no);
+			String transit_name=CommonDB.getTransitName(transit_no);
+
 			RequestDispatcher rd =
-            		request.getRequestDispatcher("/AddCheck");
+            		request.getRequestDispatcher("/addCheck.jsp");
             rd.forward(request,response);
 
 		}else {
