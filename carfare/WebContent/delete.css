@@ -1,20 +1,24 @@
 @charset "UTF-8";
 body {
-  width: 90%;
-  min-width:60%;
-  max-width:100%;
+  width: 920px;
+
 }
 
 table{
-    width: 80%;
+
 }
 
 .text{
-	width:200px;
+	width:100px;
 }
 
 .btn{
 	width:60%;
 	text-align: center;
 	align:center;
+}
+
+.ex{
+	font-weight: bold;
+
 }
