@@ -36,7 +36,7 @@ public class CommonErrMsg {
 		String errmsg = "";
 		if (data.getDay().equals("")) {
 			errmsg += "日付は必須項目です<br>";
-		} else if (!(data.getDay().matches("^[0-9]{4}/[0-9]{2}/[0-9]{2}$"))) {
+		} else if (!(data.getDay().matches("^[0-9]{4}/[0-9]{2}/[0-9]{2}$") && chackDayData(data.getDay()))) {
 			errmsg += "日付は「yyyy/mm/dd」の形式で入力してください<br>";
 		}
 		if (data.getRoute_no().equals("")) {
@@ -82,6 +82,99 @@ public class CommonErrMsg {
 			}
 		}
 		return b;
+	}
+
+	//入力データが正しい日付のものか調べる
+	private static boolean chackDayData(String s) {
+		return ismonth(s) && isday(createdays(s), s);
+	}
+
+	//対応した月の日付表を渡す
+	private static int[] createdays(String s) {
+		char[] chars = createCharList(s);
+		int nen = 0;
+		for (int i = 0; i < 4; i++) {
+			nen *= 10;
+			nen += Integer.parseUnsignedInt("" + chars[i]);
+		}
+		int month = 0;
+		for (int i = 4; i < 6; i++) {
+			month *= 10;
+			month += Integer.parseUnsignedInt("" + chars[i]);
+		}
+		int[] days;
+		switch (month) {
+		case 1:
+		case 3:
+		case 5:
+		case 7:
+		case 8:
+		case 10:
+		case 12:
+			days = new int[31];
+			for (int i = 0; i < days.length; i++) {
+				days[i] = i + 1;
+			}
+			return days;
+		case 2:
+			if (nen % 4 == 0) {
+				days = new int[29];
+			} else {
+				days = new int[28];
+			}
+			for (int i = 0; i < days.length; i++) {
+				days[i] = i + 1;
+			}
+			return days;
+
+		case 4:
+		case 6:
+		case 9:
+		case 11:
+			days = new int[30];
+			for (int i = 0; i < days.length; i++) {
+				days[i] = i + 1;
+			}
+			return days;
+		}
+		return null;
+	}
+
+	//入力された日付の「日」が正しいかどうか
+	private static boolean isday(int[] list, String s) {
+		char[] chars = createCharList(s);
+		int day = 0;
+		for (int i = 6; i < chars.length; i++) {
+			day *= 10;
+			day += Integer.parseUnsignedInt("" + chars[i]);
+		}
+		for (int listdays : list) {
+			if (listdays == day) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	//入力された日付の「月」が正しいかどうか
+	private static boolean ismonth(String s) {
+		char[] chars = createCharList(s);
+		int month = 0;
+		for (int i = 4; i < 6; i++) {
+			month *= 10;
+			month += Integer.parseUnsignedInt("" + chars[i]);
+		}
+		for (int i = 1; i <= 12; i++) {
+			if (i == month) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	//重複した処理  日付データから「/」を消して、charの配列に変換して返す
+	private static char[] createCharList(String s) {
+		return s.replaceAll("/", "").toCharArray();
 	}
 
 }
