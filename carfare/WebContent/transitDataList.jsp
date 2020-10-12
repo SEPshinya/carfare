@@ -4,6 +4,10 @@
 request.setCharacterEncoding("UTF-8");
 /** 登録、編集画面への遷移先アドレスは適当につけているので、ページ確認でき次第修正します。**/
 
+/**入力値引継ぎ**/
+String day=(String) request.getAttribute("day");
+int route_no=(int) request.getAttribute("route_no");
+
 /**ページング用**/
 //総ページ数
 String listCnt =(String) request.getAttribute("listCnt");
@@ -50,7 +54,7 @@ String menu=(String)request.getAttribute("menulist");
 int menuNo= Integer.parseInt(menu);
 
 /** ユーザーID **/
-String user_id=(String)request.getAttribute("user_id");
+int user_id=(int)request.getAttribute("user_id");
 String searchword="&from_st_encoded="+from_st_encoded+"&to_st_encoded="+to_st_encoded+"&transit_no="+transit_no;
 %>
 <!DOCTYPE html>
@@ -392,12 +396,16 @@ if(menuNo==1){
 <!-- 登録画面へ戻る -->
 <input type="hidden" name="menulist" value="1">
 <input type="hidden" name="user_id" value="<%=user_id%>">
+<input type="hidden" name="day" value="<%=day%>">
+<input type="hidden" name="route_no" value="<%=route_no%>">
 <td><button type="submit" formaction="add.jsp">選択</button></td>
 
 <%}else{ %>
 <!-- 編集画面へ戻る -->
 <input type="hidden" name="menulist" value="2">
 <input type="hidden" name="user_id" value="<%=user_id%>">
+<input type="hidden" name="day" value="<%=day%>">
+<input type="hidden" name="route_no" value="<%=route_no%>">
 <td><button type="submit" formaction="edit.jsp">選択</button></td>
 
 <%
@@ -716,6 +724,8 @@ if(menuNo==1){
 <!-- 登録画面へ戻る -->
 <input type="hidden" name="menulist" value="1">
 <input type="hidden" name="user_id" value="<%=user_id%>">
+<input type="hidden" name="day" value="<%=day%>">
+<input type="hidden" name="route_no" value="<%=route_no%>">
 <button type="submit" formaction="add.jsp" >戻る</button>
 <%
 }else{
@@ -723,6 +733,8 @@ if(menuNo==1){
 <!-- 編集画面へ戻る -->
 <input type="hidden" name="menulist" value="2">
 <input type="hidden" name="user_id" value="<%=user_id%>">
+<input type="hidden" name="day" value="<%=day%>">
+<input type="hidden" name="route_no" value="<%=route_no%>">
 <button type="submit" formaction="edit.jsp" >戻る</button>
 <%
 }
