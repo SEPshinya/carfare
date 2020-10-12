@@ -4,7 +4,7 @@ public class CommonErrMsg {
 
 	/**
 	 * 	ログイン画面で使用
-	 *	入力データのエラーチェック
+	 * 	入力データのエラーチェック
 	 **/
 	public static String getLoginErr(String address, String password) {
 		if (isBytes(address)) {
