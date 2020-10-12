@@ -36,8 +36,18 @@ public class TransitdataList extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
+
+		String errmsg=request.getParameter("errmsg");
 
 		/** ユーザーID取得 **/
 		HttpSession session = request.getSession();
@@ -48,8 +58,8 @@ public class TransitdataList extends HttpServlet {
 
 
 		/** 入力値引継ぎ**/
-		String day=(String) request.getAttribute("day");
-		int route_no=(int) request.getAttribute("route_no");
+		String day=request.getParameter("day");
+		String route_no=request.getParameter("route_no");
 
 
 		/** ページング **/
@@ -118,11 +128,11 @@ public class TransitdataList extends HttpServlet {
 
 		/** 送る用の値 **/
 
-		//ユーザーID
-		request.setAttribute("user_id", user_id);
-
 		//登録か編集かの判断値
 		request.setAttribute("menulist", menulist);
+
+		//エラー
+		request.setAttribute("errmsg", errmsg);
 
 		//入力値引継ぎ
 		request.setAttribute("day",day);
@@ -146,15 +156,6 @@ public class TransitdataList extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("/transitDataList.jsp");
 		rd.forward(request, response);
 
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }
