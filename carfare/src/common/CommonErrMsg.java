@@ -1,6 +1,7 @@
 package common;
 
 public class CommonErrMsg {
+
 	/**
 	 * 	ログイン画面で使用
 	 *	入力データのエラーチェック
@@ -31,35 +32,32 @@ public class CommonErrMsg {
 	 * 	登録、編集画面で使用
 	 *	入力データのエラーチェック
 	 **/
-	public static String getErrMsg(String className, String value) {
-		switch (className) {
-		case "day":
-			if (value.equals("")) {
-				return "日付は必須項目です";
-			}
-			return value.matches("^\\d{4}/\\d{2}/\\d{2}$") ? "" : "日付は「yyyy/mm/dd」の形式で入力してください";
-		case "route":
-			return value.equals("") ? "片道or往復は必須項目です" : "";
-		case "transit":
-			return value.equals("") ? "交通機関は必須項目です" : "";
-		case "from_st":
-			if (value.equals("")) {
-				return "";
-			}
-			return stringDigits(value) > 20 ? "出発駅は全角10文字以内で入力してください" : "";
-		case "to_st":
-			if (value.equals("")) {
-				return "";
-			}
-			return stringDigits(value) > 20 ? "到着駅は全角10文字以内で入力してください" : "";
-		case "price":
-			if (value.equals("")) {
-				return "";
-			}
-			return value.matches("[0-9]+") ? "" : "金額は数値で入力してください";
-		default:
-			return "";
+	public static String getErrMsg(CommonAddData data) {
+		String errmsg = "";
+		if (data.getDay().equals("")) {
+			errmsg += "日付は必須項目です<br>";
+		} else if (!(data.getDay().matches("^[0-9]{4}/[0-9]{2}/[0-9]{2}$"))) {
+			errmsg += "日付は「yyyy/mm/dd」の形式で入力してください<br>";
 		}
+		if (data.getRoute_no().equals("")) {
+			errmsg += "片道or往復は必須項目です<br>";
+		}
+		if (data.getTransit_no().equals("")) {
+			errmsg += "交通機関は必須項目です<br>";
+		}
+		if (stringDigits(data.getFrom_st()) > 20) {
+			errmsg += "出発駅は全角10文字以内で入力してください<br>";
+		}
+		if (stringDigits(data.getTo_st()) > 20) {
+			errmsg += "到着駅は全角10文字以内で入力してください<br>";
+		}
+		if (!data.getPrice().equals("")) {
+			if (!(data.getPrice().matches("[0-9]+"))) {
+				errmsg += "金額は数値で入力してください<br>";
+			}
+		}
+
+		return errmsg;
 	}
 
 	//入力データのバイトチャック

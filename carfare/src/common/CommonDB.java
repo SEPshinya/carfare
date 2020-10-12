@@ -303,20 +303,15 @@ public class CommonDB {
 	/***
 	 *	登録画面で使用
 	 */
-	public static void addDB(String day, int route_no, int transit_no,
-			String from_st, String to_st, int price, int user_id) {
+	public static void addDB(CommonAddData data) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			Statement stmt = connect.createStatement();
 			String InsQuery = "INSERT INTO `transit_list` (`id`, `day`, `route_no`, `transit_no`, `from_st`, `to_st`, `price`, `user_id`, `delete_flg`) VALUES (NULL, '"
-					+ day + "', '"
-					+ route_no + "', '"
-					+ transit_no + "', '"
-					+ from_st + "', '"
-					+ to_st + "', '"
-					+ price + "', '"
-					+ user_id + "', 0);";
+					+ data.getDay() + "', '" + data.getRoute_no() + "', '"
+					+ data.getTransit_no() + "', '" + data.getFrom_st() + "', '"
+					+ data.getTo_st() + "', '" + data.getPrice() + "', '" + data.getUser_id() + "', 0);";
 			stmt.executeUpdate(InsQuery);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -328,16 +323,16 @@ public class CommonDB {
 	/**
 	 *	編集画面で使用
 	 **/
-	public static void updateDB(int id, String day, int route_no, int transit_no,
-			String from_st, String to_st, int price, int user_id) {
+	public static void updateDB(CommonUpdData data) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			Statement stmt = connect.createStatement();
-			String UpdQuery = "UPDATE `transit_list` SET `day` = '" + day
-					+ "', `route_no` = '" + route_no + "', `transit_no` = '" + transit_no
-					+ "', `from_st` = '" + from_st + "', `to_st` = '" + to_st
-					+ "', `price` = '" + price + "' where `transit_list`.`id` = " + id + ";";
+			String UpdQuery = "UPDATE transit_list SET day = '" + data.getDay()
+					+ "', route_no = '" + data.getRoute_no() + "', transit_no = '" + data.getTransit_no()
+					+ "', from_st = '" + data.getFrom_st() + "', to_st = '" + data.getTo_st()
+					+ "', price = '" + data.getPrice() + "' WHERE id = " + data.getId();
+
 			stmt.executeUpdate(UpdQuery);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -354,7 +349,7 @@ public class CommonDB {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			Statement stmt = connect.createStatement();
-			String DelQuery = "UPDATE `transit_list` SET `delete_flg` = '" + 1 + "' WHERE `transit_list`.`id` = " + id
+			String DelQuery = "UPDATE transit_list SET delete_flg = '" + 1 + "' WHERE id = " + id
 					+ ";";
 			stmt.executeUpdate(DelQuery);
 		} catch (ClassNotFoundException | SQLException e) {
