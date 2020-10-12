@@ -264,23 +264,6 @@ public class CommonDB {
 	 *
 	 * 	発見できなかった場合0を返す
 	 **/
-	public static int getUserId(int id) {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-			Statement stmt = connect.createStatement();
-			String getQuery = "SELECT user_id FROM user WHERE user_id = " + id + ";";
-			ResultSet rs = stmt.executeQuery(getQuery);
-			rs.next();
-			return rs.getInt("user_id");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		return 0;
-	}
-
 	public static int getUserId(String address, String password) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -298,6 +281,86 @@ public class CommonDB {
 			e.printStackTrace();
 		}
 		return 0;
+	}
+
+	public static int getUserId(int id) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			Statement stmt = connect.createStatement();
+			String getQuery = "SELECT user_id FROM user WHERE user_id = " + id + ";";
+			ResultSet rs = stmt.executeQuery(getQuery);
+			rs.next();
+			return rs.getInt("user_id");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	/***
+	 *	登録画面で使用
+	 */
+	public static void addDB(String day, int route_no, int transit_no,
+			String from_st, String to_st, int price, int user_id) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			Statement stmt = connect.createStatement();
+			String InsQuery = "INSERT INTO `transit_list` (`id`, `day`, `route_no`, `transit_no`, `from_st`, `to_st`, `price`, `user_id`, `delete_flg`) VALUES (NULL, '"
+					+ day + "', '"
+					+ route_no + "', '"
+					+ transit_no + "', '"
+					+ from_st + "', '"
+					+ to_st + "', '"
+					+ price + "', '"
+					+ user_id + "', 0);";
+			stmt.executeUpdate(InsQuery);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 *	編集画面で使用
+	 **/
+	public static void updateDB(int id, String day, int route_no, int transit_no,
+			String from_st, String to_st, int price, int user_id) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			Statement stmt = connect.createStatement();
+			String UpdQuery = "UPDATE `transit_list` SET `day` = '" + day
+					+ "', `route_no` = '" + route_no + "', `transit_no` = '" + transit_no
+					+ "', `from_st` = '" + from_st + "', `to_st` = '" + to_st
+					+ "', `price` = '" + price + "' where `transit_list`.`id` = " + id + ";";
+			stmt.executeUpdate(UpdQuery);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 *	削除画面で使用
+	 **/
+	public static void deleteDB(int id) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			Statement stmt = connect.createStatement();
+			String DelQuery = "UPDATE `transit_list` SET `delete_flg` = '" + 1 + "' WHERE `transit_list`.`id` = " + id
+					+ ";";
+			stmt.executeUpdate(DelQuery);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 }
