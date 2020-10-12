@@ -43,7 +43,7 @@ public class CommonDB {
 			String getQuery = "SELECT route_name FROM route WHERE route_no = " + route_no + " ORDER BY route_no ASC;";
 			ResultSet rs = stmt.executeQuery(getQuery);
 			rs.next();
-			return rs.getString("route_no");
+			return rs.getString("route_name");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
@@ -84,7 +84,7 @@ public class CommonDB {
 					+ " ORDER BY transit_no ASC;";
 			ResultSet rs = stmt.executeQuery(getQuery);
 			rs.next();
-			return rs.getString("transit_no");
+			return rs.getString("transit_name");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
@@ -205,6 +205,7 @@ public class CommonDB {
 					"WHERE transit_list.route_no = route.route_no " +
 					"AND transit_list.transit_no = transit.transit_no " +
 					"AND transit_list.user_id = " + user_id + " " +
+					"AND transit_list.delete_flg = 0 " +
 					"ORDER BY day ASC;";
 			ResultSet rs = stmt.executeQuery(getQuery);
 			rs.next();
@@ -376,7 +377,6 @@ public class CommonDB {
 					+ "', route_no = '" + data.getRoute_no() + "', transit_no = '" + data.getTransit_no()
 					+ "', from_st = '" + data.getFrom_st() + "', to_st = '" + data.getTo_st()
 					+ "', price = '" + data.getPrice() + "' WHERE id = " + data.getId();
-
 			stmt.executeUpdate(UpdQuery);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -399,7 +399,6 @@ public class CommonDB {
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 }
