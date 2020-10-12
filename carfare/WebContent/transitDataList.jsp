@@ -4,6 +4,10 @@
 request.setCharacterEncoding("UTF-8");
 /** 登録、編集画面への遷移先アドレスは適当につけているので、ページ確認でき次第修正します。**/
 
+/** 引継ぎ値 **/
+String day=(String) request.getAttribute("day");
+String route_no=(String) request.getAttribute("route_no");
+
 /**ページング用**/
 //総ページ数
 String listCnt =(String) request.getAttribute("listCnt");
@@ -46,8 +50,8 @@ ResultSet rs= (ResultSet) request.getAttribute("rs");
 
 
 /** 登録か編集かの判断値（名前は仮仕様）**/
-String menu=(String)request.getAttribute("menulist");
-int menuNo= Integer.parseInt(menu);
+String menulist=(String)request.getAttribute("menulist");
+int menuNo= Integer.parseInt(menulist);
 
 /** ユーザーID **/
 //String user_id=(String)request.getAttribute("user_id");
@@ -360,7 +364,7 @@ if(maxPage==1 || maxPage==0 && now==1){
 
 
 <!-- 交通手段一覧表示 -->
-<form method="post">
+<form method="get">
 <table border="1">
 <tr>
 <th>交通機関</th>
@@ -379,11 +383,11 @@ while(rs.next()){
 <td><%=rs.getString("transit_name") %></td>
 <td><%=rs.getString("from_st") %></td>
 <td><%=rs.getString("to_st") %></td>
-<td><%=rs.getString("price") %></td>
+<td><%=rs.getString("price") %>円</td>
 
 <!-- 選択した値を渡す用 -->
 <input name="data_id" type="hidden" value=<%=rs.getString("data_id") %>>
-<input name="transit_no" type="hidden" value=<%=rs.getString("transit_name") %>>
+<input name="transit_no" type="hidden" value=<%=rs.getString("transit_no") %>>
 <input name="from_st" type="hidden" value=<%=rs.getString("from_st") %>>
 <input name="to_st" type="hidden" value=<%=rs.getString("to_st") %>>
 <input name="price" type="hidden" value=<%=rs.getString("price") %>>
@@ -391,14 +395,18 @@ while(rs.next()){
 if(menuNo==1){
 %>
 <!-- 登録画面へ戻る -->
-<input type="hidden" name="menulist" value="1">
+<input type="hidden" name="menulist" value="<%=menulist%>">
 <input type="hidden" name="user_id" value="<%=user_id%>">
+<input type="hidden" name="day" value="<%=day%>">
+<input type="hidden" name="route_no" value="<%=route_no%>">
 <td><button type="submit" formaction="add.jsp">選択</button></td>
 
 <%}else{ %>
 <!-- 編集画面へ戻る -->
-<input type="hidden" name="menulist" value="2">
+<input type="hidden" name="menulist" value="<%=menulist%>">
 <input type="hidden" name="user_id" value="<%=user_id%>">
+<input type="hidden" name="day" value="<%=day%>">
+<input type="hidden" name="route_no" value="<%=route_no%>">
 <td><button type="submit" formaction="edit.jsp">選択</button></td>
 
 <%
@@ -715,16 +723,20 @@ if(maxPage==1 || maxPage==0 && now==1){
 if(menuNo==1){
 %>
 <!-- 登録画面へ戻る -->
-<input type="hidden" name="menulist" value="1">
+<input type="hidden" name="menulist" value="<%=menulist%>">
 <input type="hidden" name="user_id" value="<%=user_id%>">
-<button type="submit" formaction="add.jsp" >戻る</button>
+<input type="hidden" name="day" value="<%=day%>">
+<input type="hidden" name="route_no" value="<%=route_no%>">
+<input type="submit" formaction="Add" value="戻る">
 <%
 }else{
 %>
 <!-- 編集画面へ戻る -->
-<input type="hidden" name="menulist" value="2">
+<input type="hidden" name="menulist" value="<%=menulist%>">
 <input type="hidden" name="user_id" value="<%=user_id%>">
-<button type="submit" formaction="edit.jsp" >戻る</button>
+<input type="hidden" name="day" value="<%=day%>">
+<input type="hidden" name="route_no" value="<%=route_no%>">
+<input type="submit" formaction="edit.jsp" value="戻る">
 <%
 }
 %>
