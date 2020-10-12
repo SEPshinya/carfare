@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import common.CommonDB;
 
@@ -39,13 +40,16 @@ public class TransitdataList extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 
 		/** ユーザーID取得 **/
-		//String userid=(String)request.getAttribute("user_id");
-		String userid = "1";
-		int user_id = Integer.parseInt(userid);
+		HttpSession session = request.getSession();
+		int user_id=(int)session.getAttribute("user_id");
 
 		/** 登録か編集かの登録値の受け渡し**/
-		//String menulist = request.getParameter("menulist");
-		String menulist = "1";
+		String menulist =request.getParameter("menulist");
+
+
+		/** 入力値引継ぎ**/
+		String day=(String) request.getAttribute("day");
+		int route_no=(int) request.getAttribute("route_no");
 
 
 		/** ページング **/
@@ -67,7 +71,7 @@ public class TransitdataList extends HttpServlet {
 
 		/** 検索値の取得**/
 		//交通機関No
-		String transit_no = request.getParameter("transit_no");
+		String transit_no =(String) request.getParameter("transit_no");
 		//int transit_no=Integer.parseInt(transit_no_int);
 
 		if (transit_no == null) {
@@ -107,10 +111,10 @@ public class TransitdataList extends HttpServlet {
 
 		/** DBの取得 **/
 		//Transit_dataを取得(総数取得)
-		int listCnt = CommonDB.getTransitDataCnt(transit_no, from_st, to_st, 0);
+		int listCnt = CommonDB.getTransitDataCnt(transit_no, from_st, to_st, user_id);
 
 		//Transit_dataを取得(一覧取得)
-		ResultSet rs = CommonDB.getTransitDataAll(transit_no, from_st, to_st, limitSta, 0);
+		ResultSet rs = CommonDB.getTransitDataAll(transit_no, from_st, to_st, limitSta, user_id);
 
 		/** 送る用の値 **/
 
@@ -119,6 +123,10 @@ public class TransitdataList extends HttpServlet {
 
 		//登録か編集かの判断値
 		request.setAttribute("menulist", menulist);
+
+		//入力値引継ぎ
+		request.setAttribute("day",day);
+		request.setAttribute("route_no", route_no);
 
 		//ページング関連
 		String listC = String.valueOf(listCnt);
