@@ -117,7 +117,7 @@ public class Add extends HttpServlet {
 
 		//行先
 		if(errmsg.isEmpty()) {
-			System.out.println("ok");
+			//System.out.println("ok");
 
 			request.setAttribute("menulist", menulist);
 
@@ -131,6 +131,9 @@ public class Add extends HttpServlet {
 			/** DBの取得 **/
 			String route_name=CommonDB.getRouteName(route_no);
 			String transit_name=CommonDB.getTransitName(transit_no);
+
+			request.setAttribute("route_name", route_name);
+			request.setAttribute("transit_name", transit_name);
 
 			RequestDispatcher rd =
             		request.getRequestDispatcher("/addCheck.jsp");

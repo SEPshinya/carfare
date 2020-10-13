@@ -31,7 +31,7 @@ String price=(String)request.getAttribute("price");
 <body>
 交通費登録システム：登録
 
-<form method="post">
+<form class="checklist"  method="post">
 
 <dl>
 <dt>日付：</dt>

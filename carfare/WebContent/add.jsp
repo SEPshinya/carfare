@@ -30,12 +30,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="add.css">
 <title>交通費登録システム：登録</title>
 </head>
 <body>
 	交通費登録システム：登録画面
 
-	<form method="post">
+	<form class="addlist" method="post">
 
 		<dl>
 			<dt>日付：</dt>
@@ -139,20 +140,25 @@
 					}
 				%>
 			</dd>
-		</dl>
 
-		<div class="err">
-			<%
+
+		<dt>&nbsp;</dt>
+			<dd><%
 				if (errmsg != null) {
 			%>
 			<%=errmsg%><br />
 			<%
-				}
+				}else{
 			%>
-		</div>
+			&nbsp;
+			<%
+			}%></dd>
 
-		<input type="submit" formaction="Add" value="確認">
-		<button type="submit" formaction="List">戻る</button>
+<dt>&nbsp;</dt>
+<dd>
+		<input class="transitionbt" type="submit" formaction="Add" value="確認">
+		<button class="transitionbt" type="submit" formaction="List">戻る</button></dd>
+		</dl>
 	</form>
 </body>
 </html>

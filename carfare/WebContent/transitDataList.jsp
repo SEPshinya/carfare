@@ -54,7 +54,7 @@ String menulist=(String)request.getAttribute("menulist");
 int menuNo= Integer.parseInt(menulist);
 
 /** ユーザーID **/
-String searchword="&from_st_encoded="+from_st_encoded+"&to_st_encoded="+to_st_encoded+"&transit_no="+transit_no;
+String searchword="&from_st_encoded="+from_st_encoded+"&to_st_encoded="+to_st_encoded+"&transit_no="+transit_no+"&menulist="+menulist;
 
 String errmsg=(String)request.getAttribute("errmsg");
 %>
@@ -62,6 +62,7 @@ String errmsg=(String)request.getAttribute("errmsg");
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="transitDataList.css">
 <title>交通手段一覧</title>
 </head>
 <body>
@@ -364,20 +365,20 @@ if(maxPage==1 || maxPage==0 && now==1){
 
 
 <!-- 交通手段一覧表示 -->
-<form method="get">
-<table border="1">
-<tr>
-<th>交通機関</th>
-<th>出発駅</th>
-<th>到着駅</th>
-<th>金額</th>
-<th></th>
+
+<table class="transitListCss" border="1" border="1">
+<tr  bgcolor="#D7EEFF">
+<th  class="transitname">交通機関</th>
+<th  class="fromst">出発駅</th>
+<th class="tost">到着駅</th>
+<th class="price">金額</th>
+<th class="select"></th>
 </tr>
 
 <%
 while(rs.next()){
 %>
-
+<form name="<%=rs.getString("data_id") %>" method="get">
 <tr>
 <!-- 交通し手段の値を表示 -->
 <td><%=rs.getString("transit_name") %></td>
@@ -413,11 +414,12 @@ if(menuNo==1){
 }
 %>
 </tr>
+</form>
 <%
 }
 %>
 </table>
-</form>
+
 
 
 
@@ -726,7 +728,7 @@ if(menuNo==1){
 <input type="hidden" name="menulist" value="<%=menulist%>">
 <input type="hidden" name="day" value="<%=day%>">
 <input type="hidden" name="route_no" value="<%=route_no%>">
-<input type="submit" formaction="Add" value="戻る">
+<input class="returnbt" type="submit" formaction="Add" value="戻る">
 <%
 }else{
 %>
@@ -734,7 +736,7 @@ if(menuNo==1){
 <input type="hidden" name="menulist" value="<%=menulist%>">
 <input type="hidden" name="day" value="<%=day%>">
 <input type="hidden" name="route_no" value="<%=route_no%>">
-<input type="submit" formaction="edit.jsp"  value="戻る">
+<input class="returnbt" type="submit" formaction="edit.jsp"  value="戻る">
 <%
 }
 %>
