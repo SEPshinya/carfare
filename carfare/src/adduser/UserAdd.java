@@ -1,4 +1,4 @@
-package useradd;
+package adduser;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -13,8 +13,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import common.CommonErrMsg;
 
 /**
  * Servlet implementation class UserAdd
@@ -43,46 +41,16 @@ public class UserAdd extends HttpServlet {
 		String Password = request.getParameter("Password");
 		String Password2 = request.getParameter("Password2");
 		String role_id = request.getParameter("role");
-		String Message = null;
 		String salt = null;
 		String loginkey = null;
-		Boolean addserch = null;
 		String URL = "jdbc:mysql://localhost:3306/carfare?serverTimezone=JST";
 		String USERNAME = "root";
 		String PASSWORD = "";
 
-		String ErrMsg = CommonErrMsg.getLoginErr(address, Password);
-		if (!ErrMsg.equals("")) {
-			request.setAttribute("message", ErrMsg);
-			getServletContext().getRequestDispatcher("/useradd.jsp").forward(request, response);
-		}
+		String errmsg = UserAddCommon.getErr(Password, Password2, address, role_id);
 
-		if(role_id.equals("3")) {
-			Message="役職を選択してください";
-			request.setAttribute("message", Message);
-			getServletContext().getRequestDispatcher("/useradd.jsp").forward(request, response);
-		}
-
-		if (!Password.equals(Password2)) {
-			Message = "パスワードが一致しません";
-			request.setAttribute("message", Message);
-			getServletContext().getRequestDispatcher("/useradd.jsp").forward(request, response);
-		}
-
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-			Statement stmt = connect.createStatement();
-			String getQuery = "SELECT * FROM user "
-					+ "WHERE address=  '" + address + "';";
-			addserch = stmt.executeQuery(getQuery).next();
-		} catch (SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-
-		if (addserch) {
-			Message = "このメールアドレスはほかのユーザーに使用されているため登録できません。";
-			request.setAttribute("message", Message);
+		if (errmsg != null) {
+			request.setAttribute("getErr", errmsg);
 			getServletContext().getRequestDispatcher("/useradd.jsp").forward(request, response);
 		}
 
@@ -96,22 +64,20 @@ public class UserAdd extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		if (Message == null) {
-			try {
-				Class.forName("com.mysql.cj.jdbc.Driver");
-				Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-				Statement stmt = connect.createStatement();
-				String InsQuery = "INSERT INTO `user` (`user_id`, `address`, `password`, `role_id`, `salt`) VALUES (NULL, '"
-						+ address + "', '" + loginkey + "', '" + role_id + "', '" + salt + "');";
-				stmt.executeUpdate(InsQuery);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
+if(errmsg==null) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			Statement stmt = connect.createStatement();
+			String InsQuery = "INSERT INTO `user` (`user_id`, `address`, `password`, `role_id`, `salt`) VALUES (NULL, '"
+					+ address + "', '" + loginkey + "', '" + role_id + "', '" + salt + "');";
+			stmt.executeUpdate(InsQuery);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
 		}
-
+}
 		getServletContext().getRequestDispatcher("/useraddcheck.jsp").forward(request, response);
 
 	}
