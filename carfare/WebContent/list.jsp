@@ -282,7 +282,6 @@
 </tr>
 </table>
 <%}%>
-<input type="button" onclick="location.href='./add.jsp'" value="新規登録">
 </form>
 
 </body>
