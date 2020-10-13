@@ -8,6 +8,8 @@
 			: request.getParameter("route_name");
 	String transit_name = (String) request.getParameter("transit_name") == null ? ""
 			: request.getParameter("transit_name");
+	String transit_no = (String) request.getParameter("transit_no") == null ? "0"
+			: request.getParameter("transit_no");
 	String from_st = (String) request.getParameter("from_st") == null ? "" : request.getParameter("from_st");
 	String to_st = (String) request.getParameter("to_st") == null ? "" : request.getParameter("to_st");
 	String price = (String) request.getParameter("price") == null ? "" : request.getParameter("price");
@@ -84,7 +86,8 @@
 				<td><select name="transit_no">
 						<%
 							while (transit_rs.next()) {
-								if (transit_rs.getString("transit_name").equals(transit_name)) {
+								if (transit_rs.getString("transit_name").equals(transit_name) ||
+										transit_rs.getInt("transit_no") == Integer.parseInt(transit_no)) {
 						%>
 						<option value="<%=transit_rs.getString("transit_no")%>" selected><%=transit_rs.getString("transit_name")%></option>
 						<%

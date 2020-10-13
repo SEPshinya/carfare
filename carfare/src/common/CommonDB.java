@@ -119,6 +119,7 @@ public class CommonDB {
 					+ "AND transit_data.to_st LIKE " + to_st
 					+ "ORDER BY transit_data.data_id ASC "
 					+ "LIMIT " + limitSta + " , 10;";
+			
 			return stmt.executeQuery(getQuery);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -147,7 +148,7 @@ public class CommonDB {
 			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			Statement stmt = connect.createStatement();
 			String getQuery = "SELECT count(*) AS count "
-					+ "FROM transit_data , transit "
+					+ "FROM transit_data "
 					+ "WHERE transit_data.user_id = " + user_id + " "
 					+ "AND transit_data.transit_no LIKE " + transit_no
 					+ "AND transit_data.from_st LIKE " + from_st
@@ -197,10 +198,10 @@ public class CommonDB {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			Statement stmt = connect.createStatement();
-			String getQuery = "SELECT count(*) AS count" +
+			String getQuery = "SELECT count(*) AS count " +
 					"FROM transit_list " +
 					"WHERE user_id = " + user_id + " " +
-					"AND delete_flg = 0 " + " ;";
+					"AND delete_flg = 0;";
 			ResultSet rs = stmt.executeQuery(getQuery);
 			rs.next();
 			return rs.getInt("count");
@@ -297,7 +298,8 @@ public class CommonDB {
 	}
 
 	/**
-	 *	各画面で使用
+	 *	ログイン画面で使用
+	 *	それ以降は、ログイン画面で設定したセッションから取得
 	 *
 	 * 	現在利用しているユーザーidを取得する
 	 *
@@ -322,24 +324,7 @@ public class CommonDB {
 		return 0;
 	}
 
-	public static int getUserId(int id) {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-			Statement stmt = connect.createStatement();
-			String getQuery = "SELECT user_id FROM user WHERE user_id = " + id + ";";
-			ResultSet rs = stmt.executeQuery(getQuery);
-			rs.next();
-			return rs.getInt("user_id");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		return 0;
-	}
-
-	/***
+	/**
 	 *	登録画面で使用
 	 */
 	public static void addDB(CommonAddData data) {

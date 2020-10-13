@@ -31,11 +31,13 @@ public class EditCheck extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		//editCheckで作成したセッションデータの取得
 		CommonUpdData data = (CommonUpdData) request.getSession().getAttribute("upddata");
 
+		//上で取得したアップデートデータクラスを使用して編集用のSQLを実行
 		CommonDB.updateDB(data);
 
+		//一覧画面へ遷移
 		getServletContext().getRequestDispatcher("/List").forward(request, response);
 	}
 

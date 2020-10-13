@@ -20,6 +20,10 @@ public class CommonErrMsg {
 		return address.equals("") || password.equals("") ? "メールアドレスもしくはパスワードが入力されていません。" : "";
 	}
 
+	/**
+	 * 	ログイン画面で使用
+	 * 	入力データのパスワードチェック
+	 **/
 	public static String getLoginErr(String loginKey) {
 		try {
 			return CommonDB.isUser(loginKey) ? "" : "メールアドレスもしくはパスワードが間違っています。";
