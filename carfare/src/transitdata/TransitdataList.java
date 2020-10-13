@@ -51,6 +51,21 @@ public class TransitdataList extends HttpServlet {
 		/** 入力値引継ぎ**/
 		String day=request.getParameter("day");
 		String route_no=request.getParameter("route_no");
+		String route_name=request.getParameter("route_name");
+		String transit_name =request.getParameter("transit_name");
+
+		/** エンコードからデコード **/
+		//片道往復name
+		String route_name_encoded=request.getParameter("route_name_encoded");
+		if(route_name_encoded!=null) {
+			route_name= URLDecoder.decode(route_name_encoded, "UTF-8");
+		}
+
+		//交通機関name
+		String transit_name_encoded =request.getParameter("transit_name_encoded");
+		if(transit_name_encoded!=null) {
+			transit_name= URLDecoder.decode(transit_name_encoded, "UTF-8");
+		}
 
 
 		/** ページング **/
@@ -128,6 +143,8 @@ public class TransitdataList extends HttpServlet {
 		//入力値引継ぎ
 		request.setAttribute("day",day);
 		request.setAttribute("route_no", route_no);
+		request.setAttribute("route_name", route_name);
+		request.setAttribute("transit_name", transit_name);
 
 		//ページング関連
 		String listC = String.valueOf(listCnt);

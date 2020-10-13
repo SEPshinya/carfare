@@ -55,8 +55,6 @@ public class List extends HttpServlet {
 		ResultSet rs = CommonDB.getTransitListAll(limitSta, user_id);
 		request.setAttribute("rs", rs);
 
-
-
 		/**交通手段一覧のページへ遷移**/
 		getServletContext().getRequestDispatcher("/list.jsp").forward(request, response);
 	}

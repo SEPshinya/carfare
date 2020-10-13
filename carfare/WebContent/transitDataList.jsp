@@ -7,6 +7,7 @@ request.setCharacterEncoding("UTF-8");
 /**入力値引継ぎ**/
 String day=(String) request.getAttribute("day");
 String route_no=(String) request.getAttribute("route_no");
+String route_name=(String) request.getAttribute("route_name");
 
 /**ページング用**/
 //総ページ数
@@ -27,11 +28,14 @@ if(listC%10 !=0){
 /** 検索値 **/
 //交通機関
 String transit_no=(String)request.getAttribute("transit_no");
+String transit_name=(String)request.getAttribute("transit_name");
 //出発駅
 String from_st=(String)request.getAttribute("from_st");
 //到着駅
 String to_st=(String)request.getAttribute("to_st");
 
+
+/** エンコード **/
 //出発駅エンコード
 String from_st_encoded=null;
 if(from_st!=null){
@@ -44,6 +48,18 @@ if(to_st!=null){
 	to_st_encoded=URLEncoder.encode(to_st, "UTF-8");
 }
 
+//交通機関name
+String transit_name_encoded=null;
+if(transit_name!=null){
+	transit_name_encoded=URLEncoder.encode(transit_name, "UTF-8");
+}
+
+//片道往復name
+String route_name_encoded=null;
+if(route_name!=null){
+	route_name_encoded=URLEncoder.encode(route_name, "UTF-8");
+}
+
 
 /** DBから「transit_data」を取得する用 **/
 ResultSet rs= (ResultSet) request.getAttribute("rs");
@@ -53,8 +69,8 @@ ResultSet rs= (ResultSet) request.getAttribute("rs");
 String menulist=(String)request.getAttribute("menulist");
 int menuNo= Integer.parseInt(menulist);
 
-/** ユーザーID **/
-String searchword="&from_st_encoded="+from_st_encoded+"&to_st_encoded="+to_st_encoded+"&transit_no="+transit_no+"&menulist="+menulist;
+/** url **/
+String searchword="&from_st_encoded="+from_st_encoded+"&to_st_encoded="+to_st_encoded+"&transit_no="+transit_no+"&menulist="+menulist+"&transit_name_encoded="+transit_name_encoded+"&route_name_encoded="+route_name_encoded;
 
 String errmsg=(String)request.getAttribute("errmsg");
 %>
@@ -72,7 +88,7 @@ String errmsg=(String)request.getAttribute("errmsg");
 
 
 <!-- ここにページング -->
-<form method="get">
+<form action="TransitdataList" method="get">
 <%
 //1ページのみ
 if(maxPage==1 || maxPage==0 && now==1){
@@ -311,7 +327,7 @@ if(maxPage==1 || maxPage==0 && now==1){
 &nbsp;
 <%=now %>
 &nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%=now+1%></a>
+<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%=now+1%></a>
 &nbsp;
 <a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%="＞"%></a>
 &nbsp;
@@ -366,7 +382,7 @@ if(maxPage==1 || maxPage==0 && now==1){
 
 <!-- 交通手段一覧表示 -->
 
-<table class="transitListCss" border="1" border="1">
+<table class="transitListCss" border="1">
 <tr  bgcolor="#D7EEFF">
 <th  class="transitname">交通機関</th>
 <th  class="fromst">出発駅</th>
@@ -728,6 +744,11 @@ if(menuNo==1){
 <input type="hidden" name="menulist" value="<%=menulist%>">
 <input type="hidden" name="day" value="<%=day%>">
 <input type="hidden" name="route_no" value="<%=route_no%>">
+<input type="hidden" name="route_name" value="<%=route_name%>">
+<input type="hidden" name="transit_no" value="<%=transit_no%>">
+<input type="hidden" name="transit_name" value="<%=transit_name%>">
+<input type="hidden" name="from_st" value="<%=from_st%>">
+<input type="hidden" name="to_st" value="<%=to_st%>">
 <input class="returnbt" type="submit" formaction="Add" value="戻る">
 <%
 }else{
@@ -736,6 +757,11 @@ if(menuNo==1){
 <input type="hidden" name="menulist" value="<%=menulist%>">
 <input type="hidden" name="day" value="<%=day%>">
 <input type="hidden" name="route_no" value="<%=route_no%>">
+<input type="hidden" name="route_name" value="<%=route_name%>">
+<input type="hidden" name="transit_no" value="<%=transit_no%>">
+<input type="hidden" name="transit_name" value="<%=transit_name%>">
+<input type="hidden" name="from_st" value="<%=from_st%>">
+<input type="hidden" name="to_st" value="<%=to_st%>">
 <input class="returnbt" type="submit" formaction="edit.jsp"  value="戻る">
 <%
 }
