@@ -1,4 +1,4 @@
-package useradd;
+package adduser;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -57,8 +57,8 @@ public class UserAdd extends HttpServlet {
 			getServletContext().getRequestDispatcher("/useradd.jsp").forward(request, response);
 		}
 
-		if(role_id.equals("3")) {
-			Message="役職を選択してください";
+		if (role_id.equals("3")) {
+			Message = "役職を選択してください";
 			request.setAttribute("message", Message);
 			getServletContext().getRequestDispatcher("/useradd.jsp").forward(request, response);
 		}
