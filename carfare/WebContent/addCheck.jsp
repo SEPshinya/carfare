@@ -26,12 +26,13 @@ String price=(String)request.getAttribute("price");
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="add.css">
 <title>登録確認</title>
 </head>
 <body>
 交通費登録システム：登録
 
-<form class="checklist"  method="post">
+<form class="addlist"  method="post">
 
 <dl>
 <dt>日付：</dt>
@@ -44,14 +45,11 @@ String price=(String)request.getAttribute("price");
 <dd><%=transit_name%></dd>
 
 <dt>出発駅：</dt>
-<dd><%=from_st%></dd>
-
-<dt>-到着駅：</dt>
-<dd><%=to_st%></dd>
+<dd><%=from_st%>&nbsp;―到着駅：<%=to_st%></dd>
 
 <dt>金額：</dt>
 <dd><%=price%>円</dd>
-</dl>
+
 
 <!-- hidden用 -->
 <input type="hidden" name="menulist" value="<%=menulist%>">
@@ -62,8 +60,12 @@ String price=(String)request.getAttribute("price");
 <input type="hidden" name="to_st" value="<%=to_st%>">
 <input type="hidden" name="price" value="<%=price%>">
 
-<input type="submit" formaction="AddCheck" value="登録">
-<input type="submit" formaction="AddTest" value="戻る">
+<dt>&nbsp;</dt>
+<dd>
+<input class="transitionbt" type="submit" formaction="AddCheck" value="登録">
+<input class="transitionbt" type="submit" formaction="AddTest" value="戻る">
+</dd>
+</dl>
 </form>
 </body>
 </html>

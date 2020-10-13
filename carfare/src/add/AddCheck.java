@@ -2,6 +2,7 @@ package add;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -61,9 +62,13 @@ public class AddCheck extends HttpServlet {
 		CommonDB.addDB(data);
 
 
-		System.out.println("テーブルを登録しました.");
+		//System.out.println("テーブルを登録しました.");
 
-		System.out.println("つなげてないからもどれないよ");
+		//System.out.println("つなげてないからもどれないよ");
+
+		RequestDispatcher rd =
+		        request.getRequestDispatcher("./List");
+		        rd.forward(request,response);
 	}
 
 }
