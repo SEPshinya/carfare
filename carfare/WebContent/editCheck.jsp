@@ -12,7 +12,7 @@
 	String route_name = CommonDB.getRouteName(route_no);
 	String transit_name = CommonDB.getTransitName(transit_no);
 	CommonUpdData data = (CommonUpdData) request.getAttribute("data");
-	request.getSession().setAttribute("data", data);
+	request.getSession().setAttribute("upddata", data);
 %>
 <!DOCTYPE html>
 <html>
