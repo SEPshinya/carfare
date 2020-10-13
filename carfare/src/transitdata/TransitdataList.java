@@ -53,6 +53,7 @@ public class TransitdataList extends HttpServlet {
 		String route_no=request.getParameter("route_no");
 		String route_name=request.getParameter("route_name");
 		String transit_name =request.getParameter("transit_name");
+		String price=request.getParameter("price");
 
 		/** エンコードからデコード **/
 		//片道往復name
@@ -156,6 +157,7 @@ public class TransitdataList extends HttpServlet {
 		request.setAttribute("rs", rs);
 
 		//検索値
+		request.setAttribute("price", price);
 		request.setAttribute("transit_no", transit_no);
 		request.setAttribute("from_st", from_st);
 		request.setAttribute("to_st", to_st);
