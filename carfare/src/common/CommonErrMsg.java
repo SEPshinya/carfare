@@ -56,7 +56,6 @@ public class CommonErrMsg {
 				errmsg += "金額は数値で入力してください<br>";
 			}
 		}
-
 		return errmsg;
 	}
 

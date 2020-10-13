@@ -7,7 +7,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import common.CommonErrMsg;
 import common.CommonUpdData;
@@ -32,8 +31,9 @@ public class Edit extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		int user_id = (int) session.getAttribute("user_id");
+		//		HttpSession session = request.getSession();
+		//		int user_id = (int) session.getAttribute("user_id");
+		int user_id = 1;
 
 		int id = Integer.parseInt((String) request.getParameter("id"));
 		String day = (String) request.getParameter("day");
@@ -44,8 +44,8 @@ public class Edit extends HttpServlet {
 		String price = (String) request.getParameter("price");
 
 		request.setAttribute("day", day);
-		request.setAttribute("route", route_no);
-		request.setAttribute("transit", transit_no);
+		request.setAttribute("route_no", route_no);
+		request.setAttribute("transit_no", transit_no);
 		request.setAttribute("from_st", from_st);
 		request.setAttribute("to_st", to_st);
 		request.setAttribute("price", price);
@@ -55,12 +55,12 @@ public class Edit extends HttpServlet {
 		String errmsg = CommonErrMsg.getErrMsg(data);
 
 		if (errmsg.equals("")) {
-			getServletContext().getRequestDispatcher("/EditCheack.jsp").forward(request, response);
+			request.setAttribute("data", data);
+			getServletContext().getRequestDispatcher("/editCheck.jsp").forward(request, response);
 		} else {
 			request.setAttribute("errmsg", errmsg);
-			getServletContext().getRequestDispatcher("/TestInput2.jsp").forward(request, response);
+			getServletContext().getRequestDispatcher("/edit.jsp").forward(request, response);
 		}
-
 	}
 
 	/**

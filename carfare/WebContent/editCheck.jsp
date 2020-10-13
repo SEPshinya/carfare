@@ -10,9 +10,9 @@
 	String price = (String) request.getAttribute("price");
 
 	String route_name = CommonDB.getRouteName(route_no);
-	String transit_name = CommonDB.getRouteName(transit_no);
-
-	request.setAttribute("data", (CommonUpdData) request.getAttribute("data"));
+	String transit_name = CommonDB.getTransitName(transit_no);
+	CommonUpdData data = (CommonUpdData) request.getAttribute("data");
+	request.getSession().setAttribute("data", data);
 %>
 <!DOCTYPE html>
 <html>
@@ -22,8 +22,7 @@
 </head>
 <body>
 	<h2>交通費登録システム：編集画面</h2>
-
-	<form action="/Edit.java">
+	<form action="./EditCheck">
 		<table>
 			<tr>
 				<th>日付</th>

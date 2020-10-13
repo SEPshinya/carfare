@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="common.*" import="java.sql.*"%>
 <%
+	//使用する変数の宣言、初期値設定
 	String id = request.getParameter("id") == null ? "" : request.getParameter("id");
 	String day = (String) request.getParameter("day") == null ? "" : request.getParameter("day");
 	String route_name = (String) request.getParameter("route_name") == null ? ""
@@ -17,7 +18,7 @@
 			: (String) request.getParameter("errmsg");
 
 	ResultSet route_rs = CommonDB.getRouteAll();
-	ResultSet transit_rs = CommonDB.getRouteAll();
+	ResultSet transit_rs = CommonDB.getTransitAll();
 %>
 <!DOCTYPE html>
 <html>
@@ -28,20 +29,28 @@
 <body>
 	<h2>交通費登録システム：編集画面</h2>
 
-	<%
-		if (!errmsg.equals("")) {
-	%>
-	<p><%=errmsg%></p>
-	<%
-		}
-	%>
+	<div>
+		<%
+			//入力された値に対してエラーがあればエラー文を表示する
+			if (!(errmsg.equals(""))) {
+		%>
+		<%=errmsg%>
+		<%
+			} else {
+			}
+		%>
+	</div>
 
-	<form action="/Edit.java">
+
+	<%
+		//一覧表示に表示されていた値をinputの中へうめこむ
+	%>
+	<form action="./Edit">
 		<table>
 			<tr>
 				<th>日付</th>
 				<th>:</th>
-				<td><input type="text" name="day"></td>
+				<td><input type="text" name="day" value="<%=day%>"></td>
 			</tr>
 			<tr>
 				<th>片道or往復</th>
@@ -63,8 +72,10 @@
 				</select></td>
 			</tr>
 			<tr>
+				<th></th>
+				<th></th>
 				<td><input type="hidden" name="menulist" value="<%=menulist%>">
-					<input type="submit" formaction="/TransitDataList"
+					<input type="submit" formaction="./TransitdataList"
 					value="以前のデータを参照"></td>
 			</tr>
 			<tr>
@@ -89,27 +100,30 @@
 			<tr>
 				<th>出発駅</th>
 				<th>:</th>
-				<td><input type="text" name="from_st"></td>
+				<td><input type="text" name="from_st" value="<%=from_st%>"></td>
 				<th>到着駅</th>
 				<th>:</th>
-				<td><input type="text" name="to_st"></td>
+				<td><input type="text" name="to_st" value="<%=to_st%>"></td>
 			</tr>
 			<tr>
 				<th>運賃</th>
 				<th>:</th>
-				<td><input type="text" name="price"></td>
+				<td><input type="text" name="price" value="<%=price%>"></td>
 			</tr>
 		</table>
 
-		<input type="hidden" value="<%=id%>">
+		<input type="hidden" name="id" value="<%=id%>">
 		<div>
 			<input type="submit" value="確認">
 		</div>
 
 	</form>
 
+
+
 	<div>
-		<form action="./List.java">
+		<!-- 一覧表示へ戻る -->
+		<form action="./List">
 			<input type="submit" value="戻る">
 		</form>
 	</div>

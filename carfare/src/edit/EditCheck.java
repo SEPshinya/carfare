@@ -32,7 +32,7 @@ public class EditCheck extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		CommonUpdData data = (CommonUpdData) request.getAttribute("data");
+		CommonUpdData data = (CommonUpdData) request.getSession().getAttribute("data");
 
 		CommonDB.updateDB(data);
 
