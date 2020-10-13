@@ -8,6 +8,7 @@ request.setCharacterEncoding("UTF-8");
 String day=(String) request.getAttribute("day");
 String route_no=(String) request.getAttribute("route_no");
 String route_name=(String) request.getAttribute("route_name");
+String price=(String) request.getAttribute("price");
 
 /**ページング用**/
 //総ページ数
@@ -749,6 +750,7 @@ if(menuNo==1){
 <input type="hidden" name="transit_name" value="<%=transit_name%>">
 <input type="hidden" name="from_st" value="<%=from_st%>">
 <input type="hidden" name="to_st" value="<%=to_st%>">
+<input type="hidden" name="price" value="<%=price%>">
 <input class="returnbt" type="submit" formaction="Add" value="戻る">
 <%
 }else{
@@ -762,6 +764,7 @@ if(menuNo==1){
 <input type="hidden" name="transit_name" value="<%=transit_name%>">
 <input type="hidden" name="from_st" value="<%=from_st%>">
 <input type="hidden" name="to_st" value="<%=to_st%>">
+<input type="hidden" name="price" value="<%=price%>">
 <input class="returnbt" type="submit" formaction="edit.jsp"  value="戻る">
 <%
 }
