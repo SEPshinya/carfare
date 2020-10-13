@@ -1,9 +1,9 @@
 
 package list;
+
 import java.io.IOException;
 import java.sql.ResultSet;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,72 +18,48 @@ import common.CommonDB;
 @WebServlet("/List")
 public class List extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	public List() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public List() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		//セッションを使いLoginから飛ばされたuser_idを取得する
+		//user_idによって表示させる内容が違うので
+		//HttpSession session = request.getSession();
+		int user_id = 1; //(int) session.getAttribute("User_id");
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//Connection connect=null;  //接続
-    	request.setCharacterEncoding("UTF-8");
-		//Statement stmt=null;       //接続
-		//PreparedStatement ps=null; //接続
-		//ResultSet rs=null;         //取得
-		//LIMIT句の値
-
-    	/** ページング **/
+		/** ページング **/
 		//ページ数取得
-		//String Page = request.getParameter("Page");
+		String nowPage = request.getParameter("page");
+		int limitSta = 0;
 
 		//現在のページ
-		//String nowPage = "";
-		//if (Page != null) {
-			String nowPage = "1";
-		//} else {
-		//	nowPage = "1";
-		//}
-		//int now = Integer.parseInt(nowPage);
+		if (nowPage == null) {
+			nowPage = "1";
+		}
 
-		//int limitSta = (now - 1) * 10;
-
-
-		int user_id=1;
-
-		//総件数
-		//String SelectQuery=null; //表取得
-		//String CntQuery=null;    //件数取得
-		//String nowPage=null;     //現在のページ
-		//String SerchName=null;   //検索用文字列
-		//int limitSta=0;          //検索開始位置
-
-		int limitSta = 10;
-		/** DBの取得 **/
-		//Transit_dataを取得(総数取得)
+		int np = Integer.parseInt(nowPage);
+		request.setAttribute("np", np);
+		if (np > 1) {
+			//LIMIT句の値を求める　取得を始める件数　たとえばLimitが０だったらIDの若番から数えて１～１０件まで取得する
+			limitSta = (np - 1) * 10;
+		}
+		//総件数を取得してlistCntに格納　総件数がわかることによって必要なページ数がわかる　SQLなどはCommonDBにすでに書いてあるのでそこから持ってきてる
 		int listCnt = CommonDB.getTransitListCnt(user_id);
+		String list = String.valueOf(listCnt);
+		request.setAttribute("listCnt", list);
 
-		ResultSet rs=CommonDB.getTransitListAll(limitSta,user_id);
-
-		//ページング関連
-		//String listC = String.valueOf(listCnt);
-		//String noww = String.valueOf(now);
-		//request.setAttribute("listCnt", listC);
-		//request.setAttribute("page", noww);
-
-		//交通手段一覧取得用
+		//一覧に表示する値をDBから取得しResutSetに格納　SQLなどはCommonDBにすでに書いてあるのでそこから持ってきてる
+		ResultSet rs = CommonDB.getTransitListAll(limitSta, user_id);
 		request.setAttribute("rs", rs);
-		//request.setAttribute("Page",Page);
+
 
 
 		/**交通手段一覧のページへ遷移**/
-		RequestDispatcher rd = request.getRequestDispatcher("/list.jsp");
-		rd.forward(request, response);
-
-
-    }
+		getServletContext().getRequestDispatcher("/list.jsp").forward(request, response);
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
