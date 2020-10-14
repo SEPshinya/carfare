@@ -417,7 +417,7 @@ if(menuNo==1){
 <input type="hidden" name="day" value="<%=day%>">
 <input type="hidden" name="route_no" value="<%=route_no%>">
 <input type="hidden" name="errmsg" value="<%=errmsg%>">
-<td><input type="submit" formaction="add.jsp" value="選択"></td>
+<td><input class="selectbt" type="submit" formaction="AddTest" value="選択"></td>
 
 <%}else{ %>
 <!-- 編集画面へ戻る -->
@@ -425,7 +425,7 @@ if(menuNo==1){
 <input type="hidden" name="day" value="<%=day%>">
 <input type="hidden" name="route_no" value="<%=route_no%>">
 <input type="hidden" name="errmsg" value="<%=errmsg%>">
-<td><input type="submit" formaction="edit.jsp"  value="選択"></td>
+<td><input class="selectbt" type="submit" formaction="edit.jsp"  value="選択"></td>
 
 <%
 }
