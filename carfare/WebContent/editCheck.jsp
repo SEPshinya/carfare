@@ -2,12 +2,10 @@
 	pageEncoding="UTF-8" import="common.*" import="java.sql.*"%>
 <%
 	//使用する変数の宣言、初期値の設定
-	String route_no = (String) request.getAttribute("route_no");
-	String transit_no = (String) request.getAttribute("transit_no");
 	CommonUpdData data = (CommonUpdData) request.getAttribute("data");
 
-	String route_name = CommonDB.getRouteName(route_no);
-	String transit_name = CommonDB.getTransitName(transit_no);
+	String route_name = CommonDB.getRouteName(data.getRoute_no());
+	String transit_name = CommonDB.getTransitName(data.getTransit_no());
 
 	//Edit.javaで作成したアップデートデータクラスをセッションに追加
 	request.getSession().setAttribute("upddata", data);
