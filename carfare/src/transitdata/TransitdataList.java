@@ -42,7 +42,7 @@ public class TransitdataList extends HttpServlet {
 
 		/** ユーザーID取得 **/
 		HttpSession session = request.getSession();
-		int user_id=(int)session.getAttribute("user_id");
+		int user_id=(int)session.getAttribute("User_id");
 
 		/** 登録か編集かの登録値の受け渡し**/
 		String menulist =request.getParameter("menulist");

@@ -107,7 +107,7 @@ public class Add extends HttpServlet {
 		//ユーザーID
 		/** ユーザーID取得 **/
 		HttpSession session = request.getSession();
-		int user_id=(int)session.getAttribute("user_id");
+		int user_id=(int)session.getAttribute("User_id");
 
 		//エラーチェック
 		CommonAddData data = new CommonAddData(day, route_no, transit_no, from_st, to_st, price, user_id);
