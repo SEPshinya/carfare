@@ -58,12 +58,12 @@ public class UserAdd extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		request.setAttribute("user_name", user_name);
 		request.setAttribute("address", address);
 		request.setAttribute("salt", salt);
 		request.setAttribute("loginkey", loginkey);
 		request.setAttribute("role_id", role_id);
+
 		getServletContext().getRequestDispatcher("/useraddcheck.jsp").forward(request, response);
 
 	}

@@ -1,22 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="common.*" import="java.sql.*"%>
+	pageEncoding="UTF-8" import="common.CommonDB" import="java.sql.*"%>
 <%
-	//使用する変数の宣言、初期値設定
+	//使用する変数の宣言、初期値設定(List,transitDataList)
 	String id = request.getParameter("id") == null ? "" : request.getParameter("id");
 	String day = (String) request.getParameter("day") == null ? "" : request.getParameter("day");
 	String route_name = (String) request.getParameter("route_name") == null ? ""
 			: request.getParameter("route_name");
 	String transit_name = (String) request.getParameter("transit_name") == null ? ""
 			: request.getParameter("transit_name");
+	String transit_no = (String) request.getParameter("transit_no") == null ? "0"
+			: request.getParameter("transit_no");
 	String from_st = (String) request.getParameter("from_st") == null ? "" : request.getParameter("from_st");
 	String to_st = (String) request.getParameter("to_st") == null ? "" : request.getParameter("to_st");
 	String price = (String) request.getParameter("price") == null ? "" : request.getParameter("price");
-
-	String menulist = (String) request.getParameter("menulist") == null ? ""
+	String menulist = (String) request.getParameter("menulist") == null ? "2"
 			: (String) request.getParameter("menulist");
-	String errmsg = (String) request.getAttribute("errmsg") == null ? ""
-			: (String) request.getParameter("errmsg");
 
+	//使用する変数の宣言、初期値設定(Edit)
+	String errmsg = (String) request.getAttribute("errmsg") == null ? ""
+			: (String) request.getAttribute("errmsg");
+
+	//使用する変数の宣言、初期値設定(プルダウンメニュー作成)
 	ResultSet route_rs = CommonDB.getRouteAll();
 	ResultSet transit_rs = CommonDB.getTransitAll();
 %>
@@ -84,7 +88,8 @@
 				<td><select name="transit_no">
 						<%
 							while (transit_rs.next()) {
-								if (transit_rs.getString("transit_name").equals(transit_name)) {
+								if (transit_rs.getString("transit_name").equals(transit_name) ||
+										transit_rs.getInt("transit_no") == Integer.parseInt(transit_no)) {
 						%>
 						<option value="<%=transit_rs.getString("transit_no")%>" selected><%=transit_rs.getString("transit_name")%></option>
 						<%

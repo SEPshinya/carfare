@@ -55,16 +55,15 @@ public class AddCheck extends HttpServlet {
 
 		/** ユーザーID取得 **/
 		HttpSession session = request.getSession();
-		int user_id=(int)session.getAttribute("user_id");
+		int user_id=(int)session.getAttribute("User_id");
 
 		CommonAddData data = new CommonAddData(day, route_no, transit_no, from_st, to_st, price, user_id);
 
 		CommonDB.addDB(data);
 
-
-		//System.out.println("テーブルを登録しました.");
-
-		//System.out.println("つなげてないからもどれないよ");
+		if (!(CommonDB.checkTransitData(transit_no, from_st, to_st, price, user_id))) {
+			 CommonDB.addTransitData(transit_no, from_st, to_st, price, user_id);
+		}
 
 		RequestDispatcher rd =
 		        request.getRequestDispatcher("./List");

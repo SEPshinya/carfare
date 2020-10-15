@@ -63,7 +63,7 @@ String price=(String)request.getAttribute("price");
 <dt>&nbsp;</dt>
 <dd>
 <input class="transitionbt" type="submit" formaction="AddCheck" value="登録">
-<input class="transitionbt" type="submit" formaction="AddTest" value="戻る">
+<input class="transitionbt" type="submit" formaction="Add" formmethod="get" value="戻る">
 </dd>
 </dl>
 </form>
