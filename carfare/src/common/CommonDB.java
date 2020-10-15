@@ -32,6 +32,27 @@ public class CommonDB {
 	}
 
 	/**
+	 *	登録確認、編集確認画面で表示する際に使用
+	 *	片道or往復
+	 **/
+	public static String getRouteName(String route_no) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			Statement stmt = connect.createStatement();
+			String getQuery = "SELECT route_name FROM route WHERE route_no = " + route_no + ";";
+			ResultSet rs = stmt.executeQuery(getQuery);
+			rs.next();
+			return rs.getString("route_name");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	/**
 	 *	登録、編集画面でプルダウンメニュー作成時に使用
 	 *	交通手段
 	 **/
@@ -51,7 +72,79 @@ public class CommonDB {
 	}
 
 	/**
-	 *	登録、編集画面から使用
+	 *	登録確認、編集確認画面で表示する際に使用
+	 *	交通手段
+	 **/
+	public static String getTransitName(String transit_no) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			Statement stmt = connect.createStatement();
+			String getQuery = "SELECT transit_name FROM transit WHERE transit_no = " + transit_no + ";";
+			ResultSet rs = stmt.executeQuery(getQuery);
+			rs.next();
+			return rs.getString("transit_name");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	/**
+	 *	登録確認、編集確認画面で登録、編集実行前に使用
+	 *	同じ交通手段があるかどうかを確認する
+	 *	あればtrue、なければfalseを返す
+	 **/
+	public static boolean checkTransitData(String transit_no, String from_st, String to_st,
+			String price, int user_id) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			Statement stmt = connect.createStatement();
+			String getQuery = "SELECT * FROM transit_data "
+					+ "WHERE transit_data.user_id = " + user_id + " "
+					+ "AND transit_data.transit_no LIKE '" + transit_no + "' "
+					+ "AND transit_data.from_st LIKE '" + from_st + "' "
+					+ "AND transit_data.to_st LIKE '" + to_st + "' "
+					+ "AND transit_data.price LIKE '" + price + "' ";
+			return stmt.executeQuery(getQuery).next();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	/**
+	 *	登録確認、編集確認画面で登録、編集実行前に使用
+	 *	交通手段があるかどうかを調べた後に実行
+	 *	なかった場合に入力された値をtransit_dataDBに追加する
+	 **/
+	public static void addTransitData(String transit_no, String from_st, String to_st,
+			String price, int user_id) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			Statement stmt = connect.createStatement();
+			String InsQuery = "INSERT INTO `transit_data` (`data_id`, `transit_no`, `from_st`, `to_st`, `price`, `user_id`) VALUES (NULL, '"
+					+ transit_no + "', '"
+					+ from_st + "', '"
+					+ to_st + "', '"
+					+ price + "', '"
+					+ user_id + "');";
+			stmt.executeUpdate(InsQuery);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 *	交通手段一覧画面から使用
 	 *	交通機関、出発駅、到着駅を受け取り、LIKE句をかけて絞り込む
 	 **/
 	public static ResultSet getTransitDataAll(String transit_no, String from_st, String to_st,
@@ -72,11 +165,12 @@ public class CommonDB {
 					+ "FROM transit_data , transit "
 					+ "WHERE transit_data.transit_no = transit.transit_no "
 					+ "AND transit_data.user_id = " + user_id + " "
-					+ "AND transit_data.transit_no LIKE " + transit_no
-					+ "AND transit_data.from_st LIKE " + from_st
-					+ "AND transit_data.to_st LIKE " + to_st
+					+ "AND transit_data.transit_no LIKE " + transit_no + " "
+					+ "AND transit_data.from_st LIKE " + from_st + " "
+					+ "AND transit_data.to_st LIKE " + to_st + " "
 					+ "ORDER BY transit_data.data_id ASC "
 					+ "LIMIT " + limitSta + " , 10;";
+
 			return stmt.executeQuery(getQuery);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -87,7 +181,7 @@ public class CommonDB {
 	}
 
 	/**
-	 *	登録、編集画面から使用
+	 *	交通手段一覧画面から使用
 	 *	交通機関、出発駅、到着駅を受け取り、LIKE句をかけて絞り込む
 	 *	絞り込んだ件数を返す
 	 **/
@@ -105,13 +199,11 @@ public class CommonDB {
 			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			Statement stmt = connect.createStatement();
 			String getQuery = "SELECT count(*) AS count "
-					+ "FROM transit_data , transit "
-					+ "WHERE transit_data.transit_no = transit.transit_no "
-					+ "AND transit_data.user_id = " + user_id + " "
+					+ "FROM transit_data "
+					+ "WHERE transit_data.user_id = " + user_id + " "
 					+ "AND transit_data.transit_no LIKE " + transit_no
 					+ "AND transit_data.from_st LIKE " + from_st
-					+ "AND transit_data.to_st LIKE " + to_st
-					+ "ORDER BY transit_data.data_id ASC;";
+					+ "AND transit_data.to_st LIKE " + to_st + " ;";
 			ResultSet rs = stmt.executeQuery(getQuery);
 			rs.next();
 			return rs.getInt("count");
@@ -137,6 +229,7 @@ public class CommonDB {
 					"WHERE transit_list.route_no = route.route_no " +
 					"AND transit_list.transit_no = transit.transit_no " +
 					"AND transit_list.user_id = " + user_id + " " +
+					"AND transit_list.delete_flg = 0 " +
 					"ORDER BY day ASC " +
 					"LIMIT " + limitSta + " , 10;";
 			return stmt.executeQuery(getQuery);
@@ -156,12 +249,10 @@ public class CommonDB {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			Statement stmt = connect.createStatement();
-			String getQuery = "SELECT count(*) AS count" +
-					"FROM transit_list,route,transit " +
-					"WHERE transit_list.route_no = route.route_no " +
-					"AND transit_list.transit_no = transit.transit_no " +
-					"AND transit_list.user_id = " + user_id + " " +
-					"ORDER BY day ASC;";
+			String getQuery = "SELECT count(*) AS count " +
+					"FROM transit_list " +
+					"WHERE user_id = " + user_id + " " +
+					"AND delete_flg = 0;";
 			ResultSet rs = stmt.executeQuery(getQuery);
 			rs.next();
 			return rs.getInt("count");
@@ -224,7 +315,7 @@ public class CommonDB {
 	 *	一致するものがあれば trueを返す
 	 *	一致するものがなければ falseを返す
 	 **/
-	public static Boolean isUser(String loginKey) {
+	public static boolean isUser(String loginKey) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
@@ -258,29 +349,13 @@ public class CommonDB {
 	}
 
 	/**
-	 *	各画面で使用
+	 *	ログイン画面で使用
+	 *	それ以降は、ログイン画面で設定したセッションから取得
 	 *
 	 * 	現在利用しているユーザーidを取得する
 	 *
 	 * 	発見できなかった場合0を返す
 	 **/
-	public static int getUserId(int id) {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-			Statement stmt = connect.createStatement();
-			String getQuery = "SELECT user_id FROM user WHERE user_id = " + id + ";";
-			ResultSet rs = stmt.executeQuery(getQuery);
-			rs.next();
-			return rs.getInt("user_id");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		return 0;
-	}
-
 	public static int getUserId(String address, String password) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -298,6 +373,61 @@ public class CommonDB {
 			e.printStackTrace();
 		}
 		return 0;
+	}
+
+	/**
+	 *	登録画面で使用
+	 */
+	public static void addDB(CommonAddData data) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			Statement stmt = connect.createStatement();
+			String InsQuery = "INSERT INTO `transit_list` (`id`, `day`, `route_no`, `transit_no`, `from_st`, `to_st`, `price`, `user_id`, `delete_flg`) VALUES (NULL, '"
+					+ data.getDay() + "', '" + data.getRoute_no() + "', '"
+					+ data.getTransit_no() + "', '" + data.getFrom_st() + "', '"
+					+ data.getTo_st() + "', '" + data.getPrice() + "', '" + data.getUser_id() + "', 0);";
+			stmt.executeUpdate(InsQuery);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 *	編集画面で使用
+	 **/
+	public static void updateDB(CommonUpdData data) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			Statement stmt = connect.createStatement();
+			String UpdQuery = "UPDATE transit_list SET day = '" + data.getDay()
+					+ "', route_no = '" + data.getRoute_no() + "', transit_no = '" + data.getTransit_no()
+					+ "', from_st = '" + data.getFrom_st() + "', to_st = '" + data.getTo_st()
+					+ "', price = '" + data.getPrice() + "' WHERE id = " + data.getId();
+			stmt.executeUpdate(UpdQuery);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 *	削除画面で使用
+	 **/
+	public static void deleteDB(int id) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			Statement stmt = connect.createStatement();
+			String DelQuery = "UPDATE transit_list SET delete_flg = '" + 1 + "' WHERE id = " + id + ";";
+			stmt.executeUpdate(DelQuery);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

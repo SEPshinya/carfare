@@ -30,25 +30,31 @@ public class Login extends HttpServlet {
 
 		String address = request.getParameter("address");//ログイン画面で入力したアドレス
 		String password = request.getParameter("password"); //PassWord
+		String user_name="";
+		int role_id=0;
 
-		String Key = null; //userパス
 		String salt = null; //ソルト
 
+		//入力エラーチェック
 		String ErrMsg = CommonErrMsg.getLoginErr(address, password);
-
 		if (!ErrMsg.equals("")) {
 			request.setAttribute("message", ErrMsg);
 			getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
 		}
+
+		//DBからアドレスをもとにソルトを取得
 		ResultSet rs = CommonDB.getUser(address);
 		try {
 			rs.next();
 			salt = rs.getString("salt");
+			user_name = rs.getString("user_name");
+			role_id = rs.getInt("role_id");
 		} catch (SQLException e1) {
 		}
+
 		//ハッシュ化
-		String loginKey = null;
-		String saltpass = null;
+		String loginKey = null;//ハッシュ化されたパスワードが入ります
+		String saltpass = null;//ソルトと入力されたパスワードを結合したものが入ります
 
 		saltpass = salt + password;
 		try {
@@ -58,20 +64,24 @@ public class Login extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		ErrMsg=CommonErrMsg.getLoginErr(loginKey);
+
+		//入力されたパスワードをハッシュ化し、userテーブルに格納されているパスワードと一致するか
+		ErrMsg = CommonErrMsg.getLoginErr(loginKey);
 		if (!ErrMsg.equals("")) {
 			request.setAttribute("message", ErrMsg);
 			getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
 		}
-		int User_id=CommonDB.getUserId(address,loginKey);
 
+		//アドレスとパスワードが格納されているものと一致したのでUser_idを取得しListへ遷移
+		int User_id = CommonDB.getUserId(address, loginKey);
 
-	    HttpSession session = request.getSession();
-	    session.setAttribute("User_id",User_id);
+		//セッション！！
+		HttpSession session = request.getSession();
+		session.setAttribute("User_id", User_id);
+		session.setAttribute("role_id", role_id);
+		session.setAttribute("user_name", user_name);
 
-
-
-		getServletContext().getRequestDispatcher("/logincheck.jsp").forward(request, response);
+		getServletContext().getRequestDispatcher("/List").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

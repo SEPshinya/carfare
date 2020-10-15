@@ -36,6 +36,7 @@ public class TransitdataList extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
+
 	}
 
 	/**
@@ -44,20 +45,27 @@ public class TransitdataList extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
+
+		String errmsg=request.getParameter("errmsg");
 
 		/** ユーザーID取得 **/
 		HttpSession session = request.getSession();
 		int user_id=(int)session.getAttribute("User_id");
 
 		/** 登録か編集かの登録値の受け渡し**/
-		String menulist = request.getParameter("menulist");
+		String menulist =request.getParameter("menulist");
 
 
-		/** 引継ぎする値**/
+		/** 入力値引継ぎ**/
 		String day=request.getParameter("day");
 		String route_no=request.getParameter("route_no");
+		String price=request.getParameter("price");
+
+		String id=request.getParameter("id");
+
 
 
 		/** ページング **/
@@ -75,10 +83,11 @@ public class TransitdataList extends HttpServlet {
 
 		//LIMIT句の値
 		int limitSta = (now - 1) * 10;
+		;
 
 		/** 検索値の取得**/
 		//交通機関No
-		String transit_no = request.getParameter("transit_no");
+		String transit_no =(String) request.getParameter("transit_no");
 		//int transit_no=Integer.parseInt(transit_no_int);
 
 		if (transit_no == null) {
@@ -121,19 +130,24 @@ public class TransitdataList extends HttpServlet {
 		int listCnt = CommonDB.getTransitDataCnt(transit_no, from_st, to_st, user_id);
 
 		//Transit_dataを取得(一覧取得)
-		ResultSet rs = CommonDB.getTransitDataAll(transit_no, from_st, to_st, limitSta, user_id);
+		ResultSet rs = CommonDB.getTransitDataAll(transit_no, from_st, to_st, user_id ,limitSta);
 
 		/** 送る用の値 **/
-
-		//ユーザーID
-		request.setAttribute("user_id", user_id);
 
 		//登録か編集かの判断値
 		request.setAttribute("menulist", menulist);
 
-		//引継ぎ値
-		request.setAttribute("day", day);
+		//エラー
+		request.setAttribute("errmsg", errmsg);
+
+		//入力値引継ぎ
+		request.setAttribute("day",day);
 		request.setAttribute("route_no", route_no);
+
+		request.setAttribute("id", id);
+
+
+		//request.setAttribute("user_id",user_id);
 
 		//ページング関連
 		String listC = String.valueOf(listCnt);
@@ -145,6 +159,7 @@ public class TransitdataList extends HttpServlet {
 		request.setAttribute("rs", rs);
 
 		//検索値
+		request.setAttribute("price", price);
 		request.setAttribute("transit_no", transit_no);
 		request.setAttribute("from_st", from_st);
 		request.setAttribute("to_st", to_st);

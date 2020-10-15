@@ -4,12 +4,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="../login.css" rel="stylesheet"></link>
 <meta charset="UTF-8">
 <title>ログイン</title>
 </head>
 <body>
-<h1></h1>
-    <form action="Login">
+<h1>交通費登録システム：ログイン</h1>
+    <form action="Login" method="post">
     <table>
       <tr>
         <th>メールアドレス:</th>
@@ -19,8 +20,11 @@
         <th>パスワード:</th>
         <td><input type="password" name="password"></td>
       </tr>
+      <tr>
+      	<th></th>
+      	<td><input type="submit" class="btn" value="ログイン"></td>
+      </tr>
      </table>
-  		<input type="submit"  value="ログイン">
   	</form>
   	<p>原
 add harashinya1192
