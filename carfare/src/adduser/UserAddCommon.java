@@ -23,7 +23,7 @@ public class UserAddCommon {
 		String ERRMSG_Role01 = "役職を選択してください";
 		String returnVal = null;
 		String ERRMSG_Name01="氏名を入力してください";
-		String ERRMSG_Name02="氏名は文字以内で入力してください";
+		String ERRMSG_Name02="氏名は16文字以内で入力してください";
 		//name
 		if(user_name.getBytes().length== 0) {
 			returnVal += ERRMSG_Name01 + "<BR>";
