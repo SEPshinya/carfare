@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.sql.*" import="java.net.URLEncoder"%>
+    pageEncoding="UTF-8" import="java.sql.*" import="java.net.URLEncoder" import="java.text.NumberFormat"%>
 <%
 request.setCharacterEncoding("UTF-8");
 /** 登録、編集画面への遷移先アドレスは適当につけているので、ページ確認でき次第修正します。**/
@@ -10,6 +10,8 @@ String route_no=(String) request.getAttribute("route_no");
 
 String price=(String) request.getAttribute("price");
 String id=(String)request.getAttribute("id");
+
+NumberFormat nf = NumberFormat.getNumberInstance();
 
 /**ページング用**/
 //総ページ数
@@ -67,7 +69,7 @@ String errmsg=(String)request.getAttribute("errmsg");
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="transitDataList.css">
+<link rel="stylesheet" href="css/transitDataList.css">
 <title>交通手段一覧</title>
 </head>
 <body>
@@ -389,7 +391,7 @@ while(rs.next()){
 <td><%=rs.getString("transit_name") %></td>
 <td><%=rs.getString("from_st") %></td>
 <td><%=rs.getString("to_st") %></td>
-<td><%=rs.getString("price") %></td>
+<td><%int Price=Integer.parseInt(rs.getString("price"));%><%=nf.format(Price)%>円</td>
 
 <!-- 選択した値を渡す用 -->
 <input name="data_id" type="hidden" value=<%=rs.getString("data_id") %>>

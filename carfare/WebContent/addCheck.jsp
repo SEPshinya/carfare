@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.text.NumberFormat"%>
 
 <%
 /** 登録か編集かの判断値**/
@@ -21,16 +21,18 @@ String to_st=(String)request.getAttribute("to_st");
 //金額
 String price=(String)request.getAttribute("price");
 
+int Price=Integer.parseInt(price);
+NumberFormat nf = NumberFormat.getNumberInstance();
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="add.css">
+<link rel="stylesheet" href="css/add.css">
 <title>登録確認</title>
 </head>
 <body>
-交通費登録システム：登録
+<h2>交通費登録システム：登録</h2>
 
 <form class="addlist"  method="post">
 
@@ -45,10 +47,10 @@ String price=(String)request.getAttribute("price");
 <dd><%=transit_name%></dd>
 
 <dt>出発駅：</dt>
-<dd><%=from_st%>&nbsp;―到着駅：<%=to_st%></dd>
+<dd><%=from_st%>&emsp;&emsp;&emsp;―到着駅：<%=to_st%></dd>
 
 <dt>金額：</dt>
-<dd><%=price%>円</dd>
+<dd><%=nf.format(Price)%>円</dd>
 
 
 <!-- hidden用 -->
