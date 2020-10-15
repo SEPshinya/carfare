@@ -1,0 +1,25 @@
+
+@charset "UTF-8";
+
+
+
+.table1 {
+	border-collapse: collapse;
+	margin-left: auto;
+	margin-right: auto;
+	width: 800px;
+	text-align: center;
+	border: solid 1px black;
+}
+
+.tr1{
+	border: solid 1px black;
+}
+
+.tr2{
+	border: solid 1px black;
+}
+
+.td1 {
+	border: solid 1px black;
+}
