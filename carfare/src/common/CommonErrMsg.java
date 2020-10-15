@@ -58,6 +58,8 @@ public class CommonErrMsg {
 		if (!data.getPrice().equals("")) {
 			if (!(data.getPrice().matches("[0-9]+"))) {
 				errmsg += "金額は数値で入力してください<br>";
+			} else if (stringDigits(data.getPrice()) > 9) {
+				errmsg += "金額は9桁以内で入力してください<br>";
 			}
 		}
 		return errmsg;

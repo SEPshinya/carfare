@@ -28,7 +28,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="./css/edit.css">
 <title>交通費登録システム：編集</title>
+
 </head>
 <body>
 	<h2>交通費登録システム：編集画面</h2>
@@ -49,7 +51,7 @@
 	<%
 		//一覧表示に表示されていた値をinputの中へうめこむ
 	%>
-	<form action="./Edit">
+	<form action="./Edit" class="list">
 		<table>
 			<tr>
 				<th>日付</th>
@@ -80,7 +82,7 @@
 				<th></th>
 				<td><input type="hidden" name="menulist" value="<%=menulist%>">
 					<input type="submit" formaction="./TransitdataList"
-					value="以前のデータを参照"></td>
+					value="以前のデータを参照" class="btn"></td>
 			</tr>
 			<tr>
 				<th>交通機関</th>
@@ -106,7 +108,7 @@
 				<th>出発駅</th>
 				<th>:</th>
 				<td><input type="text" name="from_st" value="<%=from_st%>"></td>
-				<th>到着駅</th>
+				<th>－ 到着駅</th>
 				<th>:</th>
 				<td><input type="text" name="to_st" value="<%=to_st%>"></td>
 			</tr>
@@ -119,17 +121,14 @@
 
 		<input type="hidden" name="id" value="<%=id%>">
 		<div>
-			<input type="submit" value="確認">
+			<input type="submit" value="確認" class="leftbtn btn">
 		</div>
 
 	</form>
-
-
-
 	<div>
 		<!-- 一覧表示へ戻る -->
 		<form action="./List">
-			<input type="submit" value="戻る">
+			<input type="submit" value="戻る" class="rightbtn btn">
 		</form>
 	</div>
 
