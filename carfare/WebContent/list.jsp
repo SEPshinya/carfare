@@ -4,8 +4,7 @@
 <% String nowPage=(String)request.getAttribute("nowPage"); %>
 <% int np=(int)request.getAttribute("np"); %>
 
-<% String listcnt=(String)request.getAttribute("listCnt");  %>
-<% int listCnt= Integer.parseInt(listcnt);%>
+<% int listCnt=(int)request.getAttribute("listCnt");  %>
 <% int maxPage=listCnt/10; %>
 <%if(listCnt%10>0){
 	maxPage=maxPage+1;
@@ -15,26 +14,32 @@
 <head>
 <meta charset="UTF-8">
 <title>交通費登録システム:一覧画面</title>
+<link rel="stylesheet" href="./list.css">
 </head>
 
 <body>
 
 
 	<h1>交通費登録システム:一覧</h1>
+<<<<<<< HEAD
+	<form  method="GET">
+		<input type="submit" value="新規登録" formaction="add.jsp">
+=======
 	<form action="./Add" method="GET">
 		<input type="submit" value="新規登録">
+>>>>>>> branch 'master' of https://github.com/SEPshinya/carfare
 	</form>
+
 	<form action="Excel" method="post">
 		<input type="submit" value="Excelへ出力">
 	</form>
-<%= listCnt%>
-<%= maxPage%>
 
 <%
 	rs=(ResultSet)request.getAttribute("rs");
 %>
-	<form>
-		<table border="1">
+	<form >
+
+		<table class="table1">
 			<tr>
 				<td>No</td>
 				<td>日付</td>
@@ -56,14 +61,15 @@
 				<td><%=rs.getString("from_st")%><input type="hidden" name="from_st" value="<%=rs.getString("from_st")%>"></td>
 				<td><%=rs.getString("to_st")%><input type="hidden" name="to_st" value="<%=rs.getString("to_st")%>"></td>
 				<td><%=rs.getString("price")%><input type="hidden" name="price" value="<%=rs.getString("price")%>"></td>
+<<<<<<< HEAD
+				<td><input type="submit" value="編集" formaction="edit.jsp"><input type="submit" value="削除" formaction="Delete.jsp"></td>
+=======
 				<td><input type="submit" value="編集" formaction="./edit.jsp"><input type="submit" value="削除" formaction="Delete.jsp"></td>
+>>>>>>> branch 'master' of https://github.com/SEPshinya/carfare
 			</tr>
 			</form>
 			<% }%>
 		</table>
-	</form>
-	<form action="./.jsp" method="GET">
-		<input type="submit" value="新規登録">
 	</form>
 <form>
 <% if(maxPage==1||maxPage==0){ %>
@@ -204,7 +210,7 @@
 <td><a href="List?page=4">4</a></td>
 <td><a href="List?page=5">5</a></td>
 <td><a href="List?page=2">＞</a></td>
-<td><a href="List?page=5">＞＞</a></td>
+<td><a href="List?page=<%=maxPage%>">＞＞</a></td>
 </tr>
 </table>
 <%}else if(maxPage>=5&&np==2){ %>
@@ -218,7 +224,7 @@
 <td><a href="List?page=4">4</a></td>
 <td><a href="List?page=5">5</a></td>
 <td><a href="List?page=3">＞</a></td>
-<td><a href="List?page=5">＞＞</a></td>
+<td><a href="List?page=<%=maxPage%>">＞＞</a></td>
 </tr>
 </table>
 
@@ -283,6 +289,9 @@
 </table>
 <%}%>
 </form>
+	<form method="GET">
+		<input type="submit" value="新規登録" formaction="add.jsp">
+	</form>
 
 </body>
 </html>
