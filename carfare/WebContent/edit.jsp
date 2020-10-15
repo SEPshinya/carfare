@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="common.*" import="java.sql.*"%>
+	pageEncoding="UTF-8" import="common.CommonDB" import="java.sql.*"%>
 <%
 	//使用する変数の宣言、初期値設定
 	String id = request.getParameter("id") == null ? "" : request.getParameter("id");
