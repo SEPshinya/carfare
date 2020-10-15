@@ -32,6 +32,7 @@ public class Login extends HttpServlet {
 		String password = request.getParameter("password"); //PassWord
 		String salt = null; //ソルト
 		int role_id=0;
+		String user_name="";
 
 		//入力エラーチェック
 		String ErrMsg = CommonErrMsg.getLoginErr(address, password);
@@ -46,6 +47,7 @@ public class Login extends HttpServlet {
 			rs.next();
 			salt = rs.getString("salt");
 			role_id=rs.getInt("role_id");
+			user_name=rs.getString("user_name");
 
 		} catch (SQLException e1) {
 		}
@@ -62,20 +64,19 @@ public class Login extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		//入力されたパスワードをハッシュ化し、userテーブルに格納されているパスワードと一致するか
 		ErrMsg = CommonErrMsg.getLoginErr(loginKey);
 		if (!ErrMsg.equals("")) {
 			request.setAttribute("message", ErrMsg);
 			getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
 		}
-
 		//アドレスとパスワードが格納されているものと一致したのでUser_idを取得しListへ遷移
 		int User_id = CommonDB.getUserId(address, loginKey);
 		//セッション！！
 		HttpSession session = request.getSession();
 		session.setAttribute("User_id", User_id);
 		session.setAttribute("role_id",role_id);
+		session.setAttribute("user_name", user_name);
 
 
 

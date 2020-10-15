@@ -21,12 +21,15 @@ public class UserAddCommon {
 		String ERRMSG_Address03 = "メールアドレスは必須項目です";
 		String ERRMSG_Addserch="このメールアドレスはほかのユーザーに使用されているため登録できません";
 		String ERRMSG_Role01 = "役職を選択してください";
-		String returnVal = null;
 		String ERRMSG_Name01="氏名を入力してください";
 		String ERRMSG_Name02="氏名は16文字以内で入力してください";
+		String returnVal = "";
+
 		//name
 		if(user_name.getBytes().length== 0) {
 			returnVal += ERRMSG_Name01 + "<BR>";
+		}else if(user_name.getBytes().length>15) {
+			returnVal += ERRMSG_Name02 + "<BR>";
 		}
 
 		//あｄｄ
