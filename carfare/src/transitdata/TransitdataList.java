@@ -131,7 +131,7 @@ public class TransitdataList extends HttpServlet {
 		int listCnt = CommonDB.getTransitDataCnt(transit_no, from_st, to_st, user_id);
 
 		//Transit_dataを取得(一覧取得)
-		ResultSet rs = CommonDB.getTransitDataAll(transit_no, from_st, to_st, limitSta, user_id);
+		ResultSet rs = CommonDB.getTransitDataAll(transit_no, from_st, to_st, user_id, limitSta);
 
 		/** 送る用の値 **/
 
