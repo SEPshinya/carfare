@@ -43,10 +43,10 @@ public class List extends HttpServlet {
 		int np = Integer.parseInt(nowPage);
 		request.setAttribute("np", np);
 		if (np > 1) {
-			//LIMIT句の値を求める　取得を始める件数　たとえばLimitが０だったらIDの若番から数えて１～１０件まで取得する
+			//LIMIT句の値を求める取得を始める件数　たとえばLimitが０だったらIDの若番から数えて１～１０件まで取得する
 			limitSta = (np - 1) * 10;
 		}
-		//総件数を取得してlistCntに格納　総件数がわかることによって必要なページ数がわかる　SQLなどはCommonDBにすでに書いてあるのでそこから持ってきてる
+		//総件数を取得してlistCntに格納総件数がわかることによって必要なページ数がわかる　SQLなどはCommonDBにすでに書いてあるのでそこから持ってきてる
 		int listCnt = CommonDB.getTransitListCnt(user_id);
 		String list = String.valueOf(listCnt);
 		request.setAttribute("listCnt", list);
@@ -58,7 +58,6 @@ public class List extends HttpServlet {
 		/**交通手段一覧のページへ遷移**/
 		getServletContext().getRequestDispatcher("/list.jsp").forward(request, response);
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

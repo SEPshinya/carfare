@@ -8,8 +8,8 @@
 <% int listCnt= Integer.parseInt(listcnt);%>
 <% int maxPage=listCnt/10; %>
 <%if(listCnt%10>0){
-	maxPage=maxPage+1;
-}%>
+	maxPage=maxPage+1;}%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,14 +21,12 @@
 
 
 	<h1>交通費登録システム:一覧</h1>
-	<form action="./.jsp" method="GET">
+	<form action="Add" method="GET">
 		<input type="submit" value="新規登録">
 	</form>
 	<form action="Excel" method="post">
 		<input type="submit" value="Excelへ出力">
 	</form>
-<%= listCnt%>
-<%= maxPage%>
 
 <%
 	rs=(ResultSet)request.getAttribute("rs");
@@ -56,7 +54,7 @@
 				<td><%=rs.getString("from_st")%><input type="hidden" name="from_st" value="<%=rs.getString("from_st")%>"></td>
 				<td><%=rs.getString("to_st")%><input type="hidden" name="to_st" value="<%=rs.getString("to_st")%>"></td>
 				<td><%=rs.getString("price")%><input type="hidden" name="price" value="<%=rs.getString("price")%>"></td>
-				<td><input type="submit" value="編集" formaction="./.jsp"><input type="submit" value="削除" formaction="Delete.jsp"></td>
+				<td><input type="submit" value="編集" formaction="edit.jsp"><input type="submit" value="削除" formaction="Delete.jsp"></td>
 			</tr>
 			</form>
 			<% }%>
