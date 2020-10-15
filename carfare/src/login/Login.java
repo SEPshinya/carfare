@@ -30,8 +30,8 @@ public class Login extends HttpServlet {
 
 		String address = request.getParameter("address");//ログイン画面で入力したアドレス
 		String password = request.getParameter("password"); //PassWord
-
 		String salt = null; //ソルト
+		int role_id=0;
 
 		//入力エラーチェック
 		String ErrMsg = CommonErrMsg.getLoginErr(address, password);
@@ -45,6 +45,8 @@ public class Login extends HttpServlet {
 		try {
 			rs.next();
 			salt = rs.getString("salt");
+			role_id=rs.getInt("role_id");
+
 		} catch (SQLException e1) {
 		}
 
@@ -70,10 +72,12 @@ public class Login extends HttpServlet {
 
 		//アドレスとパスワードが格納されているものと一致したのでUser_idを取得しListへ遷移
 		int User_id = CommonDB.getUserId(address, loginKey);
-
 		//セッション！！
 		HttpSession session = request.getSession();
 		session.setAttribute("User_id", User_id);
+		session.setAttribute("role_id",role_id);
+
+
 
 		getServletContext().getRequestDispatcher("/List").forward(request, response);
 	}

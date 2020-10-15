@@ -3,10 +3,6 @@ package adduser;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,17 +33,15 @@ public class UserAdd extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 
+		String user_name = request.getParameter("name");
 		String address = request.getParameter("address");
 		String Password = request.getParameter("Password");
 		String Password2 = request.getParameter("Password2");
 		String role_id = request.getParameter("role");
 		String salt = null;
 		String loginkey = null;
-		String URL = "jdbc:mysql://localhost:3306/carfare?serverTimezone=JST";
-		String USERNAME = "root";
-		String PASSWORD = "";
 
-		String errmsg = UserAddCommon.getErr(Password, Password2, address, role_id);
+		String errmsg = UserAddCommon.getErr(Password, Password2, address, role_id, user_name);
 
 		if (errmsg != null) {
 			request.setAttribute("getErr", errmsg);
@@ -64,20 +58,11 @@ public class UserAdd extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-if(errmsg==null) {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-			Statement stmt = connect.createStatement();
-			String InsQuery = "INSERT INTO `user` (`user_id`, `address`, `password`, `role_id`, `salt`) VALUES (NULL, '"
-					+ address + "', '" + loginkey + "', '" + role_id + "', '" + salt + "');";
-			stmt.executeUpdate(InsQuery);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-}
+		request.setAttribute("user_name", user_name);
+		request.setAttribute("address", address);
+		request.setAttribute("salt", salt);
+		request.setAttribute("loginkey", loginkey);
+		request.setAttribute("role_id", role_id);
 		getServletContext().getRequestDispatcher("/useraddcheck.jsp").forward(request, response);
 
 	}

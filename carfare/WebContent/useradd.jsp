@@ -16,6 +16,10 @@
 	<form action="UserAdd" method="post">
 		<table>
 			<tr>
+				<th>氏名:</th>
+				<td><input type="text" name="name"></td>
+			</tr>
+			<tr>
 				<th>メールアドレス:</th>
 				<td><input type="text" name="address"></td>
 			</tr>
