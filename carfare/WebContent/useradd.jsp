@@ -3,6 +3,7 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
+	<%String getErr = (String) request.getAttribute("getErr");	%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,10 +43,8 @@
 			</tr>
 		</table>
 	</form>
-	<%
-	String getErr = (String) request.getAttribute("message");
-	if (getErr != null) {
-	%>
+
+<% if (getErr != null){ %>
 	<%=getErr%>
 	<%}%>
 
