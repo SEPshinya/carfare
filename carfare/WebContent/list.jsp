@@ -14,13 +14,17 @@
 <head>
 <meta charset="UTF-8">
 <title>交通費登録システム:一覧画面</title>
+<link rel="stylesheet" href="./list.css">
 </head>
 
 <body>
+
+
 	<h1>交通費登録システム:一覧</h1>
 	<form  method="GET">
 		<input type="submit" value="新規登録" formaction="add.jsp">
 	</form>
+
 	<form action="Excel" method="post">
 		<input type="submit" value="Excelへ出力">
 	</form>
@@ -30,7 +34,7 @@
 %>
 	<form >
 
-		<table border="1">
+		<table class="table1">
 			<tr>
 				<td>No</td>
 				<td>日付</td>
