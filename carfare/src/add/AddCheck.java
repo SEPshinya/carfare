@@ -61,10 +61,9 @@ public class AddCheck extends HttpServlet {
 
 		CommonDB.addDB(data);
 
-
-		//System.out.println("テーブルを登録しました.");
-
-		//System.out.println("つなげてないからもどれないよ");
+		if (!(CommonDB.checkTransitData(transit_no, from_st, to_st, price, user_id))) {
+			 CommonDB.addTransitData(transit_no, from_st, to_st, price, user_id);
+		}
 
 		RequestDispatcher rd =
 		        request.getRequestDispatcher("./List");
