@@ -21,13 +21,10 @@
 
 
 	<h1>交通費登録システム:一覧</h1>
-<<<<<<< HEAD
+
 	<form  method="GET">
 		<input type="submit" value="新規登録" formaction="add.jsp">
-=======
-	<form action="./Add" method="GET">
-		<input type="submit" value="新規登録">
->>>>>>> branch 'master' of https://github.com/SEPshinya/carfare
+
 	</form>
 
 	<form action="Excel" method="post">
@@ -40,32 +37,29 @@
 	<form >
 
 		<table class="table1">
-			<tr>
-				<td>No</td>
-				<td>日付</td>
-				<td>片道or往復</td>
-				<td>交通機関</td>
-				<td>出発駅</td>
-				<td>到着駅</td>
-				<td>金額</td>
+			<tr class="tr1">
+				<td class="td1">No</td>
+				<td class="td1">日付</td>
+				<td class="td1">片道or往復</td>
+				<td class="td1">交通機関</td>
+				<td class="td1">出発駅</td>
+				<td class="td1">到着駅</td>
+				<td class="td1">金額</td>
 				<td></td>
 			</tr>
 
 			<% while(rs.next()){ %>
 			<form method="get" name="<%= rs.getInt("id")%>">
-			<tr>
-				<td><%=rs.getString("id")%><input type="hidden" name="id" value="<%=rs.getString("id")%>"></td>
-				<td><%=rs.getString("day")%><input type="hidden" name="day" value="<%=rs.getString("day")%>"></td>
-				<td><%=rs.getString("route_name")%><input type="hidden" name="route_name" value="<%=rs.getString("route_name")%>"></td>
-				<td><%=rs.getString("transit_name")%><input type="hidden" name="transit_name" value="<%=rs.getString("transit_name")%>"></td>
-				<td><%=rs.getString("from_st")%><input type="hidden" name="from_st" value="<%=rs.getString("from_st")%>"></td>
-				<td><%=rs.getString("to_st")%><input type="hidden" name="to_st" value="<%=rs.getString("to_st")%>"></td>
-				<td><%=rs.getString("price")%><input type="hidden" name="price" value="<%=rs.getString("price")%>"></td>
-<<<<<<< HEAD
+			<tr class="tr2">
+				<td class="td1"><%=rs.getString("id")%><input type="hidden" name="id" value="<%=rs.getString("id")%>"></td>
+				<td class="td1"><%=rs.getString("day")%><input type="hidden" name="day" value="<%=rs.getString("day")%>"></td>
+				<td class="td1"><%=rs.getString("route_name")%><input type="hidden" name="route_name" value="<%=rs.getString("route_name")%>"></td>
+				<td class="td1"><%=rs.getString("transit_name")%><input type="hidden" name="transit_name" value="<%=rs.getString("transit_name")%>"></td>
+				<td class="td1"><%=rs.getString("from_st")%><input type="hidden" name="from_st" value="<%=rs.getString("from_st")%>"></td>
+				<td class="td1"><%=rs.getString("to_st")%><input type="hidden" name="to_st" value="<%=rs.getString("to_st")%>"></td>
+				<td class="td1"><%=rs.getString("price")%><input type="hidden" name="price" value="<%=rs.getString("price")%>"></td>
+
 				<td><input type="submit" value="編集" formaction="edit.jsp"><input type="submit" value="削除" formaction="Delete.jsp"></td>
-=======
-				<td><input type="submit" value="編集" formaction="./edit.jsp"><input type="submit" value="削除" formaction="Delete.jsp"></td>
->>>>>>> branch 'master' of https://github.com/SEPshinya/carfare
 			</tr>
 			</form>
 			<% }%>

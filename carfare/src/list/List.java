@@ -1,7 +1,6 @@
 
 package list;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,20 +8,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
-import com.sun.rowset.internal.Row;
 
 import common.CommonDB;
 
@@ -46,7 +37,8 @@ public class List extends HttpServlet {
 		String URL = "jdbc:mysql://localhost:3306/carfare?serverTimezone=JST";
 		String USERNAME = "root";
 		String PASSWORD = "";
-		int user_id =1;//(int) session.getAttribute("User_id");
+		int user_id =(int) session.getAttribute("User_id");
+
 		int listCnt=0;
 		/** ページング **/
 		//ページ数取得
@@ -95,62 +87,7 @@ public class List extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		response.setContentType("test/html; charset=UTF-8");
-    	request.setCharacterEncoding("UTF-8");
-    	HttpSession session = request.getSession();
 
-    	String id=request.getParameter("id");
-    	String day=request.getParameter("day");
-    	String route_name=request.getParameter("route_name");
-    	String transit_name=request.getParameter("transit_name");
-    	String from_st=request.getParameter("from_st");
-    	String to_st=request.getParameter("to_st");
-    	String price=request.getParameter("price");
-    	String filename=(String)session.getAttribute("user_name");
-
-
-    	Workbook wb = new XSSFWorkbook();
-
-		//①書き込みたいシート、シートの生成
-		Sheet sheet1 = wb.createSheet();
-
-		//②どこの行？※1列目=0、行の生成
-		Row row1=sheet1.createRow(0);
-
-		//③どこの列？、セルの生成
-		Cell cell1=row1.createCell(0);
-
-		//④書き込みたいこと、値のセット
-		cell1.setCellValue(id);
-
-		Row row2=sheet1.createRow(1);
-		Cell cell2=row2.createCell(0);
-		cell2.setCellValue(day);
-
-
-		FileOutputStream out =null;
-
-		try {
-			//ここに返します
-			out=new FileOutputStream("C:\\Users\\abesatsuki1200\\Pictures\\"+filename+".xlsx");
-
-			//編集部分を書いて保存
-			wb.write(out);
-
-		}catch(IOException e) {
-			System.out.println(e.toString());
-		}finally {
-			try {
-				wb.close();
-				out.close();
-			}catch(IOException e) {
-				System.out.println(e.toString());
-			}
-
-
-	}
-		RequestDispatcher rd = request.getRequestDispatcher("/test.jsp");
-		rd.forward(request, response);
 
 	}
 }
