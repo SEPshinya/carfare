@@ -31,11 +31,20 @@ public class EditCheck extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		//editCheckで作成したセッションデータの取得
 		CommonUpdData data = (CommonUpdData) request.getSession().getAttribute("upddata");
 
+		//一覧表示に登録する前に入力された交通手段が未登録かどうかを調べる
+		if (!(CommonDB.checkTransitData(data.getTransit_no(), data.getFrom_st(),
+				data.getTo_st(), data.getPrice(), data.getUser_id()))) {
+			CommonDB.addTransitData(data.getTransit_no(), data.getFrom_st(),
+					data.getTo_st(), data.getPrice(), data.getUser_id());
+		}
+
+		//上で取得したアップデートデータクラスを使用して編集用のSQLを実行
 		CommonDB.updateDB(data);
 
+		//一覧画面へ遷移
 		getServletContext().getRequestDispatcher("/List").forward(request, response);
 	}
 

@@ -64,20 +64,20 @@ public class UserAdd extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-if(errmsg==null) {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-			Statement stmt = connect.createStatement();
-			String InsQuery = "INSERT INTO `user` (`user_id`, `address`, `password`, `role_id`, `salt`) VALUES (NULL, '"
-					+ address + "', '" + loginkey + "', '" + role_id + "', '" + salt + "');";
-			stmt.executeUpdate(InsQuery);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+		if (errmsg == null) {
+			try {
+				Class.forName("com.mysql.cj.jdbc.Driver");
+				Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+				Statement stmt = connect.createStatement();
+				String InsQuery = "INSERT INTO `user` (`user_id`, `address`, `password`, `role_id`, `salt`) VALUES (NULL, '"
+						+ address + "', '" + loginkey + "', '" + role_id + "', '" + salt + "');";
+				stmt.executeUpdate(InsQuery);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
 		}
-}
 		getServletContext().getRequestDispatcher("/useraddcheck.jsp").forward(request, response);
 
 	}
