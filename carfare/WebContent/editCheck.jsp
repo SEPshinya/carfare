@@ -2,19 +2,14 @@
 	pageEncoding="UTF-8" import="common.*" import="java.sql.*"%>
 <%
 	//使用する変数の宣言、初期値の設定
-	String id = (String) request.getAttribute("id");
-	String day = (String) request.getAttribute("day");
 	String route_no = (String) request.getAttribute("route_no");
 	String transit_no = (String) request.getAttribute("transit_no");
-	String from_st = (String) request.getAttribute("from_st");
-	String to_st = (String) request.getAttribute("to_st");
-	String price = (String) request.getAttribute("price");
+	CommonUpdData data = (CommonUpdData) request.getAttribute("data");
 
 	String route_name = CommonDB.getRouteName(route_no);
 	String transit_name = CommonDB.getTransitName(transit_no);
 
 	//Edit.javaで作成したアップデートデータクラスをセッションに追加
-	CommonUpdData data = (CommonUpdData) request.getAttribute("data");
 	request.getSession().setAttribute("upddata", data);
 %>
 <!DOCTYPE html>
@@ -26,72 +21,61 @@
 <body>
 	<h2>交通費登録システム：編集画面</h2>
 	<%
-	/*
-	入力された値を表示
-	プルダウンメニューから取得された値は、
-	CommonDB.getRouteName(getTransitName)を使用して各値名を取得
-	*/
+		/*
+		入力された値を表示
+		プルダウンメニューから取得された値は、
+		CommonDB.getRouteName(getTransitName)を使用して各値名を取得
+		*/
 	%>
-	<form action="./List">
+	<form action="./EditCheck">
 		<table>
 			<tr>
 				<th>日付</th>
 				<th>:</th>
-				<td><%=day%></td>
+				<td><%=data.getDay()%><input type="hidden" name="day"
+					value="<%=data.getDay()%>"></td>
 			</tr>
 			<tr>
 				<th>片道or往復</th>
 				<th>:</th>
-				<td><%=route_name%></td>
+				<td><%=route_name%><input type="hidden" name="route_name"
+					value="<%=route_name%>"></td>
 			</tr>
 			<tr>
 				<th>交通機関</th>
 				<th>:</th>
-				<td><%=transit_name%></td>
+				<td><%=transit_name%><input type="hidden" name="transit_name"
+					value="<%=transit_name%>"></td>
 			</tr>
 			<tr>
 				<th>出発駅</th>
 				<th>:</th>
-				<td><%=from_st%></td>
+				<td><%=data.getFrom_st()%><input type="hidden" name="from_st"
+					value="<%=data.getFrom_st()%>"></td>
 				<th>到着駅</th>
 				<th>:</th>
-				<td><%=to_st%></td>
+				<td><%=data.getTo_st()%><input type="hidden" name="to_st"
+					value="<%=data.getTo_st()%>"></td>
 			</tr>
 			<tr>
 				<th>運賃</th>
 				<th>:</th>
-				<td><%=price%>円</td>
+				<td><%=data.getPrice()%>円<input type="hidden" name="price"
+					value="<%=data.getPrice()%>"></td>
 			</tr>
 		</table>
 		<div>
-			<input type="hidden" name="id" value="<%=id%>"> <input
-				type="hidden" name="day" value="<%=day%>"> <input
-				type="hidden" name="route_name" value="<%=route_name%>"> <input
-				type="hidden" name="transit_name" value="<%=transit_name%>">
-			<input type="hidden" name="from_st" value="<%=from_st%>"> <input
-				type="hidden" name="to_st" value="<%=to_st%>"> <input
-				type="hidden" name="price" value="<%=price%>">
+			<input type="hidden" name="id" value="<%=data.getId()%>">
 		</div>
 		<div>
 			<input type="submit" value="編集">
 		</div>
+		<div>
+			<input type="submit" value="戻る" formaction="./edit.jsp">
+		</div>
 
 	</form>
 
-	<form action="./edit.jsp">
-		<div>
-			<input type="hidden" name="id" value="<%=id%>"> <input
-				type="hidden" name="day" value="<%=day%>"> <input
-				type="hidden" name="route_name" value="<%=route_name%>"> <input
-				type="hidden" name="transit_name" value="<%=transit_name%>">
-			<input type="hidden" name="from_st" value="<%=from_st%>"> <input
-				type="hidden" name="to_st" value="<%=to_st%>"> <input
-				type="hidden" name="price" value="<%=price%>">
-		</div>
-		<div>
-			<input type="submit" value="戻る">
-		</div>
-	</form>
 
 </body>
 </html>
