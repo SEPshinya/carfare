@@ -46,17 +46,8 @@ public class Excel extends HttpServlet {
 		response.setContentType("test/html; charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
-		String user_name="あべさつき";//(String)session.getAttribute("user_name");
-		int User_id=1;//(int)session.getAttribute("User_id");
-
-		String id = request.getParameter("id");
-		String day = request.getParameter("day");
-		String route_name = request.getParameter("route_name");
-		String transit_name = request.getParameter("transit_name");
-		String from_st = request.getParameter("from_st");
-		String to_st = request.getParameter("to_st");
-		String price = request.getParameter("price");
-
+		String user_name = "原 紳也";//(String)session.getAttribute("user_name");
+		int User_id = 1;//(int)session.getAttribute("User_id");
 
 		String URL = "jdbc:mysql://localhost:3306/carfare?serverTimezone=JST";
 		String USERNAME = "root";
@@ -74,18 +65,19 @@ public class Excel extends HttpServlet {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			Statement stmt = connect.createStatement();
-			String getQuery = "SELECT * FROM transit_list INNER JOIN route ON transit_list.route_no = route.route_no INNER JOIN transit ON transit_list.transit_no =transit.transit_no WHERE user_id =" +user_id+ " AND delete_flg=0";
+			String getQuery = "SELECT * FROM transit_list INNER JOIN route ON transit_list.route_no = route.route_no INNER JOIN transit ON transit_list.transit_no =transit.transit_no WHERE user_id ="
+					+ user_id + " AND delete_flg=0";
 			ResultSet rs = stmt.executeQuery(getQuery);
 			while (rs.next()) {
 
-				Row row1 = sheet1.createRow(n);
-				Cell cell1 = row1.createCell(0);//縦
-				Cell cell2 = row1.createCell(1);
-				Cell cell3 = row1.createCell(2);
-				Cell cell4 = row1.createCell(3);
-				Cell cell5 = row1.createCell(4);
-				Cell cell6 = row1.createCell(5);
-				Cell cell7 = row1.createCell(6);
+				Row row = sheet1.createRow(n);
+				Cell cell1 = row.createCell(0);
+				Cell cell2 = row.createCell(1);
+				Cell cell3 = row.createCell(2);
+				Cell cell4 = row.createCell(3);
+				Cell cell5 = row.createCell(4);
+				Cell cell6 = row.createCell(5);
+				Cell cell7 = row.createCell(6);
 
 				cell1.setCellValue(rs.getInt("id"));
 				cell2.setCellValue(rs.getString("day"));
@@ -94,7 +86,7 @@ public class Excel extends HttpServlet {
 				cell5.setCellValue(rs.getString("from_st"));
 				cell6.setCellValue(rs.getString("to_st"));
 				cell7.setCellValue(rs.getString("price"));
-				n = n+1;
+				n = n + 1;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -103,7 +95,7 @@ public class Excel extends HttpServlet {
 		}
 
 		FileOutputStream out = null;
-		String filename=""+ User_id +"交通費一覧_"+user_name;
+		String filename = "" + User_id + "交通費一覧_" + user_name;
 		try {
 			//ここに返します
 			out = new FileOutputStream("C:\\Users\\abesatsuki1200\\Pictures\\" + filename + ".xlsx");
@@ -125,9 +117,7 @@ public class Excel extends HttpServlet {
 		rd.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
