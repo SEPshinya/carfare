@@ -72,10 +72,10 @@
 				</select>
 			</dd>
 
-			<dt></dt>
+			<dt>&nbsp;</dt>
 			<dd>
 				<input type="hidden" name="menulist" value="<%=menulist%>">
-				<input type="submit" formaction="TransitdataList" value="以前のデータを参照">
+				<input class="transitdatabt" type="submit" formaction="TransitdataList" value="以前のデータを参照">
 			</dd>
 
 			<dt>交通機関：</dt>
