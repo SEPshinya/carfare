@@ -121,7 +121,7 @@ public class Excel extends HttpServlet {
 				System.out.println(e.toString());
 			}
 		}
-		RequestDispatcher rd = request.getRequestDispatcher("/test.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/excelcheck.jsp");
 		rd.forward(request, response);
 	}
 
