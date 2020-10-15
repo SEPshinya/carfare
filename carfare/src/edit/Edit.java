@@ -7,7 +7,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import common.CommonErrMsg;
 import common.CommonUpdData;
@@ -32,8 +31,7 @@ public class Edit extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		//ユーザーidの取得
-		HttpSession session = request.getSession();
-		int user_id = (int) session.getAttribute("User_id");
+		int user_id = (int) request.getSession().getAttribute("User_id");
 
 		//入力値の取得
 		int id = Integer.parseInt((String) request.getParameter("id"));
@@ -44,15 +42,6 @@ public class Edit extends HttpServlet {
 		String to_st = (String) request.getParameter("to_st");
 		String price = (String) request.getParameter("price");
 
-		//入力されたデータを次のjspへ渡す
-		request.setAttribute("day", day);
-		request.setAttribute("route_no", route_no);
-		request.setAttribute("transit_no", transit_no);
-		request.setAttribute("from_st", from_st);
-		request.setAttribute("to_st", to_st);
-		request.setAttribute("price", price);
-		request.setAttribute("user_id", user_id);
-
 		//アップデートデータクラスの作成
 		CommonUpdData data = new CommonUpdData(id, day, route_no, transit_no, from_st, to_st, price, user_id);
 		//入力値にエラーが含まれていないかを調べる
@@ -62,7 +51,6 @@ public class Edit extends HttpServlet {
 		 * エラーメッセージにテキストが入っていない
 		 * 		→編集確認画面へ遷移
 		 * 		  その時にアップデートデータクラスも持っていく
-		 *
 		 * エラーメッセージにテキストが入ってる
 		 * 		→編集画面へ遷移
 		 * 		  その時にエラーメッセージも持っていく
