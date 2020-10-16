@@ -16,16 +16,6 @@ import common.CommonUpdData;
  */
 @WebServlet("/EditCheck")
 public class EditCheck extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public EditCheck() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -33,10 +23,12 @@ public class EditCheck extends HttpServlet {
 			throws ServletException, IOException {
 		//editCheckで作成したセッションデータの取得
 		CommonUpdData data = (CommonUpdData) request.getSession().getAttribute("upddata");
+		request.getSession().removeAttribute("upddata");
 
-		//一覧表示に登録する前に入力された交通手段が未登録かどうかを調べる
+		//一覧表示を上書きする前に入力された交通手段が未登録かどうかを調べる
 		if (!(CommonDB.checkTransitData(data.getTransit_no(), data.getFrom_st(),
 				data.getTo_st(), data.getPrice(), data.getUser_id()))) {
+			//未登録のものだったらtransit_dataDBに新規登録
 			CommonDB.addTransitData(data.getTransit_no(), data.getFrom_st(),
 					data.getTo_st(), data.getPrice(), data.getUser_id());
 		}

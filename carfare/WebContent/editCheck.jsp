@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="common.*" import="java.sql.*"%>
+	pageEncoding="UTF-8" import="common.*" import="java.sql.*"
+	import="java.text.NumberFormat"%>
 <%
 	//使用する変数の宣言、初期値の設定
 	CommonUpdData data = (CommonUpdData) request.getAttribute("data");
@@ -59,8 +60,8 @@
 			<tr>
 				<th>運賃</th>
 				<th>:</th>
-				<td><%=data.getPrice()%>円<input type="hidden" name="price"
-					value="<%=data.getPrice()%>"></td>
+				<td><%=NumberFormat.getNumberInstance().format(Integer.parseInt(data.getPrice()))%>円
+					<input type="hidden" name="price" value="<%=data.getPrice()%>"></td>
 			</tr>
 		</table>
 		<br>

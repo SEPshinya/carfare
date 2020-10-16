@@ -35,6 +35,7 @@ public class List extends HttpServlet {
 		//user_idによって表示させる内容が違うので
 		HttpSession session = request.getSession();
 		int user_id =(int) session.getAttribute("User_id");
+		String role_id=(String)session.getAttribute("user_id");
 		String URL = "jdbc:mysql://localhost:3306/carfare?serverTimezone=JST";
 		String USERNAME = "root";
 		String PASSWORD = "";

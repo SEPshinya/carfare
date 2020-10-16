@@ -45,7 +45,7 @@ public class UserAddcheck extends HttpServlet {
 
 		UserAddCommon.addUser(user_name,address, loginkey, role_id, salt);
 
-		getServletContext().getRequestDispatcher("/List").forward(request, response);
+		response.sendRedirect("http://localhost:8080/carfare/List");
 	}
 
 }

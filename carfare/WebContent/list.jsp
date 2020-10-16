@@ -3,7 +3,8 @@
 	<% ResultSet rs=(ResultSet)request.getAttribute("rs");%>
 <% String nowPage=(String)request.getAttribute("nowPage"); %>
 <% int np=(int)request.getAttribute("np"); %>
-
+<% int role_id=(int)session.getAttribute("role_id"); %>
+<% String Role_id = String.valueOf(role_id); %>
 <% int listCnt=(int)request.getAttribute("listCnt");  %>
 <% int maxPage=listCnt/10; %>
 <%if(listCnt%10>0){
@@ -23,13 +24,18 @@
 	<h1>交通費登録システム:一覧</h1>
 
 	<form  method="GET">
-		<input type="submit" value="新規登録" formaction="add.jsp">
+		<input type="submit" value="新規登録" formaction="Add">
 
 	</form>
 
 	<form action="Excel" method="post">
 		<input type="submit" value="Excelへ出力">
 	</form>
+	<%if(Role_id.equals("2")){%>
+	<form action="useradd.jsp" method="post">
+		<input type="submit" value="ユーザー新規登録">
+	</form>
+	<%} %>
 
 <%
 	rs=(ResultSet)request.getAttribute("rs");
@@ -284,7 +290,7 @@
 <%}%>
 </form>
 	<form method="GET">
-		<input type="submit" value="新規登録" formaction="add.jsp">
+		<input type="submit" value="新規登録" formaction="Add">
 	</form>
 
 </body>
