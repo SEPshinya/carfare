@@ -35,12 +35,12 @@
 <body>
 	<h2>交通費登録システム：編集画面</h2>
 
-	<div>
+	<div class="errmsg">
 		<%
 			//入力された値に対してエラーがあればエラー文を表示する
 			if (!(errmsg.equals(""))) {
 		%>
-		<%=errmsg%>
+		<%=errmsg%><br>
 		<%
 			} else {
 			}
