@@ -2,14 +2,21 @@
 @charset "UTF-8";
 
 
-
+body {
+  width: 90%;
+  min-width:60%;
+  max-width:100%;
+}
 .table1 {
 	border-collapse: collapse;
-	margin-left: auto;
-	margin-right: auto;
+	margin-left:18%;
 	width: 800px;
 	text-align: center;
 	border: solid 1px black;
+}
+
+.td {
+	padding: 0px 0px;
 }
 
 .tr1{
@@ -22,4 +29,28 @@
 
 .td1 {
 	border: solid 1px black;
+}
+
+.page {
+	margin-left:18%;
+
+}
+
+.excel {
+	margin-left:18%;
+}
+
+.newbtn {
+	margin-left:18%;
+}
+
+.userbtn{
+	margin-left:18%;
+}
+.btn {
+	height:25px;
+	width:200px;
+}
+.btn1{
+	width:50%;
 }

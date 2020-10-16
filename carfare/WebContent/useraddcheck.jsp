@@ -22,8 +22,7 @@
 
 			<tr>
 				<th>役職:</th>
-				<td>
-				</td>
+				<td><%= request.getAttribute("role_name") %></td>
 			</tr>
 			<tr>
 				<th></th>
