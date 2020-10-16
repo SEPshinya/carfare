@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+body{
+	/* ページ全体のフォント */
+	font-family: "游ゴシック" ;
+	width:960px;
+}
+
+.addlist{
+	padding:10px 50px;
+}
+
+.addlist dl dt{
+	width:100px;
+	/* padding:10px 0; */
+	float:left;
+	/* clear:both; */
+	text-align:right;
+}
+
+.addlist dl dd{
+	/* padding:10px 0; */
+}
+
+
+.transitdatabt{
+	text-decoration:none;
+    border:1px solid #333;
+    background-color: #fff;
+}
+
+.transitdatabt:hover{
+	text-decoration:none;
+    border:1px solid #333;
+    background-color: #333;
+    color:#fff;
+}
+
+
+.transitionbt{
+	width:200px;
+    text-decoration:none;
+    border:1px solid #333;
+    background-color: #fff;
+}
+
+.transitionbt:hover{
+	text-decoration:none;
+    border:1px solid #333;
+    background-color: #333;
+    color:#fff;
+}
+
+.err{
+	padding:0px 100px;
+}

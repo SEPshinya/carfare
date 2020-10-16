@@ -6,12 +6,17 @@ request.setCharacterEncoding("UTF-8");
 
 /**入力値引継ぎ**/
 String day=(String) request.getAttribute("day");
+
 String route_no=(String) request.getAttribute("route_no");
 
 String price=(String) request.getAttribute("price");
+
 String id=(String)request.getAttribute("id");
 
+
 NumberFormat nf = NumberFormat.getNumberInstance();
+
+
 
 /**ページング用**/
 //総ページ数
@@ -32,11 +37,11 @@ if(listC%10 !=0){
 /** 検索値 **/
 //交通機関
 String transit_no=(String)request.getAttribute("transit_no");
+
 //出発駅
 String from_st=(String)request.getAttribute("from_st");
 //到着駅
 String to_st=(String)request.getAttribute("to_st");
-
 
 /** エンコード **/
 //出発駅エンコード
@@ -57,13 +62,15 @@ ResultSet rs= (ResultSet) request.getAttribute("rs");
 
 
 /** 登録か編集かの判断値（名前は仮仕様）**/
+
 String menulist=(String)request.getAttribute("menulist");
 int menuNo= Integer.parseInt(menulist);
 
-/** url **/
+/** url  id day price **/
 String searchword="&from_st_encoded="+from_st_encoded+"&to_st_encoded="+to_st_encoded+"&transit_no="+transit_no+"&menulist="+menulist+"&id="+id+"&day="+day+"&price="+price;
 
 String errmsg=(String)request.getAttribute("errmsg");
+
 %>
 <!DOCTYPE html>
 <html>
@@ -75,8 +82,7 @@ String errmsg=(String)request.getAttribute("errmsg");
 <body>
 <p>交通費登録システム：交通手段一覧</p>
 
-
-
+<div><%=id %></div>
 
 <!-- ここにページング -->
 <form action="TransitdataList" method="get">
@@ -369,23 +375,19 @@ if(maxPage==1 || maxPage==0 && now==1){
 
 
 
-
-
 <!-- 交通手段一覧表示 -->
-
 <table class="transitListCss" border="1">
-<tr  bgcolor="#D7EEFF">
-<th  class="transitname">交通機関</th>
-<th  class="fromst">出発駅</th>
+<tr bgcolor="#D7EEFF">
+<th class="transitname">交通機関</th>
+<th class="fromst">出発駅</th>
 <th class="tost">到着駅</th>
 <th class="price">金額</th>
 <th class="select"></th>
 </tr>
-
 <%
 while(rs.next()){
 %>
-<form name="<%=rs.getString("data_id") %>" method="get">
+<form name="<%=rs.getString("data_id") %>"  method="get">
 <tr>
 <!-- 交通し手段の値を表示 -->
 <td><%=rs.getString("transit_name") %></td>
@@ -393,8 +395,8 @@ while(rs.next()){
 <td><%=rs.getString("to_st") %></td>
 <td><%int Price=Integer.parseInt(rs.getString("price"));%><%=nf.format(Price)%>円</td>
 
-<!-- 選択した値を渡す用 -->
-<input name="data_id" type="hidden" value=<%=rs.getString("data_id") %>>
+<!-- 選択した値を渡す用 ->
+<input name="data_id" type="hidden" value=<%=rs.getString("data_id") %>>-->
 <input name="transit_no" type="hidden" value=<%=rs.getString("transit_no") %>>
 <input name="from_st" type="hidden" value=<%=rs.getString("from_st") %>>
 <input name="to_st" type="hidden" value=<%=rs.getString("to_st") %>>
@@ -416,17 +418,20 @@ if(menuNo==1){
 <input type="hidden" name="route_no" value="<%=route_no%>">
 <input type="hidden" name="errmsg" value="<%=errmsg%>">
 <input type="hidden" name="id" value="<%=id%>">
-<td><input class="selectbt" type="submit" formaction="edit.jsp"  value="選択"></td>
+<td><input class="selectbt" type="submit" formaction="edit.jsp" value="選択"></td>
 
 <%
 }
 %>
+
 </tr>
 </form>
 <%
 }
 %>
 </table>
+
+
 
 
 
@@ -736,6 +741,7 @@ if(menuNo==1){
 <input type="hidden" name="menulist" value="<%=menulist%>">
 <input type="hidden" name="day" value="<%=day%>">
 <input type="hidden" name="route_no" value="<%=route_no%>">
+<input type="hidden" name="id" value="<%=id%>">
 <input type="hidden" name="transit_no" value="<%=transit_no%>">
 <input type="hidden" name="from_st" value="<%=from_st%>">
 <input type="hidden" name="to_st" value="<%=to_st%>">
@@ -748,11 +754,11 @@ if(menuNo==1){
 <input type="hidden" name="menulist" value="<%=menulist%>">
 <input type="hidden" name="day" value="<%=day%>">
 <input type="hidden" name="route_no" value="<%=route_no%>">
+<input type="hidden" name="id" value="<%=id%>">
 <input type="hidden" name="transit_no" value="<%=transit_no%>">
 <input type="hidden" name="from_st" value="<%=from_st%>">
 <input type="hidden" name="to_st" value="<%=to_st%>">
 <input type="hidden" name="price" value="<%=price%>">
-<input type="hidden" name="id" value="<%=id%>">
 <input class="returnbt" type="submit" formaction="edit.jsp"  value="戻る">
 <%
 }
