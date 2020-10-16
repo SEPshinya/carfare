@@ -14,6 +14,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="./css/editCheck.css">
 <title>交通費登録システム：編集確認</title>
 </head>
 <body>
@@ -25,7 +26,7 @@
 		CommonDB.getRouteName(getTransitName)を使用して各値名を取得
 		*/
 	%>
-	<form action="./EditCheck">
+	<form action="./EditCheck" class="table">
 		<table>
 			<tr>
 				<th>日付</th>
@@ -50,7 +51,7 @@
 				<th>:</th>
 				<td><%=data.getFrom_st()%><input type="hidden" name="from_st"
 					value="<%=data.getFrom_st()%>"></td>
-				<th>到着駅</th>
+				<th class="to">－ 到着駅</th>
 				<th>:</th>
 				<td><%=data.getTo_st()%><input type="hidden" name="to_st"
 					value="<%=data.getTo_st()%>"></td>
@@ -62,14 +63,16 @@
 					value="<%=data.getPrice()%>"></td>
 			</tr>
 		</table>
+		<br>
 		<div>
 			<input type="hidden" name="id" value="<%=data.getId()%>">
 		</div>
 		<div>
-			<input type="submit" value="編集">
+			<input type="submit" value="編集" class="leftbtn btn">
 		</div>
 		<div>
-			<input type="submit" value="戻る" formaction="./edit.jsp">
+			<input type="submit" value="戻る" formaction="./edit.jsp"
+				class="rightbtn btn">
 		</div>
 
 	</form>
