@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="delete.css">
+<link rel="stylesheet" type="text/css" href="css/delete.css">
 <title>交通費登録システム：削除</title>
 </head>
 <body>

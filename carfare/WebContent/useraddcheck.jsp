@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h1>交通費登録システム：ユーザー登録(確認)</h1>
-	<form action="UserAddCheck" method="post">
+	<form action="UserAddcheck" method="post">
 		<table>
 			<tr>
 				<th>氏名:</th>
