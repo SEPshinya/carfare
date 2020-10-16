@@ -48,8 +48,8 @@ public class Excel extends HttpServlet {
 		response.setContentType("test/html; charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
-		String user_name = "原 紳也";//(String)session.getAttribute("user_name");
-		int User_id = 1;//(int)session.getAttribute("User_id");
+		String user_name =(String)session.getAttribute("user_name");
+		int User_id = (int)session.getAttribute("User_id");
 
 		String URL = "jdbc:mysql://localhost:3306/carfare?serverTimezone=JST";
 		String USERNAME = "root";
@@ -81,6 +81,19 @@ public class Excel extends HttpServlet {
 				Cell cell6 = row.createCell(5);
 				Cell cell7 = row.createCell(6);
 
+				CellStyle cellstyle = wb.createCellStyle();
+				cellstyle.setBorderLeft(BorderStyle.THIN); //左罫線（通常線）
+				cellstyle.setBorderRight(BorderStyle.THIN); //右罫線（通常線）
+				cellstyle.setBorderTop(BorderStyle.THIN); //上罫線（通常線）
+				cellstyle.setBorderBottom(BorderStyle.THIN); //下罫線（通常線）
+				cell1.setCellStyle(cellstyle);
+				cell2.setCellStyle(cellstyle);
+				cell3.setCellStyle(cellstyle);
+				cell4.setCellStyle(cellstyle);
+				cell5.setCellStyle(cellstyle);
+				cell6.setCellStyle(cellstyle);
+				cell7.setCellStyle(cellstyle);
+
 				cell1.setCellValue(rs.getInt("id"));
 				cell2.setCellValue(rs.getString("day"));
 				cell3.setCellValue(rs.getString("route_name"));
@@ -90,13 +103,6 @@ public class Excel extends HttpServlet {
 				cell7.setCellValue(rs.getString("price"));
 				n = n + 1;
 
-				//罫線を引く
-			    CellStyle cellstyle = wb.createCellStyle();
-			    cellstyle.setBorderLeft(BorderStyle.MEDIUM);    //左罫線（通常線）
-			    cellstyle.setBorderRight(BorderStyle.MEDIUM);   //右罫線（通常線）
-			    cellstyle.setBorderTop(BorderStyle.MEDIUM);     //上罫線（通常線）
-			    cellstyle.setBorderBottom(BorderStyle.MEDIUM);  //下罫線（通常線）
-			    cell1.setCellStyle(cellstyle);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -107,8 +113,8 @@ public class Excel extends HttpServlet {
 		FileOutputStream out = null;
 		String filename = "" + User_id + "交通費一覧_" + user_name;
 		try {
-			//ここに返します
-			out = new FileOutputStream("C:\\Users\\abesatsuki1200\\Pictures\\" + filename + ".xlsx");
+			//ここに返します C:\TransitFile\
+			out = new FileOutputStream("C:\\TransitFile\\" + filename + ".xlsx");
 
 			//編集部分を書いて保存
 			wb.write(out);
@@ -126,7 +132,6 @@ public class Excel extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("/excelcheck.jsp");
 		rd.forward(request, response);
 	}
-
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
