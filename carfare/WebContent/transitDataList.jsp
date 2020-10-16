@@ -76,7 +76,7 @@ String errmsg=(String)request.getAttribute("errmsg");
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="transitDataList.css">
+<link rel="stylesheet" href="css/transitDataList.css">
 <title>交通手段一覧</title>
 </head>
 <body>
