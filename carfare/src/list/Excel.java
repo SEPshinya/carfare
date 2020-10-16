@@ -16,7 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -87,6 +89,14 @@ public class Excel extends HttpServlet {
 				cell6.setCellValue(rs.getString("to_st"));
 				cell7.setCellValue(rs.getString("price"));
 				n = n + 1;
+
+				//罫線を引く
+			    CellStyle cellstyle = wb.createCellStyle();
+			    cellstyle.setBorderLeft(BorderStyle.MEDIUM);    //左罫線（通常線）
+			    cellstyle.setBorderRight(BorderStyle.MEDIUM);   //右罫線（通常線）
+			    cellstyle.setBorderTop(BorderStyle.MEDIUM);     //上罫線（通常線）
+			    cellstyle.setBorderBottom(BorderStyle.MEDIUM);  //下罫線（通常線）
+			    cell1.setCellStyle(cellstyle);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -14,7 +14,7 @@
 <head>
 <meta charset="UTF-8">
 <title>交通費登録システム:一覧画面</title>
-<link rel="stylesheet" href="./list.css">
+<link rel="stylesheet" href="./css/list.css">
 </head>
 
 <body>
