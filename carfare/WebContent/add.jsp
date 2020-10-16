@@ -34,11 +34,11 @@
 <title>交通費登録システム：登録</title>
 </head>
 <body>
-<h2>交通費登録システム：登録</h2>
+	<h2>交通費登録システム：登録</h2>
 
 	<form class="addlist" method="post">
 
-	<div class="err">
+		<div class="err">
 			<%
 				if (errmsg != null) {
 			%>
@@ -46,119 +46,117 @@
 			<%
 				}
 			%>
-			</div>
+		</div>
 
 		<dl>
-			<dt>日付：</dt>
-			<dd>
-				<%
-					if (day != null) {
-				%><input type="text" name="day" value="<%=day%>">
-				<%
-					} else {
-				%>
-				<input type="text" name="day">
-				<%
-					}
-				%>
-			</dd>
+			<table>
+				<tr>
+					<th>日付：</th>
+					<td>
+						<%
+							if (day != null) {
+						%><input type="text" name="day" value="<%=day%>"> <%
+ 	} else {
+ %> <input type="text" name="day"> <%
+ 	}
+ %>
+					</td>
+				</tr>
+				<tr>
+					<th>片道or往復：</th>
+					<td><select name="route_no">
+							<%
+								while (rs.next()) {
+									if (rs.getString("route_no").equals(route_no)) {
+							%>
+							<option value="<%=rs.getString("route_no")%>" selected><%=rs.getString("route_name")%></option>
+							<%
+								} else {
+							%>
+							<option value="<%=rs.getString("route_no")%>"><%=rs.getString("route_name")%></option>
+							<%
+								}
+								}
+							%>
+					</select></td>
+				</tr>
+				<tr>
+					<th>&nbsp;</th>
+					<td><input type="hidden" name="menulist" value="<%=menulist%>">
+						<input class="transitdatabt" type="submit"
+						formaction="TransitdataList" value="以前のデータを参照"></td>
+				</tr>
 
-			<dt>片道or往復：</dt>
-			<dd>
-				<select name="route_no">
-					<%
-						while (rs.next()) {
-							if (rs.getString("route_no").equals(route_no)) {
-					%>
-					<option value="<%=rs.getString("route_no")%>" selected><%=rs.getString("route_name")%></option>
-					<%
-						} else {
-					%>
-					<option value="<%=rs.getString("route_no")%>"><%=rs.getString("route_name")%></option>
-					<%
-						}
-						}
-					%>
-				</select>
-			</dd>
+				<tr>
+					<th>交通機関：</th>
+					<td><select name="transit_no">
+							<%
+								while (rs1.next()) {
+									if (rs1.getString("transit_no").equals(transit_no)) {
+							%>
+							<option value="<%=rs1.getString("transit_no")%>" selected><%=rs1.getString("transit_name")%></option>
+							<%
+								} else {
+							%>
+							<option value="<%=rs1.getString("transit_no")%>"><%=rs1.getString("transit_name")%></option>
+							<%
+								}
+								}
+							%>
+					</select></td>
+				</tr>
 
-			<dt>&nbsp;</dt>
-			<dd>
-				<input type="hidden" name="menulist" value="<%=menulist%>">
-				<input class="transitdatabt" type="submit" formaction="TransitdataList" value="以前のデータを参照">
-			</dd>
-
-			<dt>交通機関：</dt>
-			<dd>
-				<select name="transit_no">
-					<%
-						while (rs1.next()) {
-							if (rs1.getString("transit_no").equals(transit_no)) {
-					%>
-					<option value="<%=rs1.getString("transit_no")%>" selected><%=rs1.getString("transit_name")%></option>
-					<%
-						} else {
-					%>
-					<option value="<%=rs1.getString("transit_no")%>"><%=rs1.getString("transit_name")%></option>
-					<%
-						}
-						}
-					%>
-				</select>
-			</dd>
-
-			<dt>出発駅：</dt>
-			<dd>
-				<%
-					if (from_st != null) {
-				%>
-				<input type="text" name="from_st" value="<%=from_st%>">
-				<%
-					} else {
-				%>
-				<input type="text" name="from_st">
-				<%
-					}
-				%>
+				<tr>
+					<th>出発駅：</th>
+					<td>
+						<%
+							if (from_st != null) {
+						%> <input type="text" name="from_st" value="<%=from_st%>"> <%
+ 	} else {
+ %> <input type="text" name="from_st"> <%
+ 	}
+ %>
+					</td>
 
 
-			到着駅：
+					<th>―到着駅：</th>
 
-				<%
-					if (to_st != null) {
-				%>
-				<input type="text" name="to_st" value="<%=to_st%>">
-				<%
-					} else {
-				%>
-				<input type="text" name="to_st">
-				<%
-					}
-				%>
-			</dd>
+					<td>
+						<%
+							if (to_st != null) {
+						%> <input type="text" name="to_st" value="<%=to_st%>"> <%
+ 	} else {
+ %> <input type="text" name="to_st"> <%
+ 	}
+ %>
+					</td>
+				</tr>
 
-			<dt>金額：</dt>
-			<dd>
-				<%
-					if (price != null) {
-				%><input type="text" name="price" value="<%=price%>">
-				<%
-					} else {
-				%>
-				<input type="text" name="price">
-				<%
-					}
-				%>
-			</dd>
+				<tr>
+					<th>金額：</th>
+					<td>
+						<%
+							if (price != null) {
+						%><input type="text" name="price" value="<%=price%>"> <%
+ 	} else {
+ %> <input type="text" name="price"> <%
+ 	}
+ %>
+					</td>
+				</tr>
+
+			</table>
 
 
 
-<br>
-<dt>&nbsp;</dt>
-<dd>
-		<input class="transitionbt" type="submit" formaction="Add" value="確認">
-		<button class="transitionbt" type="submit" formaction="List">戻る</button></dd>
-		</dl>
+			<br>
+			<br>
+
+			<input class="transitionbt" type="submit" formaction="Add"
+					value="確認">
+				<button class="transitionbt" type="submit" formaction="List"
+					formmethod="get">戻る</button>
+
 	</form>
 </body>
 </html>

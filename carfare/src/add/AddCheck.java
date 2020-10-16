@@ -13,6 +13,8 @@ import javax.servlet.http.HttpSession;
 import common.CommonAddData;
 import common.CommonDB;
 
+
+
 /**
  * Servlet implementation class AddCheck
  */
@@ -65,9 +67,11 @@ public class AddCheck extends HttpServlet {
 			 CommonDB.addTransitData(transit_no, from_st, to_st, price, user_id);
 		}
 
+		//フォワード
 		RequestDispatcher rd =
-		        request.getRequestDispatcher("./List");
+		        request.getRequestDispatcher("/List");
 		        rd.forward(request,response);
+
 	}
 
 }

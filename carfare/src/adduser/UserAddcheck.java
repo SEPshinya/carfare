@@ -41,6 +41,7 @@ public class UserAddcheck extends HttpServlet {
 		String salt=request.getParameter("salt");
 		String loginkey=request.getParameter("loginkey");
 		String role_id=request.getParameter("role_id");
+		
 
 
 		UserAddCommon.addUser(user_name,address, loginkey, role_id, salt);
