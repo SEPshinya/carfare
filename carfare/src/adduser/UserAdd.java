@@ -31,6 +31,7 @@ public class UserAdd extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		String role_name="";
 
 
 		String user_name = request.getParameter("name");
@@ -58,7 +59,12 @@ public class UserAdd extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		if(role_id.equals("1")) {
+			role_name="一般";
+		}else {
+			role_name="管理者";
+		}
+		request.setAttribute("role_name", role_name);
 		request.setAttribute("user_name", user_name);
 		request.setAttribute("address", address);
 		request.setAttribute("salt", salt);

@@ -43,7 +43,7 @@
 			<tr>
 				<th></th>
 				<td><input type="submit" class="btn" value="登録"></td>
-				<td><input type="submit" class="btn" value="キャンセル"></td>
+				<td><input type="button" class="btn"onclick="history.back()"value="戻る" ></td>
 			</tr>
 		</table>
 	</form>
