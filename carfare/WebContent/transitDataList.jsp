@@ -80,9 +80,8 @@ String errmsg=(String)request.getAttribute("errmsg");
 <title>交通手段一覧</title>
 </head>
 <body>
-<p>交通費登録システム：交通手段一覧</p>
+<h2>交通費登録システム：交通手段一覧</h2>
 
-<div><%=id %></div>
 
 <!-- ここにページング -->
 <form action="TransitdataList" method="get">

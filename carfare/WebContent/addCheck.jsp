@@ -36,23 +36,37 @@ NumberFormat nf = NumberFormat.getNumberInstance();
 
 <form class="addlist"  method="post">
 
-<dl>
-<dt>日付：</dt>
-<dd><%=day%></dd>
+<table>
+<tr>
+<th>日付：</th>
+<td><%=day%></td>
+</tr>
 
-<dt>片道or往復：</dt>
-<dd><%=route_name%></dd>
+<tr>
+<th>片道or往復：</th>
+<td><%=route_name%></td>
+</tr>
 
-<dt>交通機関：</dt>
-<dd><%=transit_name%></dd>
+<tr>
+<th>交通機関：</th>
+<td><%=transit_name%></td>
+</tr>
 
-<dt>出発駅：</dt>
-<dd><%=from_st%>&emsp;&emsp;&emsp;―到着駅：<%=to_st%></dd>
+<tr>
+<th>出発駅：</th>
+<td><%=from_st%></td>
+<th class="to">―到着駅：</th>
+<td><%=to_st%></td>
+</tr>
 
-<dt>金額：</dt>
-<dd><%=nf.format(Price)%>円</dd>
+<tr>
+<th>金額：</th>
+<td><%=nf.format(Price)%>円</td>
+</tr>
 
+</table>
 
+<br>
 <!-- hidden用 -->
 <input type="hidden" name="menulist" value="<%=menulist%>">
 <input type="hidden" name="day" value="<%=day%>">
