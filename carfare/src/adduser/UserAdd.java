@@ -31,7 +31,7 @@ public class UserAdd extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
+
 
 		String user_name = request.getParameter("name");
 		String address = request.getParameter("address");
@@ -41,9 +41,9 @@ public class UserAdd extends HttpServlet {
 		String salt = null;
 		String loginkey = null;
 
-		String errmsg = UserAddCommon.getErr(Password, Password2, address, role_id, user_name);
+		String errmsg = UserAddCommon.getErr(Password, Password2, address, role_id,user_name);
 
-		if (errmsg != null) {
+		if (errmsg != "") {
 			request.setAttribute("getErr", errmsg);
 			getServletContext().getRequestDispatcher("/useradd.jsp").forward(request, response);
 		}

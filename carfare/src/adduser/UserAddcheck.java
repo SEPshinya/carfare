@@ -27,14 +27,7 @@ public class UserAddcheck extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String user_name=request.getParameter("user_name");
-		String address=request.getParameter("address");
-		String salt=request.getParameter("salt");
-		String loginkey=request.getParameter("loginkey");
-		String role_id=request.getParameter("role_id");
 
-		UserAddCommon.addUser(user_name,address, loginkey, role_id, salt);
-		getServletContext().getRequestDispatcher("/List").forward(request, response);
 	}
 
 	/**
@@ -43,6 +36,16 @@ public class UserAddcheck extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		String user_name=request.getParameter("user_name");
+		String address=request.getParameter("address");
+		String salt=request.getParameter("salt");
+		String loginkey=request.getParameter("loginkey");
+		String role_id=request.getParameter("role_id");
+
+
+		UserAddCommon.addUser(user_name,address, loginkey, role_id, salt);
+
+		getServletContext().getRequestDispatcher("/List").forward(request, response);
 	}
 
 }
