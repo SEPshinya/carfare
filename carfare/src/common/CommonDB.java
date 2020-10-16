@@ -423,7 +423,7 @@ public class CommonDB {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			Statement stmt = connect.createStatement();
-			String DelQuery = "UPDATE transit_list SET delete_flg = '" + 1 + "' WHERE id = " + id + ";";
+			String DelQuery = "UPDATE transit_list SET delete_flg = '1' WHERE id = " + id + ";";
 			stmt.executeUpdate(DelQuery);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();

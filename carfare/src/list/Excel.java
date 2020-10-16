@@ -108,7 +108,7 @@ public class Excel extends HttpServlet {
 		String filename = "" + User_id + "交通費一覧_" + user_name;
 		try {
 			//ここに返します
-			out = new FileOutputStream("C:\\Users\\abesatsuki1200\\Pictures\\" + filename + ".xlsx");
+			out = new FileOutputStream("C:\\TransitFile\\" + filename + ".xlsx");
 
 			//編集部分を書いて保存
 			wb.write(out);
