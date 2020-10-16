@@ -69,7 +69,7 @@ public class Excel extends HttpServlet {
 			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			Statement stmt = connect.createStatement();
 			String getQuery = "SELECT * FROM transit_list INNER JOIN route ON transit_list.route_no = route.route_no INNER JOIN transit ON transit_list.transit_no =transit.transit_no WHERE user_id ="
-					+ user_id + " AND delete_flg=0";
+					+ user_id + " AND delete_flg=0 ORDER BY day ASC";
 			ResultSet rs = stmt.executeQuery(getQuery);
 			//excelの横幅を指定（0=1行目、4000幅）
 			sheet1.setColumnWidth(0, 4000);

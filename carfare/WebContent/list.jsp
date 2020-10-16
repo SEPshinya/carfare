@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.sql.ResultSet"%>
+	pageEncoding="UTF-8" import="java.sql.ResultSet" import="java.text.NumberFormat"%>
 	<% ResultSet rs=(ResultSet)request.getAttribute("rs");%>
 <% String nowPage=(String)request.getAttribute("nowPage"); %>
 <% int np=(int)request.getAttribute("np"); %>
@@ -7,6 +7,7 @@
 <% String Role_id = String.valueOf(role_id); %>
 <% int listCnt=(int)request.getAttribute("listCnt");  %>
 <% int maxPage=listCnt/10; %>
+<%NumberFormat nf = NumberFormat.getNumberInstance(); %>
 <%if(listCnt%10>0){
 	maxPage=maxPage+1;
 }%>
@@ -278,7 +279,7 @@
 				<td class="td1"><%=rs.getString("transit_name")%><input type="hidden" name="transit_name" value="<%=rs.getString("transit_name")%>"></td>
 				<td class="td1"><%=rs.getString("from_st")%><input type="hidden" name="from_st" value="<%=rs.getString("from_st")%>"></td>
 				<td class="td1"><%=rs.getString("to_st")%><input type="hidden" name="to_st" value="<%=rs.getString("to_st")%>"></td>
-				<td class="td1"><%=rs.getString("price")%>円<input type="hidden" name="price" value="<%=rs.getString("price")%>"></td>
+				<td class="td1"><%int Price=Integer.parseInt(rs.getString("price"));%><%=nf.format(Price)%>円<input type="hidden" name="price" value="<%=nf.format(Price)%>"></td>
 
 				<td class="td2"><input type="submit" value="編集" formaction="edit.jsp"style="background-color:#C0C0C0;" class="btn1"><input type="submit" value="削除" formaction="Delete.jsp" style="background-color:#C0C0C0;" class="btn1"></td>
 			</tr>
