@@ -113,20 +113,19 @@ public class Add extends HttpServlet {
 		CommonAddData data = new CommonAddData(day, route_no, transit_no, from_st, to_st, price, user_id);
 		String errmsg = CommonErrMsg.getErrMsg(data);
 
-		System.out.println(errmsg);
+
+		request.setAttribute("menulist", menulist);
+
+		request.setAttribute("day", day);
+		request.setAttribute("route_no", route_no);
+		request.setAttribute("transit_no", transit_no);
+		request.setAttribute("from_st", from_st);
+		request.setAttribute("to_st", to_st);
+		request.setAttribute("price",price);
 
 		//行先
 		if(errmsg.isEmpty()) {
-			//System.out.println("ok");
 
-			request.setAttribute("menulist", menulist);
-
-			request.setAttribute("day", day);
-			request.setAttribute("route_no", route_no);
-			request.setAttribute("transit_no", transit_no);
-			request.setAttribute("from_st", from_st);
-			request.setAttribute("to_st", to_st);
-			request.setAttribute("price",price);
 
 			/** DBの取得 **/
 			String route_name=CommonDB.getRouteName(route_no);
@@ -144,14 +143,6 @@ public class Add extends HttpServlet {
 			ResultSet rs =CommonDB.getRouteAll();
 			ResultSet rs1=CommonDB.getTransitAll();
 
-			request.setAttribute("menulist", menulist);
-
-			request.setAttribute("day", day);
-			request.setAttribute("route_no", route_no);
-			request.setAttribute("transit_no", transit_no);
-			request.setAttribute("from_st", from_st);
-			request.setAttribute("to_st", to_st);
-			request.setAttribute("price",price);
 
 			request.setAttribute("rs", rs);
 			request.setAttribute("rs1", rs1);
