@@ -26,6 +26,12 @@ public class UserAddCommon {
 		String returnVal = "";
 
 
+		if (user_name.getBytes().length == 0) { //未入力
+			returnVal += ERRMSG_Name01 + "<BR>";
+		}else if(stringDigits(user_name) > 16) {
+			returnVal += ERRMSG_Name02 + "<BR>";
+		}
+
 		//あｄｄ
 		if (address.getBytes().length == 0) { //未入力
 			returnVal += ERRMSG_Address03 + "<BR>";

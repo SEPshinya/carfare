@@ -78,14 +78,13 @@ public class Login extends HttpServlet {
 		session.setAttribute("role_id",role_id);
 		session.setAttribute("user_name", user_name);
 
-
-
-		getServletContext().getRequestDispatcher("/List").forward(request, response);
+		response.sendRedirect("http://localhost:8080/carfare/List");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+
 	}
 }
