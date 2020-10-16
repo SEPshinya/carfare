@@ -10,7 +10,7 @@
 </head>
 <body>
 <h1>交通費登録システム：ログイン</h1>
-    <form action="Login" method="post">
+    <form action="./Login" method="post">
     <table>
       <tr>
         <th>メールアドレス:</th>
@@ -26,9 +26,7 @@
       </tr>
      </table>
   	</form>
-  	<p>原
-add harashinya1192
-pass hara1192</p>
+  	<p>原 add harashinya1192 pass hara1192</p>
 <% String getErr=(String)request.getAttribute("message"); %>
 <%if(getErr!=null){ %>
 <%=getErr%>
