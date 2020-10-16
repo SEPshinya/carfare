@@ -34,7 +34,7 @@
 	<form action="Excel" method="post" class="excel">
 	<input type="submit" value="Excelへ出力" class="btn">
 	</form>
-
+<br>
 <%
 	rs=(ResultSet)request.getAttribute("rs");
 %>
@@ -261,12 +261,12 @@
 	<form >
 		<table class="table1">
 			<tr class="tr1" style="background-color: #99CCFF;">
-				<td class="td1">日付</td>
-				<td class="td1">片道or往復</td>
-				<td class="td1">交通機関</td>
-				<td class="td1">出発駅</td>
-				<td class="td1">到着駅</td>
-				<td class="td1">金額</td>
+				<td class="td1"><b>日付</b></td>
+				<td class="td1"><b>片道or往復</b></td>
+				<td class="td1"><b>交通機関</b></td>
+				<td class="td1"><b>出発駅</b></td>
+				<td class="td1"><b>到着駅</b></td>
+				<td class="td1"><b>金額</b></td>
 				<td></td>
 			</tr>
 
@@ -278,7 +278,7 @@
 				<td class="td1"><%=rs.getString("transit_name")%><input type="hidden" name="transit_name" value="<%=rs.getString("transit_name")%>"></td>
 				<td class="td1"><%=rs.getString("from_st")%><input type="hidden" name="from_st" value="<%=rs.getString("from_st")%>"></td>
 				<td class="td1"><%=rs.getString("to_st")%><input type="hidden" name="to_st" value="<%=rs.getString("to_st")%>"></td>
-				<td class="td1"><%=rs.getString("price")%><input type="hidden" name="price" value="<%=rs.getString("price")%>"></td>
+				<td class="td1"><%=rs.getString("price")%>円<input type="hidden" name="price" value="<%=rs.getString("price")%>"></td>
 
 				<td class="td2"><input type="submit" value="編集" formaction="edit.jsp"style="background-color:#C0C0C0;" class="btn1"><input type="submit" value="削除" formaction="Delete.jsp" style="background-color:#C0C0C0;" class="btn1"></td>
 			</tr>

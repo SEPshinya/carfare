@@ -3,7 +3,7 @@
 
 
 body {
-  width: 90%;
+  width: 100%;
   min-width:60%;
   max-width:100%;
 }
@@ -11,6 +11,7 @@ body {
 	border-collapse: collapse;
 	margin-left:18%;
 	width: 800px;
+	height:350px;
 	text-align: center;
 	border: solid 1px black;
 }
