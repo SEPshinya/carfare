@@ -10,7 +10,7 @@ public class UserAddCommon {
 	private static final String USERNAME = "root";
 	private static final String PASSWORD = "";
 
-	public static String getErr(String Password, String Password2, String address, String role_id, String user_name) {
+	public static String getErr(String Password, String Password2, String address, String role_id) {
 		String ERRMSG_Pass01 = "パスワードを入力してください";
 		String ERRMSG_Pass02 = "確認用パスワードを入力してください";
 		String ERRMSG_Pass03 = "パスワードは半角16文字以内で入力してください";
@@ -21,16 +21,7 @@ public class UserAddCommon {
 		String ERRMSG_Address03 = "メールアドレスは必須項目です";
 		String ERRMSG_Addserch="このメールアドレスはほかのユーザーに使用されているため登録できません";
 		String ERRMSG_Role01 = "役職を選択してください";
-		String ERRMSG_Name01="氏名を入力してください";
-		String ERRMSG_Name02="氏名は16文字以内で入力してください";
-		String returnVal = "";
-
-		//name
-		if(user_name.getBytes().length== 0) {
-			returnVal += ERRMSG_Name01 + "<BR>";
-		}else if(user_name.getBytes().length>15) {
-			returnVal += ERRMSG_Name02 + "<BR>";
-		}
+		String returnVal = null;
 
 		//あｄｄ
 		if (address.getBytes().length == 0) { //未入力
@@ -79,22 +70,6 @@ public class UserAddCommon {
 			e.printStackTrace();
 		}
 		return false;
-	}
-
-//ユーザ登録
-	public static void addUser(String user_name, String address, String loginkey, String role_id, String salt) {
-	try {
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-		Statement stmt = connect.createStatement();
-		String InsQuery = "INSERT INTO `user` (`user_id`,`user_name`, `address`, `password`, `role_id`, `salt`) VALUES (NULL, '"
-				+user_name+"', '"+ address + "', '" + loginkey + "', '" + role_id + "', '" + salt + "');";
-		stmt.executeUpdate(InsQuery);
-	} catch (SQLException e) {
-		e.printStackTrace();
-	} catch (ClassNotFoundException e) {
-		e.printStackTrace();
-		}
 	}
 
 	//入力データのバイトチェック（石橋君から借りてます）

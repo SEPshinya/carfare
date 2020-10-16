@@ -10,7 +10,8 @@ table th {
 
 input, select {
 	width: 150px;
-	border: 1px solid #000; background-color : #fff;
+	border: 1px solid #000;
+	background-color: #fff;
 }
 
 .btn {
@@ -28,9 +29,13 @@ input, select {
 .rightbtn {
 	width: 200px;
 	float: right;
-	margin-right: 330px;
+	margin-right: 280px;
 }
 
-.list {
+.table {
 	margin-left: 100px;
+}
+
+.to {
+	padding-left: 50px;
 }

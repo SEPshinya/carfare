@@ -51,7 +51,7 @@
 	<%
 		//一覧表示に表示されていた値をinputの中へうめこむ
 	%>
-	<form action="./Edit" class="list">
+	<form action="./Edit" class="table">
 		<table>
 			<tr>
 				<th>日付</th>
@@ -108,7 +108,7 @@
 				<th>出発駅</th>
 				<th>:</th>
 				<td><input type="text" name="from_st" value="<%=from_st%>"></td>
-				<th>－ 到着駅</th>
+				<th class="to">－ 到着駅</th>
 				<th>:</th>
 				<td><input type="text" name="to_st" value="<%=to_st%>"></td>
 			</tr>
@@ -118,6 +118,7 @@
 				<td><input type="text" name="price" value="<%=price%>"></td>
 			</tr>
 		</table>
+		<br>
 
 		<input type="hidden" name="id" value="<%=id%>">
 		<div>
