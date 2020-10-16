@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 body{
-	font-family: "游ゴシック" ;
+	/* font-family: "游ゴシック" ; */
 	width:960px;
 }
 
@@ -51,4 +51,11 @@ table.transitListCss th{
     text-decoration:none;
     border:1px solid #333;
     background-color: #fff;
+}
+
+.returnbt:hover{
+	text-decoration:none;
+    border:1px solid #666;
+    background-color: #666;
+    color:#fff;
 }
