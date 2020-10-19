@@ -5,6 +5,16 @@ body{
 	width:960px;
 }
 
+.paging ul {
+	padding: 0;
+	margin-top: 10px;
+	margin-bottom: 0;
+}
+.paging ul li{
+	display: inline;
+	margin-right: 10px;
+}
+
 table.transitListCss{
 	border-collapse: collapse;
 	text-align: center;
@@ -59,3 +69,4 @@ table.transitListCss th{
     background-color: #666;
     color:#fff;
 }
+
