@@ -59,7 +59,7 @@ public class TransitdataList extends HttpServlet {
 
 		/** ページング **/
 		//ページ数取得
-		String Page = request.getParameter("Page");
+		String Page = request.getParameter("page");
 
 		//現在のページ
 		String nowPage = "";
