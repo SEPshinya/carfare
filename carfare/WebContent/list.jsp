@@ -274,6 +274,7 @@
 			<% while(rs.next()){ %>
 			<form method="get" name="<%= rs.getInt("id")%>">
 			<tr class="tr2">
+				<input type="hidden" name="id" value="<%=rs.getString("id")%>">
 				<td class="td1"><%=rs.getString("day").replace('-', '/')%><input type="hidden" name="day" value="<%=rs.getString("day").replace('-', '/')%>"></td>
 				<td class="td1"><%=rs.getString("route_name")%><input type="hidden" name="route_name" value="<%=rs.getString("route_name")%>"></td>
 				<td class="td1"><%=rs.getString("transit_name")%><input type="hidden" name="transit_name" value="<%=rs.getString("transit_name")%>"></td>

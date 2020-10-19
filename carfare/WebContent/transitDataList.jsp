@@ -34,6 +34,10 @@ if(listC%10 !=0){
 	maxPage=maxPage+1;
 }
 
+int start=0;
+int end=0;
+
+
 /** 検索値 **/
 //交通機関
 String transit_no=(String)request.getAttribute("transit_no");
@@ -84,292 +88,63 @@ String errmsg=(String)request.getAttribute("errmsg");
 
 
 <!-- ここにページング -->
-<form action="TransitdataList" method="get">
-<%
-//1ページのみ
-if(maxPage==1 || maxPage==0 && now==1){
-%>
-＜＜
-&nbsp;
-＜
-&nbsp;
-1
-&nbsp;
-＞
-&nbsp;
-＞＞
+<form  class="paging" action="TransitdataList" method="get">
+<ul>
+			<li>
+				<% if (now == 1) { %>
+					<a><%="<<"%></a>
+				<% } else { %>
+					<a href="TransitdataList?page=1<%=searchword%>"><%="<<"%></a>
+				<% } %>
+			</li>
+			<li>
+				<% if (now == 1) { %>
+				<a><%="<"%></a>
+				<% } else { %> <a href="TransitdataList?page=<%=now - 1%><%=searchword%>"><%="<"%></a>
+				<% } %>
+			</li>
+			<%
+				if (maxPage <= 5) {
+					start = 1;
+					end = maxPage;
+				} else if (now == maxPage || now == maxPage - 1) {
+					start = maxPage - 4;
+					end = maxPage;
+				} else if (now >= 3) {
+					start = now - 2;
+					end = now + 2;
+				} else {
+					start = 1;
+					end = 5;
+				}
+				for (int i = start; i <= end; i++) {
+			%>
+			<li>
+				<% if (now == i) { %>
+					<a><%=i%></a>
+				<% } else { %>
+					<a href="TransitdataList?page=<%=i%><%=searchword%>"><%=i%></a>
+				<% } %>
+			</li>
+			<%
+				}
+			%>
+			<li>
+				<% if (now == maxPage) { %>
+					<a><%=">"%></a>
+				<% } else { %>
+					<a href="TransitdataList?page=<%=now + 1%><%=searchword%>"><%=">"%></a>
+					<% } %>
+			</li>
+			<li>
+				<% if (now == maxPage) { %>
+					<a><%=">>"%></a>
+				<% } else { %>
+					<a href="TransitdataList?page=<%=maxPage%><%=searchword%>"><%=">>"%></a>
+				<% }  %>
+			</li>
+		</ul>
 
-<%
-//2ページ分、1ページ目
-}else if(maxPage==2 && now==1){
-%>
-＜＜
-&nbsp;
-＜
-&nbsp;
-<%=now %>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%=now+1%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%="＞"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=maxPage%><%=searchword%>"><%="＞＞"%></a>
-<%
-//2ページ分、最終ページ
-}else if(maxPage==2 && now==maxPage){
-%>
-<a href="TransitdataList?Page=1<%=searchword%>"><%="＜＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%="＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%=now-1%></a>
-&nbsp;
-<%=now %>
-&nbsp;
-＞
-&nbsp;
-＞＞
-
-
-<%
-//3ページ分、1ページ目
-}else if(maxPage==3 && now==1){
-%>
-＜＜
-&nbsp;
-＜
-&nbsp;
-<%=now %>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%=now+1%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+2%><%=searchword%>"><%=now+2%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%="＞"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=maxPage%><%=searchword%>"><%="＞＞"%></a>
-
-<%
-//3ページ分、2ページ目
-}else if(maxPage==3 && now==2){
-%>
-<a href="TransitdataList?Page=1<%=searchword%>"><%="＜＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%="＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%="1"%></a>
-&nbsp;
-<%=now %>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%=now+1%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%="＞"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=maxPage%><%=searchword%>"><%="＞＞"%></a>
-
-<%
-//3ページ分、最終ページ
-}else if(maxPage==3 && now==maxPage){
-%>
-<a href="TransitdataList?Page=1<%=searchword%>"><%="＜＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%="＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-2%><%=searchword%>"><%=now-2%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%=now-1%></a>
-&nbsp;
-<%=now %>
-&nbsp;
-＞
-&nbsp;
-＞＞
-
-<%
-//4ページ分、1ページ目
-}else if(maxPage==4 && now==1){
-%>
-＜＜
-&nbsp;
-＜
-&nbsp;
-<%=now %>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%=now+1%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+2%><%=searchword%>"><%=now+2%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+3%><%=searchword%>"><%=now+3%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%="＞"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=maxPage%><%=searchword%>"><%="＞＞"%></a>
-<%
-//4ページ分、2ページ目
-}else if(maxPage==4 && now==2){
-%>
-<a href="TransitdataList?Page=1<%=searchword%>"><%="＜＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%="＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%="1"%></a>
-&nbsp;
-<%=now %>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%=now+1%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+2%><%=searchword%>"><%=now+2%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%="＞"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=maxPage%><%=searchword%>"><%="＞＞"%></a>
-
-<%//4ページ分、3ページ目
-}else if(maxPage==4 && now==3){
-%>
-<a href="TransitdataList?Page=1<%=searchword%>"><%="＜＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%="＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-2%><%=searchword%>"><%=now-2%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%=now-1%></a>
-&nbsp;
-<%=now %>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%=now+1%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%="＞"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=maxPage%><%=searchword%>"><%="＞＞"%></a>
-
-<%
-//4ページ分、最終ページ
-}else if(maxPage==4 && now==maxPage){
-%>
-<a href="TransitdataList?Page=1"><%="＜＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%="＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-3%><%=searchword%>"><%=now-3%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-2%><%=searchword%>"><%=now-2%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%=now-1%></a>
-&nbsp;
-<%=maxPage %>
-&nbsp;
-＞
-&nbsp;
-＞＞
-
-<%
-//複数ページ5以上、1ページ目
-}else if(maxPage>4 && now==1){
-%>
-＜＜
-&nbsp;
-＜
-&nbsp;
-<%=now %>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%=now+1%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+2%><%=searchword%>"><%=now+2%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+3%><%=searchword%>"><%=now+3%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+4%><%=searchword%>"><%=now+4%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%="＞"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=maxPage%><%=searchword%>"><%="＞＞"%></a>
-
-<%
-//複数ページ5以上、2ページ目
-}else if(maxPage>4 && now==2){
-%>
-<a href="TransitdataList?Page=1<%=searchword%>"><%="＜＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%="＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%="1"%></a>
-&nbsp;
-<%=now %>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%=now+1%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+2%><%=searchword%>"><%=now+2%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+3%><%=searchword%>"><%=now+3%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%="＞"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=maxPage%><%=searchword%>"><%="＞＞"%></a>
-
-<%
-//複数ページ5以上最後から2ページ目
-}else if(maxPage>4 && now ==maxPage-1){
-%>
-<a href="TransitdataList?Page=1<%=searchword%>"><%="＜＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%="＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-3%><%=searchword%>"><%=now-3%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-2%><%=searchword%>"><%=now-2%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%=now-1%></a>
-&nbsp;
-<%=now %>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%=now+1%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%="＞"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=maxPage%><%=searchword%>"><%="＞＞"%></a>
-<%
-//複数ページ5以上最後のページ
-}else if(maxPage>4 && now == maxPage){
-%>
-<a href="TransitdataList?Page=1<%=searchword%>"><%="＜＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%="＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-4%><%=searchword%>"><%=now-4%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-3%><%=searchword%>"><%=now-3%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-2%><%=searchword%>"><%=now-2%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%=now-1%></a>
-&nbsp;
-<%=maxPage %>
-&nbsp;
-＞
-&nbsp;
-＞＞
-<%
-}else{
-%>
-<a href="TransitdataList?Page=1<%=searchword%>"><%="＜＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%="＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-2%><%=searchword%>"><%=now-2%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%=now-1%></a>
-&nbsp;
-<%=now %>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%=now+1%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+2%><%=searchword%>"><%=now+2%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%="＞"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=maxPage%><%=searchword%>"><%="＞＞"%></a>
-<%} %>
 </form>
 
 
@@ -438,293 +213,63 @@ if(menuNo==1){
 
 
 <!-- ここにページング -->
-<form action="TransitdataList" method="get">
-<%
-//1ページのみ
-if(maxPage==1 || maxPage==0 && now==1){
-%>
-＜＜
-&nbsp;
-＜
-&nbsp;
-1
-&nbsp;
-＞
-&nbsp;
-＞＞
+<form class="paging" action="TransitdataList" method="get">
+<ul>
+			<li>
+				<% if (now == 1) { %>
+					<a><%="<<"%></a>
+				<% } else { %>
+					<a href="TransitdataList?page=1<%=searchword%>"><%="<<"%></a>
+				<% } %>
+			</li>
+			<li>
+				<% if (now == 1) { %>
+				<a><%="<"%></a>
+				<% } else { %> <a href="TransitdataList?page=<%=now - 1%><%=searchword%>"><%="<"%></a>
+				<% } %>
+			</li>
+			<%
+				if (maxPage <= 5) {
+					start = 1;
+					end = maxPage;
+				} else if (now == maxPage || now == maxPage - 1) {
+					start = maxPage - 4;
+					end = maxPage;
+				} else if (now >= 3) {
+					start = now - 2;
+					end = now + 2;
+				} else {
+					start = 1;
+					end = 5;
+				}
+				for (int i = start; i <= end; i++) {
+			%>
+			<li>
+				<% if (now == i) { %>
+					<a><%=i%></a>
+				<% } else { %>
+					<a href="TransitdataList?page=<%=i%><%=searchword%>"><%=i%></a>
+				<% } %>
+			</li>
+			<%
+				}
+			%>
+			<li>
+				<% if (now == maxPage) { %>
+					<a><%=">"%></a>
+				<% } else { %>
+					<a href="TransitdataList?page=<%=now + 1%><%=searchword%>"><%=">"%></a>
+					<% } %>
+			</li>
+			<li>
+				<% if (now == maxPage) { %>
+					<a><%=">>"%></a>
+				<% } else { %>
+					<a href="TransitdataList?page=<%=maxPage%><%=searchword%>"><%=">>"%></a>
+				<% }  %>
+			</li>
+		</ul>
 
-<%
-//2ページ分、1ページ目
-}else if(maxPage==2 && now==1){
-%>
-＜＜
-&nbsp;
-＜
-&nbsp;
-<%=now %>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%=now+1%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%="＞"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=maxPage%><%=searchword%>"><%="＞＞"%></a>
-
-<%
-//2ページ分、最終ページ
-}else if(maxPage==2 && now==maxPage){
-%>
-<a href="TransitdataList?Page=1<%=searchword%>"><%="＜＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%="＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%=now-1%></a>
-&nbsp;
-<%=now %>
-&nbsp;
-＞
-&nbsp;
-＞＞
-
-
-<%
-//3ページ分、1ページ目
-}else if(maxPage==3 && now==1){
-%>
-＜＜
-&nbsp;
-＜
-<%=now %>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%=now+1%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+2%><%=searchword%>"><%=now+2%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%="＞"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=maxPage%><%=searchword%>"><%="＞＞"%></a>
-
-<%
-//3ページ分、2ページ目
-}else if(maxPage==3 && now==2){
-%>
-<a href="TransitdataList?Page=1<%=searchword%>"><%="＜＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%="＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%="1"%></a>
-&nbsp;
-<%=now %>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%=now+1%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%="＞"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=maxPage%><%=searchword%>"><%="＞＞"%></a>
-
-<%
-//3ページ分、最終ページ
-}else if(maxPage==3 && now==maxPage){
-%>
-<a href="TransitdataList?Page=1<%=searchword%>"><%="＜＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%="＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-2%><%=searchword%>"><%=now-2%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%=now-1%></a>
-&nbsp;
-<%=now %>
-&nbsp;
-＞
-&nbsp;
-＞＞
-
-<%
-//4ページ分、1ページ目
-}else if(maxPage==4 && now==1){
-%>
-＜＜
-&nbsp;
-＜
-&nbsp;
-<%=now %>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%=now+1%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+2%><%=searchword%>"><%=now+2%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+3%><%=searchword%>"><%=now+3%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%="＞"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=maxPage%><%=searchword%>"><%="＞＞"%></a>
-
-<%
-//4ページ分、2ページ目
-}else if(maxPage==4 && now==2){
-%>
-<a href="TransitdataList?Page=1<%=searchword%>"><%="＜＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%="＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%="1"%></a>
-&nbsp;
-<%=now %>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%=now+1%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+2%><%=searchword%>"><%=now+2%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%="＞"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=maxPage%><%=searchword%>"><%="＞＞"%></a>
-
-<%//4ページ分、3ページ目
-}else if(maxPage==4 && now==3){
-%>
-<a href="TransitdataList?Page=1<%=searchword%>"><%="＜＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%="＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-2%><%=searchword%>"><%=now-2%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%=now-1%></a>
-&nbsp;
-<%=now %>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%=now+1%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%="＞"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=maxPage%><%=searchword%>"><%="＞＞"%></a>
-
-<%
-//4ページ分、最終ページ
-}else if(maxPage==4 && now==maxPage){
-%>
-<a href="TransitdataList?Page=1<%=searchword%>"><%="＜＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%="＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-3%><%=searchword%>"><%=now-3%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-2%><%=searchword%>"><%=now-2%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%=now-1%></a>
-&nbsp;
-<%=maxPage %>
-&nbsp;
-＞
-&nbsp;
-＞＞
-
-<%
-//複数ページ5以上、1ページ目
-}else if(maxPage>4 && now==1){
-%>
-＜＜
-&nbsp;
-＜
-&nbsp;
-<%=now %>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%=now+1%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+2%><%=searchword%>"><%=now+2%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+3%><%=searchword%>"><%=now+3%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+4%><%=searchword%>"><%=now+4%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%="＞"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=maxPage%><%=searchword%>"><%="＞＞"%></a>
-
-<%
-//複数ページ5以上、2ページ目
-}else if(maxPage>4 && now==2){
-%>
-<a href="TransitdataList?Page=1<%=searchword%>"><%="＜＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%="＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%="1"%></a>
-&nbsp;
-<%=now %>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%=now+1%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+2%><%=searchword%>"><%=now+2%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+3%><%=searchword%>"><%=now+3%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%="＞"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=maxPage%><%=searchword%>"><%="＞＞"%></a>
-
-<%
-//複数ページ5以上最後から2ページ目
-}else if(maxPage>4 && now ==maxPage-1){
-%>
-<a href="TransitdataList?Page=1<%=searchword%>"><%="＜＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%="＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-3%><%=searchword%>"><%=now-3%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-2%><%=searchword%>"><%=now-2%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%=now-1%></a>
-&nbsp;
-<%=now %>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%=now+1%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%="＞"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=maxPage%><%=searchword%>"><%="＞＞"%></a>
-<%
-//複数ページ5以上最後のページ
-}else if(maxPage>4 && now == maxPage){
-%>
-<a href="TransitdataList?Page=1<%=searchword%>"><%="＜＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%="＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-4%><%=searchword%>"><%=now-4%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-3%><%=searchword%>"><%=now-3%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-2%><%=searchword%>"><%=now-2%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%=now-1%></a>
-&nbsp;
-<%=maxPage %>
-&nbsp;
-＞
-&nbsp;
-＞＞
-<%
-}else{
-%>
-<a href="TransitdataList?Page=1<%=searchword%>"><%="＜＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%="＜"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-2%><%=searchword%>"><%=now-2%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now-1%><%=searchword%>"><%=now-1%></a>
-&nbsp;
-<%=now %>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%=now+1%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+2%><%=searchword%>"><%=now+2%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=now+1%><%=searchword%>"><%="＞"%></a>
-&nbsp;
-<a href="TransitdataList?Page=<%=maxPage%><%=searchword%>"><%="＞＞"%></a>
-<%} %>
 </form>
 
 
