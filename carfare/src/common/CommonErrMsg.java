@@ -19,7 +19,7 @@ public class CommonErrMsg {
 		if (isBytes(password)) {
 			errmsg += "パスワードに全角を使用しないでください<br>";
 		} else if (stringDigits(password) > 16) {
-			errmsg += "メールアドレスは半角16文字以内で入力してください<br>";
+			errmsg += "パスワードは半角16文字以内で入力してください<br>";
 		}
 		return errmsg;
 	}
