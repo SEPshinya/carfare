@@ -5,13 +5,13 @@ public class CommonAddData {
 	 *	クラス外から値を参照させないために
 	 *	修飾子を全てprivateにする
 	 **/
-	private String day;
-	private String route_no;
-	private String transit_no;
-	private String from_st;
-	private String to_st;
-	private String price;
-	private int user_id;
+	private final String day;
+	private final String route_no;
+	private final String transit_no;
+	private final String from_st;
+	private final String to_st;
+	private final String price;
+	private final int user_id;
 
 	/**
 	 *	値をセットするのは、

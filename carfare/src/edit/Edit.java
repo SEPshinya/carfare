@@ -16,14 +16,6 @@ import common.CommonUpdData;
  */
 @WebServlet("/Edit")
 public class Edit extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public Edit() {
-		super();
-	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -48,10 +40,10 @@ public class Edit extends HttpServlet {
 		String errmsg = CommonErrMsg.getErrMsg(data);
 
 		/**
-		 * エラーメッセージにテキストが入っていない
+		 * エラーがない
 		 * 		→編集確認画面へ遷移
 		 * 		  その時にアップデートデータクラスも持っていく
-		 * エラーメッセージにテキストが入ってる
+		 * エラーがある
 		 * 		→編集画面へ遷移
 		 * 		  その時にエラーメッセージも持っていく
 		 **/

@@ -5,7 +5,7 @@ public class CommonUpdData extends CommonAddData {
 	 *	クラス外から値を参照させないために
 	 *	修飾子を全てprivateにする
 	 **/
-	private int id;
+	private final int id;
 
 	/**
 	 *	値をセットするのは、
