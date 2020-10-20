@@ -2,13 +2,13 @@ package list;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -58,6 +58,18 @@ public class Excel extends HttpServlet {
 		String USERNAME = "root";
 		String PASSWORD = "";
 		int user_id = (int) session.getAttribute("User_id");
+
+		//クライアントに対して何か出力するために、どのようなデータを送るか指定するコンテンツタイプの設定を行っている
+		//クライアントは結果を得る側
+		//HTMLの形式で文字コードはUTF-8で返してとお願いしている
+		response.setContentType("text/html; charset=UTF-8");
+		
+		//文字出力用のストリームの取得
+		//ストリームの中にいれたものが出力される
+		//ストリーム（文字を出力する為の入れ物）
+		PrintWriter out = response.getWriter();
+		System.out.println("1");
+
 
 		//①書き込みたいシート、シートの生成
 		Workbook wb = new XSSFWorkbook();
@@ -163,27 +175,41 @@ public class Excel extends HttpServlet {
 
 		}
 
-		FileOutputStream out = null;
+		FileOutputStream output = null;
 		String filename = "" + User_id + "交通費一覧_" + user_name;
 		try {
 			//ここに返します C:\TransitFile\
-			out = new FileOutputStream("C:\\TransitFile\\" + filename + ".xlsx");
+			output = new FileOutputStream("C:\\TransitFile\\" + filename + ".xlsx");
 
 			//編集部分を書いて保存
-			wb.write(out);
+			wb.write(output);
 
 		} catch (IOException e) {
-			System.out.println(e.toString());
+			//エラーをcatchしたら先ほど準備した文字出力用のストリームに送る文字をいれている
+			//HTMLで返してねとお願いしているので、HTMLでつかう<H2>や<META>を読み込んでくれる
+			//お願いしていないと、そのまま出力されてしまう
+			out.println("<META http-equiv=\"Refresh\" content=\"3;URL=List\">");
+			out.println("<H2>書き込み先のexcelファイルを開いているためデータを書き込むことができませんでした。</H2>");
+			out.println("３秒後に一覧画面へ遷移します");
+			out.close();
 		} finally {
 			try {
 				wb.close();
-				out.close();
+				output.close();
 			} catch (IOException e) {
-				System.out.println(e.toString());
+				out.println("<META http-equiv=\"Refresh\" content=\"3;URL=List\">");
+				out.println("<H2>不明なエラーです。</H2>");
+				out.println("３秒後に一覧画面へ遷移します");
 			}
 		}
-		RequestDispatcher rd = request.getRequestDispatcher("/excelcheck.jsp");
-		rd.forward(request, response);
+		out.println("<META http-equiv=\"Refresh\" content=\"3;URL=List\">");
+		out.println("<H2>書き込みが完了しました</H2>");
+		out.println("３秒後に一覧画面へ遷移します");
+		out.close();
+
+
+		//RequestDispatcher rd = request.getRequestDispatcher("/excelcheck.jsp");
+		//rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
