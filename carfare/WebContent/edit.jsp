@@ -42,11 +42,9 @@
 		%>
 		<%=errmsg%><br>
 		<%
-			} else {
 			}
 		%>
 	</div>
-
 
 	<%
 		//一覧表示に表示されていた値をinputの中へうめこむ
@@ -68,15 +66,16 @@
 						%>
 						<option value="<%=route_rs.getString("route_no")%>" selected><%=route_rs.getString("route_name")%></option>
 						<%
-							} else {
+								} else {
 						%>
 						<option value="<%=route_rs.getString("route_no")%>"><%=route_rs.getString("route_name")%></option>
 						<%
-							}
+								}
 							}
 						%>
 				</select></td>
 			</tr>
+			<!-- 交通手段一覧画面へ遷移 -->
 			<tr>
 				<th></th>
 				<th></th>
@@ -95,11 +94,11 @@
 						%>
 						<option value="<%=transit_rs.getString("transit_no")%>" selected><%=transit_rs.getString("transit_name")%></option>
 						<%
-							} else {
+								} else {
 						%>
 						<option value="<%=transit_rs.getString("transit_no")%>"><%=transit_rs.getString("transit_name")%></option>
 						<%
-							}
+								}
 							}
 						%>
 				</select></td>
@@ -118,9 +117,8 @@
 				<td><input type="text" name="price" value="<%=price%>"></td>
 			</tr>
 		</table>
-		<br>
-
-		<input type="hidden" name="id" value="<%=id%>">
+		<br> <input type="hidden" name="id" value="<%=id%>">
+		<!-- 編集確認画面へ遷移 -->
 		<div>
 			<input type="submit" value="確認" class="leftbtn btn">
 		</div>

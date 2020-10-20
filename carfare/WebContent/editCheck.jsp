@@ -75,7 +75,6 @@
 			<input type="submit" value="戻る" formaction="./edit.jsp"
 				class="rightbtn btn">
 		</div>
-
 	</form>
 
 

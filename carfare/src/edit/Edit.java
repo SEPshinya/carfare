@@ -40,10 +40,10 @@ public class Edit extends HttpServlet {
 		String errmsg = CommonErrMsg.getErrMsg(data);
 
 		/**
-		 * エラーメッセージにテキストが入っていない
+		 * エラーがない
 		 * 		→編集確認画面へ遷移
 		 * 		  その時にアップデートデータクラスも持っていく
-		 * エラーメッセージにテキストが入ってる
+		 * エラーがある
 		 * 		→編集画面へ遷移
 		 * 		  その時にエラーメッセージも持っていく
 		 **/
