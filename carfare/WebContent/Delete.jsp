@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="css/delete.css">
+<link rel="stylesheet" type="text/css" href="./css/user.css">
 <title>交通費登録システム：削除</title>
 </head>
 <body>
@@ -41,9 +41,16 @@
 				<th>運賃:</th>
 				<td><%=request.getParameter("price")%>円</td>
 			</tr>
+
+		</table>
+		<table>
+			<tr>
+				<th></th>
+				<td><input type="submit" value="削除" class="btn"> <input
+					type="submit" value="戻る" formaction="List" class="btn"></td>
+			</tr>
 		</table>
 		<input type="hidden" value=<%=request.getParameter("id")%> name="id">
-	<input type="submit" value="削除"> <input type="submit"value="戻る" formaction="List">
 	</form>
 
 </body>
