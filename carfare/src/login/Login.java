@@ -77,7 +77,6 @@ public class Login extends HttpServlet {
 		session.setAttribute("User_id", User_id);
 		session.setAttribute("role_id", role_id);
 		session.setAttribute("user_name", user_name);
-
 		getServletContext().getRequestDispatcher("/List").forward(request, response);
 	}
 

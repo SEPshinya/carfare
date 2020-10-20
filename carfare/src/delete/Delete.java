@@ -16,6 +16,7 @@ import common.CommonDB;
 @WebServlet("/Delete")
 public class Delete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
 	public Delete() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -26,8 +27,8 @@ public class Delete extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		//削除SQL実行
-		 String id = request.getParameter("id");
-		 CommonDB.deleteDB(Integer.parseInt(id));
+		String id = request.getParameter("id");
+		CommonDB.deleteDB(Integer.parseInt(id));
 		getServletContext().getRequestDispatcher("/List").forward(request, response);
 	}
 
