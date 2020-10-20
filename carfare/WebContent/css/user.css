@@ -1,0 +1,75 @@
+@charset "UTF-8";
+
+body {
+	min-width: 60%;
+	max-width: 100%;
+	position: center;
+}
+
+table {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 30px;
+}
+
+H2 {
+	margin: 30px;
+}
+
+th {
+	text-align: right;
+}
+
+p {
+	margin: 30px;
+text-align: center;
+}
+
+.text {
+	width: 200px;
+}
+
+.btn {
+	margin: 10px 10px 10px 5px;
+	border: 1px solid #000;
+	width: 150px;
+	align: center;
+	background-color: #ffffff;
+}
+
+.btn1 {
+	margin: 5px;
+	border: 1px solid #000;
+	width: 200px;
+	align: center;
+	background-color: #ffffff;
+}
+
+.name {
+	width: 200px;
+	height: 18px;
+	margin: 5px;
+}
+
+.address {
+	width: 320px;
+	height: 18px;
+	margin: 5px;
+}
+
+.pass {
+	width: 180px;
+	height: 18px;
+	margin: 5px;
+}
+
+.role {
+	width: 170px;
+	height: 30px;
+	margin: 5px;
+}
+
+.erro {
+	margin: 30px;
+	color: red;
+}

@@ -1,24 +1,27 @@
 @charset "UTF-8";
+
 body {
-  width: 920px;
+	width: 920px;
+}
+
+table {
 
 }
 
-table{
-
+.text {
+	width: 100px;
 }
 
-.text{
-	width:100px;
-}
-
-.btn{
-	width:60%;
+.btn {
+	width: 60%;
 	text-align: center;
-	align:center;
+	align: center;
+	text-decoration: none;
+	border: 1px solid #666;
+	background-color: #666;
+	color: #fff;
 }
 
-.ex{
+.ex {
 	font-weight: bold;
-
 }
