@@ -8,7 +8,7 @@ public class CommonErrMsg {
 	 **/
 	public static String getLoginErr(String address, String password) {
 		String errmsg = "";
-		if (address.equals("") || password.equals("")) {
+		if (address.isEmpty() || password.isEmpty()) {
 			return errmsg += "メールアドレスもしくはパスワードが入力されていません。<br>";
 		}
 		if (isBytes(address)) {
@@ -42,7 +42,7 @@ public class CommonErrMsg {
 	 **/
 	public static String getErrMsg(CommonAddData data) {
 		String errmsg = "";
-		if (data.getDay().equals("")) {
+		if (data.getDay().isEmpty()) {
 			errmsg += "日付は必須項目です<br>";
 		} else if (!(data.getDay().matches("^[0-9]{4}/[0-9]{2}/[0-9]{2}$"))) {
 			if (!(chackDayData(data.getDay()))) {
@@ -57,7 +57,7 @@ public class CommonErrMsg {
 		if (stringDigits(data.getTo_st()) > 20) {
 			errmsg += "到着駅は全角10文字以内で入力してください<br>";
 		}
-		if (!data.getPrice().equals("")) {
+		if (!data.getPrice().isEmpty()) {
 			if (!(data.getPrice().matches("[0-9]+"))) {
 				errmsg += "金額は数値で入力してください<br>";
 			} else if (stringDigits(data.getPrice()) > 9) {
