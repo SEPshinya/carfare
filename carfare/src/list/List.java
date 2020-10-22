@@ -31,17 +31,18 @@ public class List extends HttpServlet {
 		//user_idによって表示させる内容が違うので
 		HttpSession session = request.getSession();
 		int user_id =(int) session.getAttribute("User_id");
+		System.out.println(user_id);
 
 		/** ページング **/
 		//ページ数取得
 		String nowPage = request.getParameter("page");
 		int limitSta = 0;
+		System.out.println(nowPage);
 
 		//現在のページ
 		if (nowPage == null) {
 			nowPage = "1";
 		}
-
 		int np = Integer.parseInt(nowPage);
 		request.setAttribute("np", np);
 		if (np > 1) {

@@ -63,12 +63,11 @@ public class Excel extends HttpServlet {
 		//クライアントは結果を得る側
 		//HTMLの形式で文字コードはUTF-8で返してとお願いしている
 		response.setContentType("text/html; charset=UTF-8");
-		
+
 		//文字出力用のストリームの取得
 		//ストリームの中にいれたものが出力される
 		//ストリーム（文字を出力する為の入れ物）
 		PrintWriter out = response.getWriter();
-		System.out.println("1");
 
 
 		//①書き込みたいシート、シートの生成
@@ -167,7 +166,6 @@ public class Excel extends HttpServlet {
 				cell5.setCellValue(rs.getString("to_st"));
 				cell6.setCellValue(rs.getString("price") + "円" );
 				n = n + 1;
-
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -207,9 +205,6 @@ public class Excel extends HttpServlet {
 		out.println("３秒後に一覧画面へ遷移します");
 		out.close();
 
-
-		//RequestDispatcher rd = request.getRequestDispatcher("/excelcheck.jsp");
-		//rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
