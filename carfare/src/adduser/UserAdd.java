@@ -33,7 +33,6 @@ public class UserAdd extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String role_name="";
 
-
 		String user_name = request.getParameter("name");
 		String address = request.getParameter("address");
 		String Password = request.getParameter("Password");
@@ -42,12 +41,12 @@ public class UserAdd extends HttpServlet {
 		String salt = null;
 		String loginkey = null;
 
-		String errmsg = UserAddCommon.getErr(Password, Password2, address, role_id,user_name);
+		//String errmsg = UserAddCommon.getErr(Password, Password2, address, role_id,user_name);
 
-		if (errmsg != "") {
+		/*if (errmsg != "") {
 			request.setAttribute("getErr", errmsg);
-			getServletContext().getRequestDispatcher("/useradd.jsp").forward(request, response);
-		}
+			getServletContext().getRequestDispatcher("/errcheck.jsp").forward(request, response);
+		}*/
 
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA-256");
