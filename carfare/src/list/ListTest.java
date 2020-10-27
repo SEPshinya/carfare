@@ -36,8 +36,8 @@ public class ListTest extends HttpServlet {
 		out.println("遷移成功");
 
 		//ページングの確認したいとき
-		String nowPage = request.getParameter("page");
-		out.println(nowPage);
+		//String nowPage = request.getParameter("page");
+		//out.println(nowPage);
 
 		/* list.jspのページングの URL指定をListTestに変更するとListTest.javaに遷移するようになる
 		 * <td><a href="List?page=3">3</a></td>

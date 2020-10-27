@@ -31,9 +31,11 @@
 		</table>
 		<input type=hidden value="<%= request.getAttribute("user_name") %>" name="user_name">
 		<input type=hidden value="<%= request.getAttribute("address") %>" name="address">
-		<input type=hidden value="<%= request.getAttribute("loginkey") %>" name="loginkey">
 		<input type=hidden value="<%= request.getAttribute("role_id") %>" name="role_id">
+		<input type=hidden value="<%= request.getAttribute("loginkey") %>" name="loginkey">
 		<input type=hidden value="<%= request.getAttribute("salt") %>" name="salt">
+
+
 	</form>
 
 </body>

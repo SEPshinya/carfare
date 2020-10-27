@@ -21,7 +21,6 @@
 <body>
 
 	<h1>遷移成功</h1>
-
 	<input type="text" name="day" value="<%=day%>">
 	<br>
 	<input type="text" name="route_name" value="<%=route_name%>">
