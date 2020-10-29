@@ -41,12 +41,12 @@ public class UserAdd extends HttpServlet {
 		String salt = null;
 		String loginkey = null;
 
-		//String errmsg = UserAddCommon.getErr(Password, Password2, address, role_id,user_name);
+		String errmsg = UserAddCommon.getErr(Password, Password2, address, role_id,user_name);
 
-		/*if (errmsg != "") {
+		if (errmsg != "") {
 			request.setAttribute("getErr", errmsg);
-			getServletContext().getRequestDispatcher("/errcheck.jsp").forward(request, response);
-		}*/
+			getServletContext().getRequestDispatcher("/useradd.jsp").forward(request, response);
+		}
 
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -63,6 +63,7 @@ public class UserAdd extends HttpServlet {
 		}else {
 			role_name="管理者";
 		}
+
 		request.setAttribute("role_name", role_name);
 		request.setAttribute("user_name", user_name);
 		request.setAttribute("address", address);

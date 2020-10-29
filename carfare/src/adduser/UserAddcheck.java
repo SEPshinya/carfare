@@ -40,7 +40,6 @@ public class UserAddcheck extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		request.setCharacterEncoding("UTF-8");
-
 		doGet(request, response);
 		String user_name = request.getParameter("user_name");
 		String address = request.getParameter("address");
@@ -50,7 +49,7 @@ public class UserAddcheck extends HttpServlet {
 
 		UserAddCommon.addUser(user_name, address, loginkey, role_id, salt);
 
-		response.sendRedirect("http://localhost:8080/carfare/List");
+		getServletContext().getRequestDispatcher("/List").forward(request, response);
 	}
 
 }
