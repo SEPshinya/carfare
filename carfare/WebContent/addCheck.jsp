@@ -21,7 +21,13 @@ String to_st=(String)request.getAttribute("to_st");
 //金額
 String price=(String)request.getAttribute("price");
 
-int Price=Integer.parseInt(price);
+/** 金額 処理変更**/
+int Price=0;
+if(price.isEmpty()){
+price="0";
+}else{
+	Price=Integer.parseInt(price);
+}
 NumberFormat nf = NumberFormat.getNumberInstance();
 %>
 <!DOCTYPE html>
@@ -61,7 +67,14 @@ NumberFormat nf = NumberFormat.getNumberInstance();
 
 <tr>
 <th>金額：</th>
-<td><%=nf.format(Price)%>円</td>
+<td><%if(Price==0){%>
+<%=price %>
+<%}else{ %>
+<%=nf.format(Price)%>
+<%
+}
+%>
+円</td>
 </tr>
 
 </table>
