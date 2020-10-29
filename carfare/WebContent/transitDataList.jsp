@@ -37,6 +37,10 @@ if(listC%10 !=0){
 int start=0;
 int end=0;
 
+//件数0の場合
+if(listC==0){
+maxPage=1;
+}
 
 /** 検索値 **/
 //交通機関
