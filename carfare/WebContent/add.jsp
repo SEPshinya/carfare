@@ -21,7 +21,7 @@
 	/** DBから「route」を取得する用 **/
 	ResultSet rs = (ResultSet) request.getAttribute("rs");
 
-	/** DBから「transit」を取得する用 **/
+	/** DBから「transit」を取得する用  **/
 	ResultSet rs1 = (ResultSet) request.getAttribute("rs1");
 
 	String errmsg = (String) request.getAttribute("errmsg");
