@@ -1,7 +1,8 @@
 package common;
 
-public class CommonErrMsg {
+import java.util.Arrays;
 
+public class CommonErrMsg {
 	/**
 	 * 	ログイン画面で使用
 	 * 	入力データのエラーチェック
@@ -42,9 +43,12 @@ public class CommonErrMsg {
 	 **/
 	public static String getErrMsg(CommonAddData data) {
 		String errmsg = "";
+		String[] dateData = dateData(data.getDay());
+		String matchdata = "^[0-9]{" + dateData[0].length() + "}/[0-9]{"
+				+ dateData[1].length() + "}/[0-9]{" + dateData[2].length() + "}$";
 		if (data.getDay().isEmpty()) {
 			errmsg += "日付は必須項目です<br>";
-		} else if (!(data.getDay().matches("^[0-9]{4}/[0-9]{2}/[0-9]{2}$"))) {
+		} else if (!(data.getDay().matches(matchdata) && chackDayData(data.getDay()))) {
 			if (!(chackDayData(data.getDay()))) {
 				errmsg += "日付を正式な範囲で入力してください<br>";
 			} else {
@@ -92,24 +96,26 @@ public class CommonErrMsg {
 	}
 
 	//入力データが正しい日付のものか調べる
-	private static boolean chackDayData(String s) {
-		return ismonth(s) && isday(createdays(s), s);
+	private static boolean chackDayData(String date) {
+		String[] dateData = dateData(date);
+		return ismonth(dateData[1]) && isday(createdays(dateData[0], dateData[1]), dateData[2]);
 	}
 
 	//対応した月の日付表を渡す
-	private static int[] createdays(String s) {
-		char[] chars = createCharList(s);
-		int nen = 0;
-		for (int i = 0; i < 4; i++) {
-			nen *= 10;
-			nen += Integer.parseUnsignedInt("" + chars[i]);
-		}
-		int month = 0;
-		for (int i = 4; i < 6; i++) {
-			month *= 10;
-			month += Integer.parseUnsignedInt("" + chars[i]);
-		}
+	private static int[] createdays(String nendata, String monthdata) {
 		int[] days;
+		if (nendata.isEmpty() || monthdata.isEmpty())
+			return days = new int[0];
+		char[] chars = nendata.toCharArray();
+		for (char c : chars)
+			if (isString(c))
+				return days = new int[0];
+		chars = monthdata.toCharArray();
+		for (char c : chars)
+			if (isString(c))
+				return days = new int[0];
+		int month = Integer.parseInt(monthdata);
+		int lastday = 0;
 		switch (month) {
 		case 1:
 		case 3:
@@ -118,70 +124,104 @@ public class CommonErrMsg {
 		case 8:
 		case 10:
 		case 12:
-			days = new int[31];
-			for (int i = 0; i < days.length; i++) {
-				days[i] = i + 1;
-			}
-			return days;
+			lastday = 31;
+			break;
 		case 2:
-			if (nen % 4 == 0) {
-				days = new int[29];
-			} else {
-				days = new int[28];
-			}
-			for (int i = 0; i < days.length; i++) {
-				days[i] = i + 1;
-			}
-			return days;
-
+			lastday = (Integer.parseInt(nendata) % 4 == 0) ? 29 : 28;
+			break;
 		case 4:
 		case 6:
 		case 9:
 		case 11:
-			days = new int[30];
-			for (int i = 0; i < days.length; i++) {
-				days[i] = i + 1;
-			}
-			return days;
+			lastday = 30;
+			break;
+		default:
+			return days = new int[0];
 		}
-		return null;
+		days = new int[lastday];
+		for (int i = 1; i <= lastday; i++)
+			days[i - 1] = i;
+		return days;
 	}
 
 	//入力された日付の「日」が正しいかどうか
-	private static boolean isday(int[] list, String s) {
-		char[] chars = createCharList(s);
-		int day = 0;
-		for (int i = 6; i < chars.length; i++) {
-			day *= 10;
-			day += Integer.parseUnsignedInt("" + chars[i]);
-		}
-		for (int listdays : list) {
-			if (listdays == day) {
+	private static boolean isday(int[] list, String daydata) {
+		if (daydata.isEmpty())
+			return true;
+		char[] chars = daydata.toCharArray();
+		for (char c : chars)
+			if (isString(c))
 				return true;
-			}
-		}
+		int day = Integer.parseInt(daydata);
+		if (day == 0)
+			return false;
+		for (int listdays : list)
+			if (listdays == day)
+				return true;
 		return false;
 	}
 
 	//入力された日付の「月」が正しいかどうか
-	private static boolean ismonth(String s) {
-		char[] chars = createCharList(s);
-		int month = 0;
-		for (int i = 4; i < 6; i++) {
-			month *= 10;
-			month += Integer.parseUnsignedInt("" + chars[i]);
-		}
-		for (int i = 1; i <= 12; i++) {
-			if (i == month) {
+	private static boolean ismonth(String monthdata) {
+		if (monthdata.isEmpty())
+			return true;
+		char[] chars = monthdata.toCharArray();
+		for (char c : chars)
+			if (isString(c))
 				return true;
-			}
-		}
+		int month = Integer.parseInt(monthdata);
+		if (month == 0)
+			return false;
+		for (int i = 1; i <= 12; i++)
+			if (i == month)
+				return true;
 		return false;
 	}
 
-	//重複した処理  日付データから「/」を消して、charの配列に変換して返す
-	private static char[] createCharList(String s) {
-		return s.replaceAll("/", "").toCharArray();
+	//日付データを受け取り、「/」までの値を各変数にいれる
+	//入れた変数をString型の配列に入れて返す
+	private static String[] dateData(String date) {
+		String[] dayData = new String[3];
+		if (date.isEmpty()) {
+			Arrays.fill(dayData, "");
+			return dayData;
+		}
+		char[] chars = date.toCharArray();
+		int flg = 0;
+		String nen = "";
+		String month = "";
+		String day = "";
+		int cnt = 0;
+		for (Character c : chars) {
+			if (c.equals('/')) {
+				cnt++;
+				continue;
+			}
+			if (isString(c))
+				flg = 1;
+			switch (cnt) {
+			case 0:
+				nen += c;
+				break;
+			case 1:
+				month += c;
+				break;
+			case 2:
+				day += c;
+				break;
+			}
+		}
+		dayData[0] = (flg == 0) ? "" + Integer.parseInt(nen.isEmpty() ? "-1" : nen) : nen;
+		dayData[1] = (flg == 0) ? "" + Integer.parseInt(month.isEmpty() ? "-1" : month) : month;
+		dayData[2] = (flg == 0) ? "" + Integer.parseInt(day.isEmpty() ? "-1" : day) : day;
+		return dayData;
+	}
+
+	//dateDataで使用
+	//日付データ内に文字列があるかを探すための対象
+	private static boolean isString(char c) {
+		String match = "" + c;
+		return !match.matches("^[0-9]*$");
 	}
 
 }
