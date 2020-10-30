@@ -155,9 +155,9 @@ public class CommonDB {
 			 * 受け取った値がnullであれば空文字("")を代入
 			 * そうでなければそのまま代入する
 			 **/
-			transit_no = (transit_no == null) ? "'%%' " : "'%" + transit_no + "%' ";
-			from_st = (from_st == null) ? "'%%' " : "'%" + from_st + "%' ";
-			to_st = (to_st == null) ? "'%%' " : "'%" + to_st + "%' ";
+			transit_no = (transit_no == null || transit_no.isEmpty()) ? "'%%' " : "'%" + transit_no + "%' ";
+			from_st = (from_st == null || from_st.isEmpty()) ? "'%%' " : "'%" + from_st + "%' ";
+			to_st = (to_st == null || to_st.isEmpty()) ? "'%%' " : "'%" + to_st + "%' ";
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			Statement stmt = connect.createStatement();
@@ -192,9 +192,9 @@ public class CommonDB {
 			 * 受け取った値がnullであれば空文字("")を代入
 			 * そうでなければそのまま代入する
 			 **/
-			transit_no = (transit_no == null || transit_no.equals("")) ? "'%%' " : "'%" + transit_no + "%' ";
-			from_st = (from_st == null || from_st.equals("")) ? "'%%' " : "'%" + from_st + "%' ";
-			to_st = (to_st == null || to_st.equals("")) ? "'%%' " : "'%" + to_st + "%' ";
+			transit_no = (transit_no == null || transit_no.isEmpty()) ? "'%%' " : "'%" + transit_no + "%' ";
+			from_st = (from_st == null || from_st.isEmpty()) ? "'%%' " : "'%" + from_st + "%' ";
+			to_st = (to_st == null || to_st.isEmpty()) ? "'%%' " : "'%" + to_st + "%' ";
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			Statement stmt = connect.createStatement();
