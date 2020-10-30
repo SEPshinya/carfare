@@ -60,7 +60,8 @@
 			<tr>
 				<th>運賃</th>
 				<th>:</th>
-				<td><%=NumberFormat.getNumberInstance().format(Integer.parseInt(data.getPrice()))%>円
+				<td><%=data.getPrice().isEmpty() ? ""
+					: NumberFormat.getNumberInstance().format(Integer.parseInt(data.getPrice())) + "円"%>
 					<input type="hidden" name="price" value="<%=data.getPrice()%>"></td>
 			</tr>
 		</table>
