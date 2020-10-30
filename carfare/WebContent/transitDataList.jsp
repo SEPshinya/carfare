@@ -51,7 +51,7 @@ String from_st=(String)request.getAttribute("from_st");
 //到着駅
 String to_st=(String)request.getAttribute("to_st");
 
-/** エンコード **/
+/** エンコード  **/
 //出発駅エンコード
 String from_st_encoded=null;
 if(from_st!=null){
