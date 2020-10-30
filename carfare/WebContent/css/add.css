@@ -25,7 +25,7 @@ table th {
 .addlist{
 
 	/* 配置 */
-	padding:10px 50px;
+	padding:10px 100px;
 }
 
 .addlist dl dt{
@@ -46,14 +46,7 @@ table th {
     background-color: #fff;
 }
 
-.transitdatabt:hover{
 
-	/* 交通手段 ボタン アニメーション */
-	text-decoration:none;
-    border:1px solid #666;
-    background-color: #666;
-    color:#fff;
-}
 
 
 .transitionbt{
@@ -67,14 +60,7 @@ table th {
 
 }
 
-.transitionbt:hover{
 
-	/* ページ遷移 ボタン アニメーション*/
-	text-decoration:none;
-    border:1px solid #666;
-    background-color: #666;
-    color:#fff;
-}
 
 .transition{
 

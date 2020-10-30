@@ -3,21 +3,21 @@
 
 
 body {
-  width: 100%;
-  min-width:60%;
-  max-width:100%;
+
+
+  /* ページ幅*/
+	width:960px;
 }
 .table1 {
 	border-collapse: collapse;
 	margin-left:18%;
-	width: 800px;
-	height:350px;
+	width:800px;
 	text-align: center;
 	border: solid 1px black;
 }
 
 .td {
-	padding: 0px 0px;
+	/* padding: 0px 0px; */
 }
 
 .tr1{
@@ -30,6 +30,7 @@ body {
 
 .td1 {
 	border: solid 1px black;
+
 }
 
 .page {
