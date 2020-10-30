@@ -48,7 +48,7 @@ public class CommonErrMsg {
 				+ dateData[1].length() + "}/[0-9]{" + dateData[2].length() + "}$";
 		if (data.getDay().isEmpty()) {
 			errmsg += "日付は必須項目です<br>";
-		} else if (!(data.getDay().matches(matchdata) && chackDayData(data.getDay()))) {
+		} else if (!(dateData[3].matches(matchdata) && chackDayData(data.getDay()))) {
 			if (!(chackDayData(data.getDay()))) {
 				errmsg += "日付を正式な範囲で入力してください<br>";
 			} else {
@@ -181,7 +181,7 @@ public class CommonErrMsg {
 	//日付データを受け取り、「/」までの値を各変数にいれる
 	//入れた変数をString型の配列に入れて返す
 	private static String[] dateData(String date) {
-		String[] dayData = new String[3];
+		String[] dayData = new String[4];
 		if (date.isEmpty()) {
 			Arrays.fill(dayData, "");
 			return dayData;
@@ -214,6 +214,7 @@ public class CommonErrMsg {
 		dayData[0] = (flg == 0) ? "" + Integer.parseInt(nen.isEmpty() ? "-1" : nen) : nen;
 		dayData[1] = (flg == 0) ? "" + Integer.parseInt(month.isEmpty() ? "-1" : month) : month;
 		dayData[2] = (flg == 0) ? "" + Integer.parseInt(day.isEmpty() ? "-1" : day) : day;
+		dayData[3] = dayData[0] + "/" + dayData[1] + "/" + dayData[2];
 		return dayData;
 	}
 
