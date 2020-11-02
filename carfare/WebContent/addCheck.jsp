@@ -70,7 +70,7 @@ NumberFormat nf = NumberFormat.getNumberInstance();
 <td><%if(Price==0){%>
 <%=price %>
 <%}else{ %>
-<%=nf.format(Price)%>
+<%=nf.format(route_no.equals("1")?Price:Price*2)%>
 <%
 }
 %>
@@ -94,7 +94,7 @@ NumberFormat nf = NumberFormat.getNumberInstance();
 <input class="transitionbt" type="submit" formaction="AddCheck" value="登録">
 <input class="transitionbt" type="submit" formaction="Add" formmethod="get" value="戻る">
 </dd>
-</dl>
+
 </form>
 </body>
 </html>
