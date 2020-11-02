@@ -32,16 +32,17 @@ public class List extends HttpServlet {
 		HttpSession session = request.getSession();
 		int user_id =(int) session.getAttribute("User_id");
 
+
 		/** ページング **/
 		//ページ数取得
 		String nowPage = request.getParameter("page");
 		int limitSta = 0;
 
+
 		//現在のページ
 		if (nowPage == null) {
 			nowPage = "1";
 		}
-
 		int np = Integer.parseInt(nowPage);
 		request.setAttribute("np", np);
 		if (np > 1) {

@@ -15,7 +15,7 @@
 </head>
 <body>
 	<h2>交通費登録システム：ユーザー登録</h2>
-	<form action="UserAdd" method="post">
+	<form action="AddCheck" method="post">
 		<table>
 			<tr>
 				<th>氏名:</th>
@@ -44,7 +44,7 @@
 
 			<tr>
 				<td></td>
-				<td><input type="submit" class="btn" formaction="UserAdd" value="登録"><input type="submit" class="btn" formaction="List" value="戻る"></td>
+				<td><input type="submit" class="btn" formaction="UserAdd" value="確認"><input type="submit" class="btn" formaction="List" value="戻る"></td>
 			</tr>
 		</table>
 	</form>

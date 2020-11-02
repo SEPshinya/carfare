@@ -11,6 +11,7 @@
 <%if(listCnt%10>0){
 	maxPage=maxPage+1;
 }%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +21,6 @@
 </head>
 
 <body>
-
 	<h1>交通費登録システム:一覧</h1>
 	<form  method="GET" class="newbtn btn">
 	<input type="submit" value="新規登録" formaction="Add" class="btn">
@@ -31,6 +31,7 @@
 	<input type="submit" value="ユーザー新規登録" class="btn">
 	</form>
 	<%} %>
+
 
 	<form action="Excel" method="post" class="excel">
 	<input type="submit" value="Excelへ出力" class="btn">

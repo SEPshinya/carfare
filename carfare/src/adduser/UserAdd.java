@@ -33,7 +33,6 @@ public class UserAdd extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String role_name="";
 
-
 		String user_name = request.getParameter("name");
 		String address = request.getParameter("address");
 		String Password = request.getParameter("Password");
@@ -64,6 +63,7 @@ public class UserAdd extends HttpServlet {
 		}else {
 			role_name="管理者";
 		}
+
 		request.setAttribute("role_name", role_name);
 		request.setAttribute("user_name", user_name);
 		request.setAttribute("address", address);
