@@ -6,6 +6,7 @@ public class CommonErrMsg {
 	/**
 	 * 	ログイン画面で使用
 	 * 	入力データのエラーチェック
+	 * 	入力された値が入力条件に当てはまるかを調べる
 	 **/
 	public static String getLoginErr(String address, String password) {
 		String errmsg = "";
@@ -28,6 +29,7 @@ public class CommonErrMsg {
 	/**
 	 * 	ログイン画面で使用
 	 * 	入力データのパスワードチェック
+	 * 	ハッシュ化されたパスワードをもとにユーザーが登録されているか否かを調べる
 	 **/
 	public static String getLoginErr(String loginKey) {
 		try {
@@ -43,9 +45,21 @@ public class CommonErrMsg {
 	 **/
 	public static String getErrMsg(CommonAddData data) {
 		String errmsg = "";
+		//String[] dateData … 入力された日付データを年、月、日、マッチ用データの4つに分ける
+		//dateData[0] … 年のデータが入っている 01等のデータの先頭の0は消える
+		//dateData[1] … 月のデータが入っている 01等のデータの先頭の0は消える
+		//dateData[2] … 日のデータが入っている 01等のデータの先頭の0は消える
+		//dateData[3] … マッチ用データが入っている
 		String[] dateData = dateData(data.getDay());
-		String matchdata = "^[0-9]{" + dateData[0].length() + "}/[0-9]{"
-				+ dateData[1].length() + "}/[0-9]{" + dateData[2].length() + "}$";
+		//matchdata …　
+		//		^[0-9]{" + 入力値の年の部分の値.length()
+		//			+ "}/[0-9]{"+ 入力値の月の部分の値.length()
+		//				+ "}/[0-9]{" + 入力値の日の部分の値.length() + "}$
+		//ex)「^[0-9]{4}/[0-9]{1}/[0-9]{2}$」
+		//		4桁の数字 + /(スラッシュ) + 1桁の数字 + / + 2桁の数字という意味になる
+		String matchdata = "^[0-9]{" + dateData[0].length()
+				+ "}/[0-9]{" + dateData[1].length()
+				+ "}/[0-9]{" + dateData[2].length() + "}$";
 		if (data.getDay().isEmpty()) {
 			errmsg += "日付は必須項目です<br>";
 		} else if (!(dateData[3].matches(matchdata) && chackDayData(data.getDay()))) {
@@ -62,16 +76,18 @@ public class CommonErrMsg {
 			errmsg += "到着駅は全角10文字以内で入力してください<br>";
 		}
 		if (!data.getPrice().isEmpty()) {
-			if (!(data.getPrice().matches("[0-9]+"))) {
+			//編集画面から接続された場合getPrice()の値に「,」(カンマ)が含まれる可能性があるため、
+			//.replace(",","")で値からカンマを抜く
+			if (!(data.getPrice().replace(",", "").matches("[0-9]+"))) {
 				errmsg += "金額は数値で入力してください<br>";
-			} else if (stringDigits(data.getPrice()) > 9) {
+			} else if (stringDigits(data.getPrice().replace(",", "")) > 9) {
 				errmsg += "金額は9桁以内で入力してください<br>";
 			}
 		}
 		return errmsg;
 	}
 
-	//入力データのバイトチャック
+	//入力データのバイト数を調べる
 	private static int stringDigits(String s) {
 		char[] chars = s.toCharArray();
 		int digits = 0;
@@ -81,7 +97,8 @@ public class CommonErrMsg {
 		return digits;
 	}
 
-	//入力データがぜんかくかどうかを調べる
+	//入力データの全角判定をする
+	//全角があればfalseを返す
 	private static boolean isBytes(String s) {
 		char[] chars = s.toCharArray();
 		boolean b = false;

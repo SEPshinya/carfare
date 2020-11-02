@@ -108,7 +108,7 @@ public class CommonDB {
 					+ "AND transit_data.transit_no LIKE '" + transit_no + "' "
 					+ "AND transit_data.from_st LIKE '" + from_st + "' "
 					+ "AND transit_data.to_st LIKE '" + to_st + "' "
-					+ "AND transit_data.price LIKE '" + price + "' ";
+					+ "AND transit_data.price LIKE '" + price.replace(",", "") + "' ";
 			return stmt.executeQuery(getQuery).next();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -386,7 +386,7 @@ public class CommonDB {
 			String InsQuery = "INSERT INTO `transit_list` (`id`, `day`, `route_no`, `transit_no`, `from_st`, `to_st`, `price`, `user_id`, `delete_flg`) VALUES (NULL, '"
 					+ data.getDay() + "', '" + data.getRoute_no() + "', '"
 					+ data.getTransit_no() + "', '" + data.getFrom_st() + "', '"
-					+ data.getTo_st() + "', '" + data.getPrice() + "', '" + data.getUser_id() + "', 0);";
+					+ data.getTo_st() + "', '" + data.getPrice().replace(",", "") + "', '" + data.getUser_id() + "', 0);";
 			stmt.executeUpdate(InsQuery);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -406,7 +406,7 @@ public class CommonDB {
 			String UpdQuery = "UPDATE transit_list SET day = '" + data.getDay()
 					+ "', route_no = '" + data.getRoute_no() + "', transit_no = '" + data.getTransit_no()
 					+ "', from_st = '" + data.getFrom_st() + "', to_st = '" + data.getTo_st()
-					+ "', price = '" + data.getPrice() + "' WHERE id = " + data.getId();
+					+ "', price = '" + data.getPrice().replace(",", "") + "' WHERE id = " + data.getId();
 			stmt.executeUpdate(UpdQuery);
 		} catch (SQLException e) {
 			e.printStackTrace();
