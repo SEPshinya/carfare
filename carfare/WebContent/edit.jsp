@@ -3,18 +3,20 @@
 <%
 	//使用する変数の宣言、初期値設定(List,transitDataList)
 	String id = request.getParameter("id") == null ? "" : request.getParameter("id");
-	String day = (String) request.getParameter("day") == null ? "" : request.getParameter("day");
-	String route_name = (String) request.getParameter("route_name") == null ? ""
+	String day = request.getParameter("day") == null ? "" : request.getParameter("day");
+	String route_name = request.getParameter("route_name") == null ? ""
 			: request.getParameter("route_name");
-	String transit_name = (String) request.getParameter("transit_name") == null ? ""
+	String route_no = request.getParameter("route_no") == null ? "0"
+			: request.getParameter("route_no");
+	String transit_name = request.getParameter("transit_name") == null ? ""
 			: request.getParameter("transit_name");
-	String transit_no = (String) request.getParameter("transit_no") == null ? "0"
+	String transit_no = request.getParameter("transit_no") == null ? "0"
 			: request.getParameter("transit_no");
-	String from_st = (String) request.getParameter("from_st") == null ? "" : request.getParameter("from_st");
-	String to_st = (String) request.getParameter("to_st") == null ? "" : request.getParameter("to_st");
-	String price = (String) request.getParameter("price") == null ? "" : request.getParameter("price");
-	String menulist = (String) request.getParameter("menulist") == null ? "2"
-			: (String) request.getParameter("menulist");
+	String from_st = request.getParameter("from_st") == null ? "" : request.getParameter("from_st");
+	String to_st = request.getParameter("to_st") == null ? "" : request.getParameter("to_st");
+	String price = request.getParameter("price") == null ? ""
+			: request.getParameter("price").replace(",", "");
+	String menulist = request.getParameter("menulist") == null ? "2" : request.getParameter("menulist");
 
 	//使用する変数の宣言、初期値設定(Edit)
 	String errmsg = (String) request.getAttribute("errmsg") == null ? ""
@@ -62,15 +64,16 @@
 				<td><select name="route_no">
 						<%
 							while (route_rs.next()) {
-								if (route_rs.getString("route_name").equals(route_name)) {
+								if (route_rs.getString("route_name").equals(route_name) ||
+										route_rs.getInt("route_no") == Integer.parseInt(route_no)) {
 						%>
 						<option value="<%=route_rs.getString("route_no")%>" selected><%=route_rs.getString("route_name")%></option>
 						<%
-								} else {
+							} else {
 						%>
 						<option value="<%=route_rs.getString("route_no")%>"><%=route_rs.getString("route_name")%></option>
 						<%
-								}
+							}
 							}
 						%>
 				</select></td>
@@ -94,11 +97,11 @@
 						%>
 						<option value="<%=transit_rs.getString("transit_no")%>" selected><%=transit_rs.getString("transit_name")%></option>
 						<%
-								} else {
+							} else {
 						%>
 						<option value="<%=transit_rs.getString("transit_no")%>"><%=transit_rs.getString("transit_name")%></option>
 						<%
-								}
+							}
 							}
 						%>
 				</select></td>
