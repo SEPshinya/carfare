@@ -38,7 +38,7 @@
 				<td><%=request.getParameter("to_st")%></td>
 			</tr>
 			<tr>
-				<th>運賃:</th>
+				<th>金額:</th>
 				<td><%=request.getParameter("price")%>円</td>
 			</tr>
 
