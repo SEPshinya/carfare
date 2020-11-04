@@ -98,7 +98,8 @@ public class CommonDB {
 					+ "AND transit_data.transit_no LIKE '" + transit_no + "' "
 					+ "AND transit_data.from_st LIKE '" + from_st + "' "
 					+ "AND transit_data.to_st LIKE '" + to_st + "' "
-					+ "AND transit_data.price LIKE '" + price.replace(",", "") + "' ";
+					+ "AND transit_data.price LIKE '" + price.replace(",", "") + "' "
+					+ "AND transit_data.delete_flg = 0;";
 			return DriverManager.getConnection(URL, USERNAME, PASSWORD).createStatement().executeQuery(getQuery).next();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -181,6 +182,7 @@ public class CommonDB {
 					+ "AND transit_data.transit_no LIKE " + transit_no + " "
 					+ "AND transit_data.from_st LIKE " + from_st + " "
 					+ "AND transit_data.to_st LIKE " + to_st + " "
+					+ "AND transit_data.delete_flg = 0 "
 					+ "ORDER BY transit_data.data_id ASC "
 					+ "LIMIT " + limitSta + " , 10;";
 
@@ -212,9 +214,10 @@ public class CommonDB {
 			String getQuery = "SELECT count(*) AS count "
 					+ "FROM transit_data "
 					+ "WHERE transit_data.user_id = " + user_id + " "
-					+ "AND transit_data.transit_no LIKE " + transit_no
-					+ "AND transit_data.from_st LIKE " + from_st
-					+ "AND transit_data.to_st LIKE " + to_st + " ;";
+					+ "AND transit_data.transit_no LIKE " + transit_no + " "
+					+ "AND transit_data.from_st LIKE " + from_st + " "
+					+ "AND transit_data.to_st LIKE " + to_st + " "
+					+ "AND transit_data.delete_flg = 0;";
 			ResultSet rs = DriverManager.getConnection(URL, USERNAME, PASSWORD)
 					.createStatement().executeQuery(getQuery);
 			rs.next();
