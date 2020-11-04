@@ -379,8 +379,6 @@ public class CommonDB {
 	 *	登録画面で使用
 	 */
 	public static void addDB(CommonAddData data) {
-		String two_double = data.getRoute_no().equals("2") ? "" + Integer.parseInt(data.getPrice().replace(",", "")) * 2
-				: data.getPrice().replace(",", "");
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
@@ -388,7 +386,7 @@ public class CommonDB {
 			String InsQuery = "INSERT INTO `transit_list` (`id`, `day`, `route_no`, `transit_no`, `from_st`, `to_st`, `price`, `user_id`, `delete_flg`) VALUES (NULL, '"
 					+ data.getDay() + "', '" + data.getRoute_no() + "', '"
 					+ data.getTransit_no() + "', '" + data.getFrom_st() + "', '"
-					+ data.getTo_st() + "', '" + two_double + "', '" + data.getUser_id()
+					+ data.getTo_st() + "', '" + data.getPrice().replace(",", "") + "', '" + data.getUser_id()
 					+ "', 0);";
 			stmt.executeUpdate(InsQuery);
 		} catch (SQLException e) {
@@ -402,8 +400,6 @@ public class CommonDB {
 	 *	編集画面で使用
 	 **/
 	public static void updateDB(CommonUpdData data) {
-		String two_double = data.getRoute_no().equals("2") ? "" + Integer.parseInt(data.getPrice().replace(",", "")) * 2
-				: data.getPrice().replace(",", "");
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
@@ -411,7 +407,7 @@ public class CommonDB {
 			String UpdQuery = "UPDATE transit_list SET day = '" + data.getDay()
 					+ "', route_no = '" + data.getRoute_no() + "', transit_no = '" + data.getTransit_no()
 					+ "', from_st = '" + data.getFrom_st() + "', to_st = '" + data.getTo_st()
-					+ "', price = '" + two_double + "' WHERE id = " + data.getId();
+					+ "', price = '" + data.getPrice().replace(",", "") + "' WHERE id = " + data.getId();
 			stmt.executeUpdate(UpdQuery);
 		} catch (SQLException e) {
 			e.printStackTrace();

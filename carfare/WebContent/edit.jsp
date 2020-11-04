@@ -115,10 +115,14 @@
 				<td><input type="text" name="to_st" value="<%=to_st%>"></td>
 			</tr>
 			<tr>
-				<th>運賃</th>
+				<th>金額</th>
 				<th>:</th>
-				<td><input type="text" name="price"
-					value="<%=route_no.equals("2") ? Integer.parseInt(price) / 2 : price%>"></td>
+				<td><input type="text" name="price" value="<%=price%>"></td>
+			</tr>
+			<tr>
+				<th></th>
+				<th></th>
+				<td>※金額は片道分のみ。</td>
 			</tr>
 		</table>
 		<br> <input type="hidden" name="id" value="<%=id%>">
