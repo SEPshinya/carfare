@@ -87,6 +87,27 @@ public class CommonErrMsg {
 		return errmsg;
 	}
 
+	public static String getErrMsg(String from_st, String to_st, String price) {
+		String errmsg = "";
+		if (from_st.isEmpty())
+			errmsg += "出発駅は必須項目です<br>";
+		else if (stringDigits(from_st) > 20)
+			errmsg += "出発駅は全角10文字以内で入力してください<br>";
+
+		if (to_st.isEmpty())
+			errmsg += "到着駅は必須項目です<br>";
+		else if (stringDigits(to_st) > 20)
+			errmsg += "到着駅は全角10文字以内で入力してください<br>";
+
+		if (price.isEmpty())
+			errmsg += "金額は必須項目です<br>";
+		else if (!(price.replace(",", "").matches("[0-9]+")))
+			errmsg += "金額は数値で入力してください<br>";
+		else if (stringDigits(price.replace(",", "")) > 9)
+			errmsg += "金額は9桁以内で入力してください<br>";
+		return errmsg;
+	}
+
 	//入力データのバイト数を調べる
 	private static int stringDigits(String s) {
 		char[] chars = s.toCharArray();
