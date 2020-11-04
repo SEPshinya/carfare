@@ -172,7 +172,11 @@ public class Excel extends HttpServlet {
 					cell3.setCellValue(rs.getString("transit_name"));
 					cell4.setCellValue(rs.getString("from_st"));
 					cell5.setCellValue(rs.getString("to_st"));
-					cell6.setCellValue(rs.getString("price") + "円");
+
+					//金額をroute_noでかける（往復の番号が２なのでroute_noをかけることにより往復の金額が求められる）
+					int Price=Integer.parseInt(rs.getString("price"));
+					int price = Price*rs.getInt("route_no");
+					cell6.setCellValue(price + "円");
 					n = n + 1;
 
 				}
