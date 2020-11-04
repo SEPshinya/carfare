@@ -38,7 +38,6 @@ public class TransitdataList extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 
-		String errmsg=request.getParameter("errmsg");
 
 		/** ユーザーID取得 **/
 		HttpSession session = request.getSession();
@@ -125,9 +124,6 @@ public class TransitdataList extends HttpServlet {
 
 		//登録か編集かの判断値
 		request.setAttribute("menulist", menulist);
-
-		//エラー
-		request.setAttribute("errmsg", errmsg);
 
 		//入力値引継ぎ
 		request.setAttribute("day",day);
