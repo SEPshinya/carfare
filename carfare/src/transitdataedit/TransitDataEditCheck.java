@@ -37,16 +37,12 @@ public class TransitDataEditCheck extends HttpServlet {
 		String to_st = (String) request.getParameter("to_st");
 		String price = (String) request.getParameter("price");
 
-		if (CommonDB.checkTransitData(transit_no, from_st, to_st, price, user_id))
+		if (!CommonDB.checkTransitData(transit_no, from_st, to_st, price, user_id))
 			CommonDB.addTransitData(transit_no, from_st, to_st, price, user_id);
 
 		CommonDB.updateTransitData(data_id, transit_no, from_st, to_st, price, user_id);
 
-		request.removeAttribute("transit_no");
-		request.removeAttribute("from_st");
-		request.removeAttribute("to_st");
-		request.removeAttribute("price");
-		request.removeAttribute("data_id");
+		request.setAttribute("edit_flg", "1");
 
 		getServletContext().getRequestDispatcher("/TransitdataList").forward(request, response);
 
