@@ -1,0 +1,58 @@
+
+@charset "UTF-8";
+
+
+body {
+
+
+  /* ページ幅*/
+	width:960px;
+}
+.table1 {
+	border-collapse: collapse;
+	margin-left:18%;
+	width:800px;
+	text-align: center;
+	border: solid 1px black;
+}
+
+.td {
+	/* padding: 0px 0px; */
+}
+
+.tr1{
+	border: solid 1px black;
+}
+
+.tr2{
+	border: solid 1px black;
+}
+
+.td1 {
+	border: solid 1px black;
+
+}
+
+.page {
+	margin-left:18%;
+
+}
+
+.excel {
+	margin-left:18%;
+}
+
+.newbtn {
+	margin-left:18%;
+}
+
+.userbtn{
+	margin-left:18%;
+}
+.btn {
+	height:25px;
+	width:200px;
+}
+.btn1{
+	width:50%;
+}

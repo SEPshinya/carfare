@@ -1,0 +1,71 @@
+@charset "UTF-8";
+
+body{
+	/* ページ全体のフォント */
+	/*font-family: "游ゴシック" ;*/
+
+	/* ページ幅*/
+	width:960px;
+}
+
+
+table th {
+
+	/* 見出し */
+	text-align: right;
+}
+
+
+.to{
+
+	/* 見出し 確認 to */
+	padding-left: 50px;
+}
+
+.addlist{
+
+	/* 配置 */
+	padding:10px 100px;
+}
+
+.addlist dl dt{
+
+	/* padding:10px 0; */
+	float:left;
+	/* clear:both; */
+	text-align:right;
+}
+
+
+
+.transitdatabt{
+
+	/* 交通手段 ボタン */
+	text-decoration:none;
+    border:1px solid #333;
+    background-color: #fff;
+}
+
+
+
+
+.transitionbt{
+
+	/* ページ遷移 ボタン */
+	width:200px;
+    text-decoration:none;
+    border:1px solid #333;
+    background-color: #fff;
+
+
+}
+
+
+
+.transition{
+
+}
+
+.err{
+	padding:0px 100px;
+}

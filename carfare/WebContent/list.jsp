@@ -652,6 +652,11 @@
 		<%
 			}
 		%>
+		</form>
+				<form action="TransitdataList" method="post">
+				<input type="hidden"value=3 name="menulist" >
+				<input type="submit" value="交通手段一覧">
+				</form>
 
 </body>
 </html>

@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+body {
+	width: 960px;
+}
+
+table {
+
+}
+
+.text {
+	width: 100px;
+}
+
+.btn {
+	width: 60%;
+	text-align: center;
+	align: center;
+	text-decoration: none;
+	border: 1px solid #666;
+	background-color: #666;
+	color: #fff;
+}
+
+.ex {
+	font-weight: bold;
+}

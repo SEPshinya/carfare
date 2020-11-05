@@ -32,7 +32,7 @@ public class Logout extends HttpServlet {
 		  HttpSession session = request.getSession(true);
 
 		  session.invalidate();
-		  getServletContext().getRequestDispatcher("/login/jsp").forward(request, response);
+		  getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
 		  }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
