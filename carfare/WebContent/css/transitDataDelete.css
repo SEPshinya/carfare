@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+body {
+	min-width: 60%;
+	max-width: 960px;
+
+}
+
+.deletelist{
+
+	/* 配置 */
+	padding:10px 100px;
+}
+
+table th{
+
+	text-align: right;
+
+}
+
+th {
+	text-align: right;
+}
+
+p {
+
+}
+
+.to{
+
+	/* 見出し 確認 to */
+	padding-left: 50px;
+}
+
+.btn {
+	margin: 10px 10px 10px 5px;
+	border: 1px solid #000;
+	width: 150px;
+	align: center;
+	background-color: #ffffff;
+}
+

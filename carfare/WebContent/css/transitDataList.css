@@ -5,6 +5,12 @@ body{
 	width:960px;
 }
 
+
+table.search {
+	border-collapse: collapse;
+}
+
+
 .paging ul {
 	padding: 0;
 	margin-top: 10px;
@@ -14,6 +20,7 @@ body{
 	display: inline;
 	margin-right: 10px;
 }
+
 
 table.transitListCss{
 	border-collapse: collapse;
@@ -32,7 +39,7 @@ table.transitListCss th{
 }
 
 .transitname{
-	width:20%;
+	width:15%;
 }
 
 .from_st{
@@ -48,14 +55,22 @@ table.transitListCss th{
 }
 
 .select{
-	width:12%;
+	width:17%;
 }
 
 .selectbt{
     text-align:center;
     text-decoration:none;
-    width:80px;
+    width:100%;
 }
+
+.selectbt3{
+	text-align:center;
+    text-decoration:none;
+    width:61px;
+}
+
+
 
 .returnbt{
 	width:170px;

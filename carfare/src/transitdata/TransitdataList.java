@@ -46,13 +46,30 @@ public class TransitdataList extends HttpServlet {
 		/** 登録か編集かの登録値の受け渡し**/
 		String menulist =request.getParameter("menulist");
 
+		String edit_flg=(String)request.getAttribute("edit_flg")==null?"":(String)request.getAttribute("edit_flg");
+
 
 		/** 入力値引継ぎ**/
 		String day=request.getParameter("day");
 		String route_no=request.getParameter("route_no");
-		String price=request.getParameter("price");
+		//String price=request.getParameter("price");
 
 		String id=request.getParameter("id");
+
+
+		/** menulist識別 **/
+		String transit_no ="";
+		String from_st ="";
+		String to_st = "";
+
+		String price="";
+
+		if(edit_flg.isEmpty()) {
+			transit_no =(String) request.getParameter("transit_no");
+			from_st = request.getParameter("from_st");
+			to_st = request.getParameter("to_st");
+			price=request.getParameter("price");
+		}
 
 
 
@@ -75,15 +92,14 @@ public class TransitdataList extends HttpServlet {
 
 		/** 検索値の取得**/
 		//交通機関No
-		String transit_no =(String) request.getParameter("transit_no");
-		//int transit_no=Integer.parseInt(transit_no_int);
+		//String transit_no =(String) request.getParameter("transit_no");
 
 		if (transit_no == null) {
 			transit_no ="";
 		}
 
 		//出発駅
-		String from_st = request.getParameter("from_st");
+		//String from_st = request.getParameter("from_st");
 
 		if (from_st == null) {
 			from_st ="";
@@ -91,7 +107,6 @@ public class TransitdataList extends HttpServlet {
 
 		//出発駅（エンコード版）
 		String from_st_encoded=request.getParameter("from_st_encoded");
-		//String from_st_encoded="%E6%8A%BC%E4%B8%8A";
 
 		//エンコードからデコードへ変換
 		if(from_st_encoded!=null) {
@@ -99,7 +114,7 @@ public class TransitdataList extends HttpServlet {
 		}
 
 		//到着駅
-		String to_st = request.getParameter("to_st");
+		//String to_st = request.getParameter("to_st");
 
 		if (to_st == null) {
 			to_st ="";
