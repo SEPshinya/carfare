@@ -15,6 +15,7 @@
 	<form action="./Login" method="post">
 
 		<table>
+
 			<tr>
 				<th>メールアドレス:</th>
 				<td><input type="text" name="address" class="address"></td>
@@ -25,11 +26,14 @@
 			</tr>
 			<tr>
 				<th></th>
-				<td><input type="submit" formaction="Login" class="btn1" value="ログイン"></td>
+				<td ><button type="submit" class="btn1 btn-flat button1">ログイン</button></td>
+
 			</tr>
 		</table>
-	</form>
 
+	</form>
+<br>
+<br>
 <%
 		String getErr = (String) request.getAttribute("message");
 	%>

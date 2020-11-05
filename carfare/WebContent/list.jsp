@@ -45,18 +45,18 @@
 <body>
 
 	<h2>交通費登録システム:一覧</h2>
-	<table>
+	<table class="tablebtn">
 		<tr>
-			<td><form method="GET" class="newbtn btn">
-					<input type="submit" value="新規登録" formaction="Add" class="btn">
+			<td ><form method="GET">
+					<input type="submit" value="新規登録" formaction="Add" class="btn tdbtn btn-border">
 				</form></td>
 
 			<%
 				if (Role_id.equals("2")) {
 			%>
-			<td>
-				<form action="useradd.jsp" method="post" class="userbtn">
-					<input type="submit" value="ユーザー新規登録" class="btn">
+			<td >
+				<form action="useradd.jsp" method="post">
+					<input type="submit" value="ユーザー新規登録" class="btn tdbtn btn-border">
 				</form>
 			</td>
 			<%
@@ -64,17 +64,16 @@
 			%>
 		</tr>
 		<tr>
-			<td>
-				<div class="Excelbtn" style="float: right;">
+			<td >
 					<form action="Excel" method="post">
-						<input type="submit" value="Excelへ出力" class="btn">
+						<input type="submit" value="Excelへ出力" class="btn tdbtn btn-border">
 					</form>
-				</div></td>
+					</td>
 
-			<td>
+			<td >
 				<form action="TransitdataList" method="post">
 				<input type="hidden"value=3 name="menulist" >
-				<input type="submit" value="交通手段一覧">
+				<input type="submit" value="交通手段一覧" class="btn tdbtn btn-border">
 				</form>
 			</td>
 		</tr>
@@ -338,7 +337,6 @@
 			}
 		%>
 	</form>
-	<br>
 
 	<form>
 		<table class="table1">
@@ -387,11 +385,7 @@
 						value="<%=nf.format(Integer.parseInt(rs.getString("price")))%>">
 					</td>
 
-					<td class="td2"><input type="submit" value="編集"
-						formaction="edit.jsp" style="background-color: #C0C0C0;"
-						class="btn1"><input type="submit" value="削除"
-						formaction="Delete.jsp" style="background-color: #C0C0C0;"
-						class="btn1"></td>
+					<td class="td2"><input type="submit" value="編集"formaction="edit.jsp" class="btn1 btn-border1"><input type="submit" value="削除" formaction="Delete.jsp" class="btn1 btn-border1"></td>
 				</tr>
 			</form>
 			<%
@@ -653,9 +647,10 @@
 			}
 		%>
 		</form>
-				<form action="TransitdataList" method="post">
+		<br>
+				<form action="Logout" method="post">
 				<input type="hidden"value=3 name="menulist" >
-				<input type="submit" value="交通手段一覧">
+				<input type="submit" value="ログアウト" class="logoutbtn btn btn-border">
 				</form>
 
 </body>
