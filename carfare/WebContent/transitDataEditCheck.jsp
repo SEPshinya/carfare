@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8" import="common.*" import="java.sql.*"
 	import="java.text.NumberFormat"%>
 <%
+	//値取得
 	String data_id = (String) request.getAttribute("data_id") == null ? ""
 			: (String) request.getAttribute("data_id");
 	String transit_no = (String) request.getAttribute("transit_no") == null ? ""
@@ -13,6 +14,7 @@
 	String price = (String) request.getAttribute("price") == null ? ""
 			: (String) request.getAttribute("price");
 
+	//CommonDBを使って選択された交通機関名を取得
 	String transit_name = CommonDB.getTransitName(transit_no);
 %>
 <!DOCTYPE html>
@@ -51,6 +53,7 @@
 		</table>
 		<br>
 		<div>
+			<!-- 一覧表示へ遷移 -->
 			<input type="hidden" name="data_id" value="<%=data_id%>"> <input
 				type="hidden" name="menulist" value="3"> <input
 				type="hidden" name="transit_no" value="<%=transit_no%>">
@@ -59,7 +62,8 @@
 			<input type="submit" value="編集" class="leftbtn btn">
 		</div>
 		<div>
-			<input type="submit" value="戻る" formaction="./edit.jsp"
+			<!-- 交通手段編集画面へもどる -->
+			<input type="submit" value="戻る" formaction="./transitDataEdit.jsp"
 				class="rightbtn btn">
 		</div>
 	</form>

@@ -37,15 +37,16 @@ public class TransitDataEdit extends HttpServlet {
 		String from_st = (String) request.getParameter("from_st");
 		String to_st = (String) request.getParameter("to_st");
 		String price = (String) request.getParameter("price");
+		String errmsg = CommonErrMsg.getErrMsg(from_st, to_st, price);
 
+		//値を次に画面に渡す
 		request.setAttribute("data_id", data_id);
 		request.setAttribute("transit_no", transit_no);
 		request.setAttribute("from_st", from_st);
 		request.setAttribute("to_st", to_st);
 		request.setAttribute("price", price);
 
-		String errmsg = CommonErrMsg.getErrMsg(from_st, to_st, price);
-
+		//errmsgが空の場合は交通手段編集確認画面へ、そうでない場合は交通手段編集画面へ
 		if (errmsg.equals("")) {
 			getServletContext().getRequestDispatcher("/transitDataEditCheck.jsp").forward(request, response);
 		} else {
