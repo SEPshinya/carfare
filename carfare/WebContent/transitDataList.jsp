@@ -75,7 +75,7 @@ String menulist=(String)request.getAttribute("menulist");
 int menuNo= Integer.parseInt(menulist);
 
 /** url  id day price **/
-String searchword="&from_st_encoded="+from_st_encoded+"&to_st_encoded="+to_st_encoded+"&transit_no="+transit_no+"&menulist="+menulist+"&id="+id+"&day="+day+"&price="+price;
+String searchword="&from_st_encoded="+from_st_encoded+"&to_st_encoded="+to_st_encoded+"&transit_no="+transit_no+"&menulist="+menulist+"&id="+id+"&day="+day+"&price="+price+"&menulist="+menulist+"&route_no="+route_no;
 
 /** DBから「transit_data」を取得する用 **/
 ResultSet rs1=CommonDB.getTransitAll();
@@ -92,12 +92,10 @@ ResultSet rs1=CommonDB.getTransitAll();
 <h2>交通費登録システム：交通手段一覧</h2>
 
 <!-- 検索 -->
-<%if(menuNo==3){ %>
+<%if(menuNo==3 ){ %>
 <form action="TransitdataList" method="get">
-<table>
-<tr>
-<td>検索</td>
-</tr>
+<table class="search" border="1">
+
 <tr>
 <td>交通機関：<select name="transit_no"><option value=""></option>
 					<%
@@ -111,7 +109,7 @@ ResultSet rs1=CommonDB.getTransitAll();
 				</select></td>
 <td>出発駅：<input type="text" name="from_st"></td>
 <td>到着駅：<input type="text" name="to_st"></td>
-<td><input type="submit" value="検索"></td>
+<td><input type="hidden" name="menulist" value="3"><input type="submit" value="検索"></td>
 </tr>
 </table>
 </form>
@@ -216,18 +214,24 @@ while(rs.next()){
 if(menuNo==1){
 %>
 <!-- 登録画面へ持っていく -->
+
 <input class="selectbt" type="submit" formaction="Add" value="選択">
+
 
 <%}else if(menuNo==2){ %>
 <!-- 編集画面へ持っていく -->
+
 <input type="hidden" name="id" value="<%=id%>">
 <input class="selectbt" type="submit" formaction="edit.jsp" value="選択">
+
 <%
 }else{
 %>
 <!-- 交通手段一覧からアクセスされてる場合 -->
+
 <input class="selectbt3" type="submit" formaction="transitDataEdit.jsp" value="編集" >
 <input class="selectbt3" type="submit" formaction="transitDataDelete.jsp" value="削除" >
+
 <%
 }
 %>

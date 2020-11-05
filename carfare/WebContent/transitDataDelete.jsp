@@ -7,10 +7,11 @@ String transit_name=CommonDB.getTransitName(request.getParameter("transit_no"));
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="css/transitDataDelete.css">
 <title>Insert title here</title>
 </head>
 <body>
-<form action="TransitDataDelete" method="post">
+<form class="deletelist" action="TransitDataDelete" method="post">
 		<p>下記交通情報を削除します。よろしいですか？</p>
 		<table>
 			<tr>
@@ -20,7 +21,7 @@ String transit_name=CommonDB.getTransitName(request.getParameter("transit_no"));
 			<tr>
 				<th>出発駅:</th>
 				<td><%=request.getParameter("from_st")%></td>
-				<th>到着駅:</th>
+				<th class="to">―到着駅:</th>
 				<td><%=request.getParameter("to_st")%></td>
 			</tr>
 			<tr>
@@ -28,9 +29,10 @@ String transit_name=CommonDB.getTransitName(request.getParameter("transit_no"));
 				<td><%=request.getParameter("price")%>円</td>
 			</tr>
 		</table>
+		<br>
 		<input type="hidden" value=<%=request.getParameter("data_id")%> name="data_id">
 		<input type="hidden" value="3" name="menulist">
-	<input type="submit" value="削除"> <input type="submit"value="戻る" formaction="TransitdataList">
+	<input type="submit" value="削除" class="btn"> <input type="submit"value="戻る" formaction="TransitdataList" class="btn">
 	</form>
 </body>
 </html>
