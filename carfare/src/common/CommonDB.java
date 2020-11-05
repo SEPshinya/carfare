@@ -118,9 +118,9 @@ public class CommonDB {
 			String price, int user_id) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			String InsQuery = "INSERT INTO `transit_data` (`data_id`, `transit_no`, `from_st`, `to_st`, `price`, `user_id`) VALUES (NULL, '"
-					+ transit_no + "', '" + from_st + "', '" + to_st + "', '" + price + "', '" + user_id + "');";
-			DriverManager.getConnection(URL, USERNAME, PASSWORD).createStatement().executeUpdate(InsQuery);
+			String InsQuery = "INSERT INTO `transit_data` (`data_id`, `transit_no`, `from_st`, `to_st`, `price`, `user_id`, `delete_flg`) VALUES (NULL, '"
+					+ transit_no + "', '" + from_st + "', '" + to_st + "', '" + price + "', '" + user_id + "', '0');";
+			DriverManager.getConnection( URL, USERNAME, PASSWORD).createStatement().executeUpdate(InsQuery);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
