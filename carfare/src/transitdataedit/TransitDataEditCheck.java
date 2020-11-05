@@ -30,6 +30,7 @@ public class TransitDataEditCheck extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		//値の取得
 		int user_id = (int) request.getSession().getAttribute("User_id");
 		String data_id = (String) request.getParameter("data_id");
 		String transit_no = (String) request.getParameter("transit_no");
@@ -37,13 +38,13 @@ public class TransitDataEditCheck extends HttpServlet {
 		String to_st = (String) request.getParameter("to_st");
 		String price = (String) request.getParameter("price");
 
-		if (!CommonDB.checkTransitData(transit_no, from_st, to_st, price, user_id))
-			CommonDB.addTransitData(transit_no, from_st, to_st, price, user_id);
-
+		//DB名「transit_data」にアップデートをかける
 		CommonDB.updateTransitData(data_id, transit_no, from_st, to_st, price, user_id);
 
+		//TransitdataListに編集作業後である証のフラグを渡す
 		request.setAttribute("edit_flg", "1");
 
+		//画面遷移
 		getServletContext().getRequestDispatcher("/TransitdataList").forward(request, response);
 
 	}

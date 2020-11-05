@@ -82,7 +82,7 @@
 			</tr>
 		</table>
 		<br> <input type="hidden" name="data_id" value="<%=data_id%>">
-		<!-- 編集確認画面へ遷移 -->
+		<!-- 交通手段編集確認画面へ遷移 -->
 		<div>
 			<input type="submit" value="確認" class="leftbtn btn">
 		</div>
