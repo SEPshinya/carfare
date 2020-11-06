@@ -7,7 +7,6 @@
 
 	String route_name = CommonDB.getRouteName(data.getRoute_no());
 	String transit_name = CommonDB.getTransitName(data.getTransit_no());
-
 	int price = Integer.parseInt(data.getPrice().replace(",", "")) * Integer.parseInt(data.getRoute_no());
 
 	//Edit.javaで作成したアップデートデータクラスをセッションに追加
@@ -62,9 +61,8 @@
 			<tr>
 				<th>金額</th>
 				<th>:</th>
-				<td><%=data.getPrice().isEmpty() ? "0円"
-					: NumberFormat.getNumberInstance().format(price) + "円"%> <input
-					type="hidden" name="price" value="<%=data.getPrice()%>"></td>
+				<td><%=data.getPrice().isEmpty() ? "0円": NumberFormat.getNumberInstance().format(price) + "円"%>
+				<input type="hidden" name="price" value="<%=data.getPrice()%>"></td>
 			</tr>
 		</table>
 		<br>
