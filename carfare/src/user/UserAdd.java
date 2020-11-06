@@ -1,4 +1,4 @@
-package adduser;
+package user;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -41,7 +41,7 @@ public class UserAdd extends HttpServlet {
 		String salt = null;
 		String loginkey = null;
 
-		String errmsg = UserAddCommon.getErr(Password, Password2, address, role_id,user_name);
+		String errmsg = UserCommon.getErr(Password, Password2, address, role_id,user_name);
 
 		if (errmsg != "") {
 			request.setAttribute("getErr", errmsg);

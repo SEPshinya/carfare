@@ -1,4 +1,4 @@
-package adduser;
+package user;
 
 import java.io.IOException;
 
@@ -47,7 +47,7 @@ public class UserAddcheck extends HttpServlet {
 		String loginkey = request.getParameter("loginkey");
 		String role_id = request.getParameter("role_id");
 
-		UserAddCommon.addUser(user_name, address, loginkey, role_id, salt);
+		UserCommon.addUser(user_name, address, loginkey, role_id, salt);
 
 		getServletContext().getRequestDispatcher("/List").forward(request, response);
 	}
