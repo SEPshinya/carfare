@@ -8,6 +8,16 @@ body{
 	width:960px;
 }
 
+table {
+	margin-left: 2%;
+	margin-right: auto;
+	margin-top: 30px;
+}
+
+
+h2{
+	margin-left: 80px;
+}
 
 table th {
 
@@ -17,55 +27,93 @@ table th {
 
 
 .to{
-
 	/* 見出し 確認 to */
 	padding-left: 50px;
 }
 
 .addlist{
-
 	/* 配置 */
 	padding:10px 100px;
 }
 
 .addlist dl dt{
-
 	/* padding:10px 0; */
 	float:left;
 	/* clear:both; */
 	text-align:right;
+
 }
 
-
-
 .transitdatabt{
-
 	/* 交通手段 ボタン */
 	text-decoration:none;
     border:1px solid #333;
     background-color: #fff;
+    cursor: pointer;
+	cursor: hand;
 }
 
-
-
-
 .transitionbt{
-
 	/* ページ遷移 ボタン */
 	width:200px;
     text-decoration:none;
     border:1px solid #333;
     background-color: #fff;
-
-
-}
-
-
-
-.transition{
-
 }
 
 .err{
 	padding:0px 100px;
 }
+
+/* 確認.戻るボタンのデザイン編集 */
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+html {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.btn {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  letter-spacing: 0.1em;
+  color: #212529;
+  border-radius: 0.5rem;
+  height: 25px;
+  width: 200px;
+  cursor: pointer;
+  cursor: hand;
+  margin-left:5%;
+}
+
+.btn1{
+  cursor: pointer;
+  cursor: hand;
+}
+
+.btn-border {
+  border: 2px solid #000;
+  border-radius: 0;
+  background: #fff;
+}
+
+.btn-border:hover {
+  color: #fff;
+  background: #000;
+}
+
+
+
+

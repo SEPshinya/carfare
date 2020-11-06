@@ -29,8 +29,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <link rel="stylesheet" href="./css/edit.css">
+<meta charset="UTF-8">
 <title>交通費登録システム：編集</title>
 
 </head>
@@ -61,7 +61,7 @@
 			<tr>
 				<th>片道or往復</th>
 				<th>:</th>
-				<td><select name="route_no">
+				<td><select name="route_no" class="btn1">
 						<%
 							while (route_rs.next()) {
 								if (route_rs.getString("route_name").equals(route_name) ||
@@ -82,14 +82,12 @@
 			<tr>
 				<th></th>
 				<th></th>
-				<td><input type="hidden" name="menulist" value="<%=menulist%>">
-					<input type="submit" formaction="./TransitdataList"
-					value="以前のデータを参照" class="btn"></td>
+				<td><input type="hidden" name="menulist" value="<%=menulist%>"><input type="submit" formaction="./TransitdataList"value="以前のデータを参照" class="btn1"></td>
 			</tr>
 			<tr>
 				<th>交通機関</th>
 				<th>:</th>
-				<td><select name="transit_no">
+				<td><select name="transit_no" class="btn1">
 						<%
 							while (transit_rs.next()) {
 								if (transit_rs.getString("transit_name").equals(transit_name) ||
@@ -127,17 +125,11 @@
 		</table>
 		<br> <input type="hidden" name="id" value="<%=id%>">
 		<!-- 編集確認画面へ遷移 -->
-		<div>
-			<input type="submit" value="確認" class="leftbtn btn">
-		</div>
+
+			<input type="submit" value="確認" class="leftbtn btn btn-border" formaction="Edit"><input type="submit" value="戻る" class="rightbtn btn btn-border" formaction="List">
+
 
 	</form>
-	<div>
-		<!-- 一覧表示へ戻る -->
-		<form action="./List">
-			<input type="submit" value="戻る" class="rightbtn btn">
-		</form>
-	</div>
 
 </body>
 </html>

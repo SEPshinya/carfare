@@ -1,6 +1,59 @@
 @charset "UTF-8";
 
-	 *:before, *:after {
+body {
+	min-width: 60%;
+	max-width: 960px;
+	position: center;
+}
+
+.tablelogin{
+	margin-left: 10%;
+}
+
+
+.tableuser {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 30px;
+}
+
+.tabledelete{
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 30px;
+
+}
+
+
+.tablecheck{
+	margin-left:20%;
+}
+
+.aa{
+	margin-left:20%;
+}
+
+.delete{
+	margin-left:20%;
+
+}
+
+
+H2 {
+	margin: 30px;
+}
+
+th {
+	text-align: right;
+}
+
+
+.text {
+	width: 200px;
+}
+
+/* ボタンのデザイン編集*/
+*:before, *:after {
 	-webkit-box-sizing: inherit;
 	box-sizing: inherit;
 }
@@ -8,7 +61,39 @@
 html {
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
-	/*rem算出をしやすくするために*/
+}
+
+.btn {
+	margin-left:80px;
+	border: 1px solid #000;
+	background-color: #ffffff;
+	cursor: pointer;
+	cursor: hand;
+	font-size: 15px;
+	font-weight: 700;
+	line-height: 1.5;
+	position: relative;
+	display: inline-block;
+	transition: all 0.3s;
+	text-align: center;
+	vertical-align: middle;
+	letter-spacing: 0.1em;
+	color: #212529;
+	border-radius: 0.5rem;
+	height: 25px;
+	width: 200px;
+	margin-left:20%;
+}
+
+.btn-border {
+	border: 2px solid #000;
+	border-radius: 0;
+	background: #fff;
+}
+
+.btn-border:hover {
+	color: #fff;
+	background: #000;
 }
 
 .btn1 {
@@ -29,46 +114,8 @@ html {
 	vertical-align: middle;
 	text-decoration: none;
 	letter-spacing: 0.1em;
-	color: #212529;
 	border-radius: 0.5rem;
-	margin-left:20px;
-	margin-top:10px;
-}
-body {
-	min-width: 60%;
-	max-width: 960px;
-	position: center;
-}
-
-table {
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 30px;
-}
-
-H2 {
-	margin: 30px;
-}
-
-th {
-	text-align: right;
-}
-
-p {
-	margin: 30px;
-	text-align: center;
-}
-
-.text {
-	width: 200px;
-}
-
-.btn {
-	margin: 10px 10px 10px 5px;
-	border: 1px solid #000;
-	width: 150px;
-	align: center;
-	background-color: #ffffff;
+	margin-top: 10px;
 }
 
 .btn-flat {
@@ -77,10 +124,10 @@ p {
 	color: #fff;
 	border-radius: 0;
 	background: #000;
-	position: relative;
 }
+
 .btn-flat span {
-  position: relative;
+	position: relative;
 }
 
 .btn-flat:before {
@@ -95,23 +142,20 @@ p {
 	-webkit-transform: translateX(-96%);
 	transform: translateX(-96%);
 	/*background: #1E90FF;*/
-	background: #eb6877;
-	color: #000;
-
+	background: #c0c0c0;
 }
 
 .btn-flat:hover:before {
 	-webkit-transform: translateX(0%);
 	transform: translateX(0%);
-
 }
-
 
 .name {
 	width: 200px;
 	height: 18px;
 	margin: 5px;
 }
+
 
 .address {
 	width: 320px;
@@ -129,9 +173,11 @@ p {
 	width: 170px;
 	height: 30px;
 	margin: 5px;
+	cursor: pointer;
+	cursor: hand;
 }
 
 .erro {
-	margin: 30px;
+	text-align: center;
 	color: red;
 }

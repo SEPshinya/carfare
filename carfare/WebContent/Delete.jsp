@@ -17,8 +17,8 @@
 </head>
 <body>
 	<form action="Delete">
-		<p>下記交通情報を削除します。よろしいですか？</p>
-		<table>
+		<p class="delete">下記交通情報を削除します。よろしいですか？</p>
+		<table class="tabledelete">
 			<tr>
 				<th>日付:</th>
 				<td><%=request.getParameter("day")%></td>
@@ -43,13 +43,8 @@
 			</tr>
 
 		</table>
-		<table>
-			<tr>
-				<th></th>
-				<td><input type="submit" value="削除" class="btn"> <input
-					type="submit" value="戻る" formaction="List" class="btn"></td>
-			</tr>
-		</table>
+		<br>
+		<input type="submit" value="削除" class="btn btn-border"><input type="submit" value="戻る" formaction="List" class="btn btn-border">
 		<input type="hidden" value=<%=request.getParameter("id")%> name="id">
 	</form>
 

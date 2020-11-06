@@ -15,6 +15,8 @@ table th {
 	padding: 0;
 	text-align: center;
 	background-color: #fff;
+	cursor: pointer;
+	cursor: hand;
 }
 
 .leftbtn {

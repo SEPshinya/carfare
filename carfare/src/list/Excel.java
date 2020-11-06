@@ -109,12 +109,14 @@ public class Excel extends HttpServlet {
 				//文字の太さを設定
 				font.setBold(true);
 
+
+
 				//罫線の表示
 				cellstyle1.setBorderLeft(BorderStyle.THIN); //左罫線（通常線）
 				cellstyle1.setBorderRight(BorderStyle.THIN); //右罫線（通常線）
 				cellstyle1.setBorderTop(BorderStyle.THIN); //上罫線（通常線）
 				cellstyle1.setBorderBottom(BorderStyle.THIN); //下罫線（通常線）
-				cellstyle1.setFillForegroundColor(IndexedColors.PALE_BLUE.index); //色の指定
+				cellstyle1.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.index); //色の指定
 				cellstyle1.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 				cellstyle1.setFont(font); //設定した太さをcellstyle1に適用
 
