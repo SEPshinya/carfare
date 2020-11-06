@@ -29,8 +29,7 @@ public class EditCheck extends HttpServlet {
 		if (!(CommonDB.checkTransitData(data.getTransit_no(), data.getFrom_st(), data.getTo_st(), data.getPrice(),
 				data.getUser_id())))
 			//未登録のものだったらtransit_dataDBに新規登録
-			CommonDB.addTransitData(data.getTransit_no(), data.getFrom_st(), data.getTo_st(), data.getPrice(),
-					data.getUser_id());
+			CommonDB.addTransitData(data.getTransit_no(), data.getFrom_st(), data.getTo_st(), data.getPrice(),data.getUser_id());
 
 		//上で取得したアップデートデータクラスを使用して編集用のSQLを実行
 		CommonDB.updateDB(data);
