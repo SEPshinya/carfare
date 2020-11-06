@@ -648,6 +648,19 @@
 		%>
 		</form>
 		<br>
+
+
+			<%
+				if (Role_id.equals("2")) {
+			%>
+
+				<form action="userserch.jsp" method="post">
+					<input type="submit" value="ユーザー編集" class="btn tdbtn btn-border">
+				</form>
+
+			<%
+				}
+			%>
 				<form action="Logout" method="post">
 				<input type="hidden"value=3 name="menulist" >
 				<input type="submit" value="ログアウト" class="logoutbtn btn btn-border">
