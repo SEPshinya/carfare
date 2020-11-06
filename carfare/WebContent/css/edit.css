@@ -4,6 +4,10 @@ body {
 	width: 920px;
 }
 
+H2 {
+	margin: 30px;
+}
+
 table th {
 	text-align: right;
 }
@@ -13,35 +17,78 @@ input, select {
 	border: 1px solid #000;
 	background-color: #fff;
 }
-
-.btn {
-	margin: 0;
-	padding: 0;
-	text-align: center;
-	background-color: #fff;
+.btn1{
+	cursor: pointer;
+	cursor: hand;
 }
 
 .leftbtn {
 	width: 200px;
-	float: left;
 }
 
 .rightbtn {
 	width: 200px;
-	float: right;
-	margin-right: 280px;
 }
 
-.table {
-	margin-left: 100px;
+table {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 30px;
 }
 
-.to {
-	padding-left: 50px;
-}
+
 .errmsg{
 	margin-left:200px;
 }
 .errmsg2{
 	margin-left:85px;
 }
+
+
+/* ボタンのデザイン編集*/
+*:before, *:after {
+	-webkit-box-sizing: inherit;
+	box-sizing: inherit;
+}
+
+html {
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+
+
+.btn {
+	margin-left:80px;
+	border: 1px solid #000;
+	background-color: #ffffff;
+	cursor: pointer;
+	cursor: hand;
+	font-size: 15px;
+	font-weight: 700;
+	line-height: 1.5;
+	position: relative;
+	display: inline-block;
+	transition: all 0.3s;
+	text-align: center;
+	vertical-align: middle;
+	letter-spacing: 0.1em;
+	color: #212529;
+	height: 25px;
+	width: 200px;
+	margin-left:20%;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.btn-border {
+	border: 2px solid #000;
+	border-radius: 0;
+	background: #fff;
+}
+
+.btn-border:hover {
+	color: #fff;
+	background: #000;
+}
+

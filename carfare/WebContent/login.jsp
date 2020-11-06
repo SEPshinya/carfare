@@ -14,19 +14,19 @@
 	<h2>交通費登録システム：ログイン</h2>
 	<form action="./Login" method="post">
 
-		<table>
+		<table class="tablelogin">
 
 			<tr>
 				<th>メールアドレス:</th>
-				<td><input type="text" name="address" class="address"></td>
+				<td><input type="text" name="address"  value="harashinya1192" class="address"></td>
 			</tr>
 			<tr>
 				<th>パスワード:</th>
-				<td><input type="password" name="password" class="pass"></td>
+				<td><input type="password" name="password"  value="hara1192" class="pass"></td>
 			</tr>
 			<tr>
 				<th></th>
-				<td ><button type="submit" class="btn1 btn-flat button1">ログイン</button></td>
+				<td ><button type="submit" class="btn1 btn-flat button1"><span>ログイン</span></button></td>
 
 			</tr>
 		</table>
