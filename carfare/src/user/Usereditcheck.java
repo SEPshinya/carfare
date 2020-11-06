@@ -52,7 +52,7 @@ public class Usereditcheck extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		UserCommon.editUser(user_id, user_name,address,loginkey,role_id,salt);
+		UserCommon.editUser(user_id, user_name,address,role_id,loginkey,salt);
 
 		out.println("<META http-equiv=\"Refresh\" content=\"3;URL=List\">");
 		out.println("<H2>ユーザーの変更が完了しました</H2>");

@@ -15,7 +15,7 @@
 		<table>
 			<tr>
 				<th></th>
-				<td><b>下記情報でアカウントを登録します</b><input type=hidden value="<%=request.getAttribute("user_id")%>"name="user_id"></td>
+				<td><b>下記情報でアカウントを登録します</b><input type=hidden value="<%=request.getAttribute("user_id")%>"name="user_id"><input type=hidden value="<%=request.getAttribute("Password")%>"name="Password"></td>
 			</tr>
 			<tr>
 				<th>氏名:</th>

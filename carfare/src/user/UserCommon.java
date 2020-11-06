@@ -165,8 +165,8 @@ public class UserCommon {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			Statement stmt = connect.createStatement();
-			String getQuery = "SELECT * FROM user WHERE user_id= \"" + user_id + "\" AND user_name LIKE \"%" + user_name
-					+ "%\";";
+			String getQuery = "SELECT * FROM user WHERE user_id= \"" + user_id + "\" AND user_name LIKE \"" + user_name
+					+ "\";";
 			return stmt.executeQuery(getQuery).next();
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
@@ -205,7 +205,7 @@ public class UserCommon {
 	}
 
 	//ユーザ編集登録
-	public static void editUser(String user_id, String user_name, String address, String loginkey, String role_id,
+	public static void editUser(String user_id, String user_name, String address,String role_id, String loginkey,
 			String salt) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");

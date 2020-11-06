@@ -45,6 +45,7 @@ public class UserEdit extends HttpServlet {
 		request.setAttribute("address", address);
 		request.setAttribute("addressCH", addressCH);
 		request.setAttribute("role_id", role_id);
+		request.setAttribute("Password", Password);
 
 		if (getErr != "") {
 			request.setAttribute("getErr", getErr);
