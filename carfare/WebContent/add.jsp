@@ -63,7 +63,7 @@
 			</tr>
 			<tr>
 				<th>片道or往復：</th>
-				<td><select name="route_no">
+				<td><select name="route_no" class="btn1">
 						<%
 							while (rs.next()) {
 								if (rs.getString("route_no").equals(route_no)) {
@@ -88,7 +88,7 @@
 
 			<tr>
 				<th>交通機関：</th>
-				<td><select name="transit_no">
+				<td><select name="transit_no" class="btn1">
 						<%
 							while (rs1.next()) {
 								if (rs1.getString("transit_no").equals(transit_no)) {
@@ -147,11 +147,10 @@
 
 		</table>
 
-
-
-		<br> <br> <input class="transitionbt" type="submit"
+		<br> <br>
+		 <input class="transitionbt btn-border btn " type="submit"
 			formaction="Add" value="確認">
-		<button class="transitionbt" type="submit" formaction="List"
+		<button class="transitionbt btn-border btn" type="submit" formaction="List"
 			formmethod="get">戻る</button>
 
 	</form>

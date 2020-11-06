@@ -8,7 +8,6 @@ body {
 
 h2{
 	margin-left: 80px;
-
 }
 .tablebtn {
 	margin-left: auto;
@@ -40,15 +39,12 @@ h2{
 
 .page {
 	margin-left: 7%;
-
 }
 
 .page2{
 	text-decoration: none;
 }
 
-
-/*まずはお決まりのボックスサイズ算出をborer-boxに */
 *,
 *:before,
 *:after {
@@ -74,6 +70,10 @@ html {
   letter-spacing: 0.1em;
   color: #212529;
   border-radius: 0.5rem;
+  height: 25px;
+  width: 200px;
+  cursor: pointer;
+  cursor: hand;
 }
 .btn-border {
   border: 2px solid #000;
@@ -87,24 +87,14 @@ html {
 }
 
 
-.btn {
-	height: 25px;
-	width: 200px;
-	cursor: pointer;
-	cursor: hand;
-}
-
 .tdbtn{
 	margin-right:320px;
 	margin-left:80px;
 }
 
-
 .logoutbtn{
-	margin-left:7%;
-
+	margin-left:9%;
 }
-
 
 .btn1 {
 	width: 50%;
@@ -116,9 +106,7 @@ html {
   border: 2px solid #000;
   border-radius: 0;
   background: #808080;
-
   -webkit-transform-style: preserve-3d;
-
   transform-style: preserve-3d;
 }
 
@@ -126,14 +114,11 @@ html {
   position: absolute;
   top: 0;
   left: 0;
-
   width: 5px;
   height: 100%;
-
   content: '';
   -webkit-transition: all .3s;
   transition: all .3s;
-
   background: #FFF;
 }
 

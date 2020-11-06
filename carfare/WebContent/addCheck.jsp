@@ -38,7 +38,7 @@ NumberFormat nf = NumberFormat.getNumberInstance();
 <title>登録確認</title>
 </head>
 <body>
-<h2>交通費登録システム：登録</h2>
+<h2>交通費登録システム：登録(確認)</h2>
 
 <form class="addlist"  method="post">
 
@@ -76,7 +76,6 @@ NumberFormat nf = NumberFormat.getNumberInstance();
 %>
 円</td>
 </tr>
-
 </table>
 
 <br>
@@ -90,10 +89,10 @@ NumberFormat nf = NumberFormat.getNumberInstance();
 <input type="hidden" name="price" value="<%=price%>">
 
 <dt>&nbsp;</dt>
-<dd>
-<input class="transitionbt" type="submit" formaction="AddCheck" value="登録">
-<input class="transitionbt" type="submit" formaction="Add" formmethod="get" value="戻る">
-</dd>
+
+<input class="transitionbt btn-border btn" type="submit" formaction="AddCheck" value="登録">
+<input class="transitionbt btn-border btn" type="submit" formaction="Add" formmethod="get" value="戻る">
+
 
 </form>
 </body>

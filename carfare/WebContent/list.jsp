@@ -340,7 +340,7 @@
 
 	<form>
 		<table class="table1">
-			<tr class="tr1" style="background-color: #99CCFF;">
+			<tr class="tr1" style="background-color: #c0c0c0;">
 				<td class="td1"><b>日付</b></td>
 				<td class="td1"><b>片道or往復</b></td>
 				<td class="td1"><b>交通機関</b></td>
