@@ -68,16 +68,9 @@
 			</tr>
 		</table>
 		<br>
-		<div>
 			<input type="hidden" name="id" value="<%=data.getId()%>">
-		</div>
-		<div>
-			<input type="submit" value="編集" class="leftbtn btn">
-		</div>
-		<div>
-			<input type="submit" value="戻る" formaction="./edit.jsp"
-				class="rightbtn btn">
-		</div>
+			<input type="submit" value="編集" class="leftbtn btn btn-border"><input type="submit" value="戻る" formaction="./edit.jsp" class="rightbtn btn btn-border">
+
 	</form>
 
 
