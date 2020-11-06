@@ -11,6 +11,8 @@ public class UserCommon {
 	private static final String USERNAME = "root";
 	private static final String PASSWORD = "";
 
+
+	//新規登録エラーチェック
 	public static String getErr(String Password, String Password2, String address, String role_id, String user_name) {
 		String ERRMSG_Pass01 = "パスワードを入力してください";
 		String ERRMSG_Pass02 = "確認用パスワードを入力してください";
@@ -32,7 +34,7 @@ public class UserCommon {
 			returnVal += ERRMSG_Name02 + "<BR>";
 		}
 
-		//あｄｄ
+		//アドレス
 		if (address.getBytes().length == 0) { //未入力
 			returnVal += ERRMSG_Address03 + "<BR>";
 		} else if (isBytes(address)) {
@@ -41,7 +43,7 @@ public class UserCommon {
 		if (stringDigits(address) > 254) { //あどれす長杉
 			returnVal += ERRMSG_Address01 + "<BR>";
 		}
-		//pass
+		//パスワード
 		if (Password.getBytes().length == 0) { //未入力
 			returnVal += ERRMSG_Pass01 + "<BR>";
 		} else if (isBytes(Password)) {
@@ -67,6 +69,7 @@ public class UserCommon {
 		return returnVal;
 	}
 
+	//ユーザー検索エラーチェック
 	public static String serchErr(String user_id, String user_name) {
 		String ERRMSG_ID01 = "IDを入力してください";
 		String ERRMSG_ID02 = "IDは数字を入力してください";
@@ -91,7 +94,9 @@ public class UserCommon {
 		return returnVal;
 	}
 
-	public static String editErr(String Password, String Password2, String address,String addressCH, String user_name) {
+	//ユーザー編集エラーチェック
+	public static String editErr(String Password, String Password2, String address, String addressCH,
+			String user_name) {
 		String ERRMSG_Pass01 = "パスワードを入力してください";
 		String ERRMSG_Pass02 = "確認用パスワードを入力してください";
 		String ERRMSG_Pass03 = "パスワードは半角16文字以内で入力してください";
@@ -110,7 +115,7 @@ public class UserCommon {
 			returnVal += ERRMSG_Name02 + "<BR>";
 		}
 
-		//あｄｄ
+		//アドレス
 		if (address.getBytes().length == 0) { //未入力
 			returnVal += ERRMSG_Address03 + "<BR>";
 		} else if (isBytes(address)) {
@@ -119,7 +124,7 @@ public class UserCommon {
 		if (stringDigits(address) > 254) { //あどれす長杉
 			returnVal += ERRMSG_Address01 + "<BR>";
 		}
-		//pass
+		//パスワード
 		if (Password.getBytes().length == 0) { //未入力
 			returnVal += ERRMSG_Pass01 + "<BR>";
 		} else if (isBytes(Password)) {
@@ -133,10 +138,10 @@ public class UserCommon {
 			returnVal += ERRMSG_Pass02 + "<BR>";
 		}
 
-		if(!address.equals(addressCH)) {
-		if (addserch(address)) {
-			returnVal += ERRMSG_Addserch + "<BR>";
-		}
+		if (!address.equals(addressCH)) {
+			if (addserch(address)) {
+				returnVal += ERRMSG_Addserch + "<BR>";
+			}
 		}
 		if (!Password.equals(Password2)) {
 			returnVal += ERRMSG_Pass05 + "<BR>";
@@ -205,7 +210,7 @@ public class UserCommon {
 	}
 
 	//ユーザ編集登録
-	public static void editUser(String user_id, String user_name, String address,String role_id, String loginkey,
+	public static void editUser(String user_id, String user_name, String address, String role_id, String loginkey,
 			String salt) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");

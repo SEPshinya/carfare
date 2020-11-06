@@ -20,7 +20,7 @@
 			</tr>
 			<tr>
 				<th></th>
-				<td ><input type="submit" value="検索"></td>
+				<td ><input type="submit" value="検索"><input type="submit" class="btn" formaction="List" value="戻る"></td>
 			</tr>
 		</table>
 

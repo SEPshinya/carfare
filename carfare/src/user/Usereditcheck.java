@@ -42,6 +42,8 @@ public class Usereditcheck extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 
+		//パスワード再登録
+
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA-256");
 			byte[] result = md.digest(address.getBytes());
@@ -52,6 +54,7 @@ public class Usereditcheck extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 		UserCommon.editUser(user_id, user_name,address,role_id,loginkey,salt);
 
 		out.println("<META http-equiv=\"Refresh\" content=\"3;URL=List\">");
