@@ -87,7 +87,7 @@ public class UserCommon {
 			returnVal += ERRMSG_ID02 + "<BR>";
 		}
 
-		if (userserch(user_id, user_name)) {
+		if (!userserch(user_id, user_name)) {
 			returnVal += ERRMSG_userserch + "<BR>";
 		}
 
@@ -170,7 +170,7 @@ public class UserCommon {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection connect = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			Statement stmt = connect.createStatement();
-			String getQuery = "SELECT * FROM user WHERE user_id= \"" + user_id + "\" AND user_name LIKE \"" + user_name
+			String getQuery = "SELECT * FROM user WHERE user_id= \"" + user_id + "\" AND user_name = \"" + user_name
 					+ "\";";
 			return stmt.executeQuery(getQuery).next();
 		} catch (SQLException | ClassNotFoundException e) {
