@@ -70,7 +70,7 @@ public class UserCommon {
 	}
 
 	//ユーザー検索エラーチェック
-	public static String serchErr(String user_id, String user_name) {
+	public static String searchErr(String user_id, String user_name) {
 		String ERRMSG_ID01 = "IDを入力してください";
 		String ERRMSG_ID02 = "IDは数字を入力してください";
 		String ERRMSG_Name01 = "名前を入力してください";
