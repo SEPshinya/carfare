@@ -8,7 +8,7 @@
 <title>ユーザー検索</title>
 </head>
 <body>
-	<h2>交通費登録システム：ユーザー検索</h2>
+	<h2>交通費登録システム：ユーザー編集（検索）</h2>
 	<form action="UserSearch">
 		<table class="tablesearch">
 			<tr>

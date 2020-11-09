@@ -1,7 +1,9 @@
 @charset "UTF-8";
 
 body {
-	width: 920px;
+	min-width: 60%;
+	max-width: 960px;
+	position: center;
 }
 
 H2 {
@@ -11,22 +13,9 @@ H2 {
 table th {
 	text-align: right;
 }
-.leftbtn {
-	width: 200px;
-}
 
-.rightbtn {
-	width: 200px;
-}
-
-table {
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 30px;
-}
-
-.to {
-	padding-left: 50px;
+.tablecheck{
+	margin-left:20%;
 }
 
 /* ボタンのデザイン編集*/
@@ -60,8 +49,7 @@ html {
 	height: 25px;
 	width: 200px;
 	margin-left:20%;
-	cursor: pointer;
-	cursor: hand;
+
 }
 
 .btn-border {

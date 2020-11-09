@@ -30,7 +30,7 @@
 </head>
 <body>
 	<h2>交通費登録システム：交通手段編集画面</h2>
-	<form action="TransitDataEdit" class="table">
+	<form action="TransitDataEdit" >
 		<div class="errmsg">
 			<%
 				//入力された値に対してエラーがあればエラー文を表示する
@@ -41,7 +41,7 @@
 				}
 			%>
 		</div>
-		<table>
+		<table class="tableedit">
 			<tr>
 				<th>交通機関</th>
 				<th>:</th>
@@ -78,22 +78,26 @@
 			<tr>
 				<th></th>
 				<th></th>
-				<td>※金額は片道分のみ。</td>
+
+				<td><br>※金額は片道分のみ。</td>
 			</tr>
 		</table>
 		<br> <input type="hidden" name="data_id" value="<%=data_id%>">
 		<!-- 交通手段編集確認画面へ遷移 -->
-		<div>
-			<input type="submit" value="確認" class="leftbtn btn">
-		</div>
-	</form>
-	<div>
-		<!-- 一覧表示へ戻る -->
-		<form action="TransitdataList">
-			<input type="hidden" name="menulist" value="<%=menulist%>"> <input
-				type="submit" value="戻る" class="rightbtn btn">
+
+		<br>
+	<ul class="foo">
+		<li><input type="submit" value="確認" class="leftbtn2 btn btn-border"></li>
+
 		</form>
-	</div>
+
+		<!-- 一覧表示へ戻る -->
+
+		 <form action="TransitdataList">
+			 <li><input type="submit" value="戻る" class="rightbtn2 btn btn-border"></li>
+			<input type="hidden" name="menulist" value="<%=menulist%>">
+		</form>
+	</ul>
 
 </body>
 </html>

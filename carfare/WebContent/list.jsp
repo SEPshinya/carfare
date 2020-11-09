@@ -651,21 +651,20 @@
 			}
 		%>
 	</form>
-	<br>
-	<form action="Logout" method="post">
+	<table class="tablebtn">
+		<tr>
+			<td><form action="Logout" method="post">
 		<input type="hidden" value=3 name="menulist"> <input
-			type="submit" value="ログアウト" class="logoutbtn btn btn-border">
-	</form>
+			type="submit" value="ログアウト" class="btn tdbtn2 btn-border"></form></td>
+		<% if (Role_id.equals("2")) { %>
+		</tr>
+		<tr>
+			<td><form action="usersearch.jsp" method="post">
+		<input type="submit" value="ユーザー編集" class="btn tdbtn2 btn-border"></form></td>
+		</tr>
 
-	<%
-		if (Role_id.equals("2")) {
-	%>
-	<form action="usersearch.jsp" method="post">
-		<input type="submit" value="ユーザー編集" class="btn tdbtn btn-border">
-	</form>
-	<%
-		}
-	%>
+			<% } %>
+	</table>
 
 </body>
 </html>

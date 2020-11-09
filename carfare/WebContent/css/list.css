@@ -3,7 +3,7 @@
 body {
 	/* ページ幅*/
 	width: 960px;
-	min-width: 60%;
+	min-width: 50%;
 }
 
 h2{
@@ -92,8 +92,9 @@ html {
 	margin-left:80px;
 }
 
-.logoutbtn{
-	margin-left:9%;
+.tdbtn2{
+	margin-right:600px;
+	margin-left:10px;
 }
 
 .btn1 {
