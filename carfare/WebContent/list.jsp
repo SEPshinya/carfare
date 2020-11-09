@@ -47,14 +47,15 @@
 	<h2>交通費登録システム:一覧</h2>
 	<table class="tablebtn">
 		<tr>
-			<td ><form method="GET">
-					<input type="submit" value="新規登録" formaction="Add" class="btn tdbtn btn-border">
+			<td><form method="GET">
+					<input type="submit" value="新規登録" formaction="Add"
+						class="btn tdbtn btn-border">
 				</form></td>
 
 			<%
 				if (Role_id.equals("2")) {
 			%>
-			<td >
+			<td>
 				<form action="useradd.jsp" method="post">
 					<input type="submit" value="ユーザー新規登録" class="btn tdbtn btn-border">
 				</form>
@@ -64,16 +65,16 @@
 			%>
 		</tr>
 		<tr>
-			<td >
-					<form action="Excel" method="post">
-						<input type="submit" value="Excelへ出力" class="btn tdbtn btn-border">
-					</form>
-					</td>
+			<td>
+				<form action="Excel" method="post">
+					<input type="submit" value="Excelへ出力" class="btn tdbtn btn-border">
+				</form>
+			</td>
 
-			<td >
+			<td>
 				<form action="TransitdataList" method="post">
-				<input type="hidden"value=3 name="menulist" >
-				<input type="submit" value="交通手段一覧" class="btn tdbtn btn-border">
+					<input type="hidden" value=3 name="menulist"> <input
+						type="submit" value="交通手段一覧" class="btn tdbtn btn-border">
 				</form>
 			</td>
 		</tr>
@@ -385,7 +386,10 @@
 						value="<%=nf.format(Integer.parseInt(rs.getString("price")))%>">
 					</td>
 
-					<td class="td2"><input type="submit" value="編集"formaction="edit.jsp" class="btn1 btn-border1"><input type="submit" value="削除" formaction="Delete.jsp" class="btn1 btn-border1"></td>
+					<td class="td2"><input type="submit" value="編集"
+						formaction="edit.jsp" class="btn1 btn-border1"><input
+						type="submit" value="削除" formaction="Delete.jsp"
+						class="btn1 btn-border1"></td>
 				</tr>
 			</form>
 			<%
@@ -646,12 +650,22 @@
 		<%
 			}
 		%>
-		</form>
-		<br>
-				<form action="Logout" method="post">
-				<input type="hidden"value=3 name="menulist" >
-				<input type="submit" value="ログアウト" class="logoutbtn btn btn-border">
-				</form>
+	</form>
+	<br>
+	<form action="Logout" method="post">
+		<input type="hidden" value=3 name="menulist"> <input
+			type="submit" value="ログアウト" class="logoutbtn btn btn-border">
+	</form>
+
+	<%
+		if (Role_id.equals("2")) {
+	%>
+	<form action="usersearch.jsp" method="post">
+		<input type="submit" value="ユーザー編集" class="btn tdbtn btn-border">
+	</form>
+	<%
+		}
+	%>
 
 </body>
 </html>
