@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class UserSerch
  */
-@WebServlet("/UserSerch")
+@WebServlet("/UserSearch")
 public class UserSerch extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -33,7 +33,7 @@ public class UserSerch extends HttpServlet {
 
 		if (errmsg != "") {
 			request.setAttribute("getErr", errmsg);
-			getServletContext().getRequestDispatcher("/userserch.jsp").forward(request, response);
+			getServletContext().getRequestDispatcher("/usersearch.jsp").forward(request, response);
 		}
 
 		ResultSet rs = UserCommon.userget(user_id);

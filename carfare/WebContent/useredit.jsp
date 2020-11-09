@@ -58,7 +58,7 @@
 				<td></td>
 				<td><input type="submit" class="btn" formaction="UserEdit"
 					value="確認"><input type="submit" class="btn"
-					formaction="userserch.jsp" value="戻る"></td>
+					formaction="usersearch.jsp" value="戻る"></td>
 			</tr>
 		</table>
 		<%
@@ -108,7 +108,7 @@
 				<td></td>
 				<td><input type="submit" class="btn" formaction="UserEdit"
 					value="確認"><input type="submit" class="btn"
-					formaction="userserch.jsp" value="戻る"></td>
+					formaction="usersearch.jsp" value="戻る"></td>
 			</tr>
 		</table>
 		<%
@@ -155,7 +155,7 @@
 				<td></td>
 				<td><input type="submit" class="btn" formaction="UserEdit"
 					value="確認"><input type="submit" class="btn"
-					formaction="userserch.jsp" value="戻る"></td>
+					formaction="usersearch.jsp" value="戻る"></td>
 			</tr>
 		</table>
 		<%
