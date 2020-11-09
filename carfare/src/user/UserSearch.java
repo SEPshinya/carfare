@@ -12,14 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class UserSerch
  */
-@WebServlet("/UserSerch")
-public class UserSerch extends HttpServlet {
+@WebServlet("/UserSearch")
+public class UserSearch extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public UserSerch() {
+	public UserSearch() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -29,11 +29,11 @@ public class UserSerch extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String user_id = request.getParameter("user_id");
 		String user_name = request.getParameter("user_name");
-		String errmsg = UserCommon.serchErr(user_id, user_name);
+		String errmsg = UserCommon.searchErr(user_id, user_name);
 
 		if (errmsg != "") {
 			request.setAttribute("getErr", errmsg);
-			getServletContext().getRequestDispatcher("/userserch.jsp").forward(request, response);
+			getServletContext().getRequestDispatcher("/usersearch.jsp").forward(request, response);
 		}
 
 		ResultSet rs = UserCommon.userget(user_id);
