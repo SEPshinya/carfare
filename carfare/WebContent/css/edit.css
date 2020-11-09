@@ -17,17 +17,10 @@ input, select {
 	border: 1px solid #000;
 	background-color: #fff;
 }
-.btn1{
+
+.btn1 {
 	cursor: pointer;
 	cursor: hand;
-}
-
-.leftbtn {
-	width: 200px;
-}
-
-.rightbtn {
-	width: 200px;
 }
 
 table {
@@ -36,14 +29,17 @@ table {
 	margin-top: 30px;
 }
 
-
-.errmsg{
-	margin-left:200px;
-}
-.errmsg2{
-	margin-left:85px;
+.errmsg {
+	margin: 0;
+	padding: 0;
+	margin-left: 200px;
 }
 
+.errmsg2 {
+	margin: 0;
+	padding: 0;
+	margin-left: 85px;
+}
 
 /* ボタンのデザイン編集*/
 *:before, *:after {
@@ -56,10 +52,8 @@ html {
 	box-sizing: border-box;
 }
 
-
-
 .btn {
-	margin-left:80px;
+	margin-left: 80px;
 	border: 1px solid #000;
 	background-color: #ffffff;
 	cursor: pointer;
@@ -76,7 +70,7 @@ html {
 	color: #212529;
 	height: 25px;
 	width: 200px;
-	margin-left:20%;
+	margin-left: 20%;
 	cursor: pointer;
 	cursor: hand;
 }
@@ -91,4 +85,3 @@ html {
 	color: #fff;
 	background: #000;
 }
-

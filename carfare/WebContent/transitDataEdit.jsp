@@ -30,17 +30,17 @@
 </head>
 <body>
 	<h2>交通費登録システム：交通手段編集</h2>
+	<div class="errmsg">
+		<%
+			//入力された値に対してエラーがあればエラー文を表示する
+			if (!(errmsg.equals(""))) {
+		%>
+		<%=errmsg%>
+		<%
+			}
+		%>
+	</div>
 	<form action="TransitDataEdit" class="table">
-		<div class="errmsg">
-			<%
-				//入力された値に対してエラーがあればエラー文を表示する
-				if (!(errmsg.equals(""))) {
-			%>
-			<%=errmsg%><br>
-			<%
-				}
-			%>
-		</div>
 		<table>
 			<tr>
 				<th>交通機関</th>
@@ -83,17 +83,14 @@
 		</table>
 		<br> <input type="hidden" name="data_id" value="<%=data_id%>">
 		<!-- 交通手段編集確認画面へ遷移 -->
-		<div>
-			<input type="submit" value="確認" class="leftbtn btn">
+		<div class="leftbtn">
+			<input type="submit" value="確認" class="btn btn-border">
 		</div>
 	</form>
-	<div>
-		<!-- 一覧表示へ戻る -->
-		<form action="TransitdataList">
-			<input type="hidden" name="menulist" value="<%=menulist%>"> <input
-				type="submit" value="戻る" class="rightbtn btn">
-		</form>
-	</div>
+	<form action="TransitdataList" class="rightbtn">
+		<input type="hidden" name="menulist" value="<%=menulist%>"> <input
+			type="submit" value="戻る" class="btn btn-border">
+	</form>
 
 </body>
 </html>

@@ -11,6 +11,7 @@ H2 {
 table th {
 	text-align: right;
 }
+
 .leftbtn {
 	width: 200px;
 }
@@ -40,9 +41,8 @@ html {
 	box-sizing: border-box;
 }
 
-
 .btn {
-	margin-left:80px;
+	margin-left: 80px;
 	border: 1px solid #000;
 	background-color: #ffffff;
 	cursor: pointer;
@@ -59,7 +59,7 @@ html {
 	color: #212529;
 	height: 25px;
 	width: 200px;
-	margin-left:20%;
+	margin-left: 20%;
 	cursor: pointer;
 	cursor: hand;
 }

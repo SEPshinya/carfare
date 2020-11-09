@@ -59,12 +59,10 @@
 				type="hidden" name="transit_no" value="<%=transit_no%>">
 		</div>
 		<div>
-			<input type="submit" value="編集" class="leftbtn btn">
-		</div>
-		<div>
+			<input type="submit" value="編集" class="leftbtn btn btn-border">
 			<!-- 交通手段編集画面へもどる -->
 			<input type="submit" value="戻る" formaction="./transitDataEdit.jsp"
-				class="rightbtn btn">
+				class="rightbtn btn btn-border">
 		</div>
 	</form>
 

@@ -42,7 +42,7 @@
 			//入力された値に対してエラーがあればエラー文を表示する
 			if (!(errmsg.equals(""))) {
 		%>
-		<%=errmsg%><br>
+		<%=errmsg%>
 		<%
 			}
 		%>
@@ -82,7 +82,9 @@
 			<tr>
 				<th></th>
 				<th></th>
-				<td><input type="hidden" name="menulist" value="<%=menulist%>"><input type="submit" formaction="./TransitdataList"value="以前のデータを参照" class="btn1"></td>
+				<td><input type="hidden" name="menulist" value="<%=menulist%>"><input
+					type="submit" formaction="./TransitdataList" value="以前のデータを参照"
+					class="btn1"></td>
 			</tr>
 			<tr>
 				<th>交通機関</th>
@@ -126,9 +128,9 @@
 		<br> <input type="hidden" name="id" value="<%=id%>">
 		<!-- 編集確認画面へ遷移 -->
 
-			<input type="submit" value="確認" class="leftbtn btn btn-border" formaction="Edit"><input type="submit" value="戻る" class="rightbtn btn btn-border" formaction="List">
-
-
+		<input type="submit" value="確認" class="leftbtn btn btn-border"
+			formaction="Edit"><input type="submit" value="戻る"
+			class="rightbtn btn btn-border" formaction="List">
 	</form>
 
 </body>
