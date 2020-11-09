@@ -27,7 +27,7 @@
 <body>
 	<h2>交通費登録システム：交通手段編集画面</h2>
 	<form action="./TransitDataEditCheck" class="table">
-		<table>
+		<table class="tablecheck">
 			<tr>
 				<th>交通機関</th>
 				<th>:</th>
@@ -52,20 +52,13 @@
 			</tr>
 		</table>
 		<br>
-		<div>
-			<!-- 一覧表示へ遷移 -->
 			<input type="hidden" name="data_id" value="<%=data_id%>"> <input
 				type="hidden" name="menulist" value="3"> <input
 				type="hidden" name="transit_no" value="<%=transit_no%>">
-		</div>
-		<div>
-			<input type="submit" value="編集" class="leftbtn btn">
-		</div>
-		<div>
-			<!-- 交通手段編集画面へもどる -->
-			<input type="submit" value="戻る" formaction="./transitDataEdit.jsp"
-				class="rightbtn btn">
-		</div>
+		<input type="submit" value="編集" class="btn btn-border"><input type="submit" value="戻る" formaction="./transitDataEdit.jsp" class="btn btn-border">
+
+
+
 	</form>
 
 </body>

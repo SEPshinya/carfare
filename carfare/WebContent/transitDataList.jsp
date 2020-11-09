@@ -90,33 +90,33 @@ ResultSet rs1=CommonDB.getTransitAll();
 </head>
 <body>
 <h2>交通費登録システム：交通手段一覧</h2>
-
+<br>
 <!-- 検索 -->
 <%if(menuNo==3 ){ %>
 <form action="TransitdataList" method="get">
-<table class="search" border="1">
+<table class="search">
 
-<tr>
-<td>交通機関：<select name="transit_no"><option value=""></option>
+<tr >
+<td>交通機関：<select name="transit_no" class="transitbtn"><option value="" ></option>
 					<%
 						while (rs1.next()) {
 					%>
-					<option value="<%=rs1.getString("transit_no")%>"><%=rs1.getString("transit_name")%></option>
+					<option value="<%=rs1.getString("transit_no")%>" ><%=rs1.getString("transit_name")%></option>
 					<%
 						}
 
 					%>
 				</select></td>
-<td>出発駅：<input type="text" name="from_st"></td>
-<td>到着駅：<input type="text" name="to_st"></td>
-<td><input type="hidden" name="menulist" value="3"><input type="submit" value="検索"></td>
+<td>出発駅：<input type="text" name="from_st" class="frombtn"></td>
+<td>到着駅：<input type="text" name="to_st" class="tobtn"></td>
+<td><input type="hidden" name="menulist" value="3"><input type="submit" value="検索" class="searchbtn btn btn-border"></td>
 </tr>
 </table>
 </form>
 <%} %>
 
 <!-- ここにページング -->
-<form  class="paging" action="TransitdataList" method="get">
+<form  class="page" action="TransitdataList" method="get">
 <ul>
 			<li>
 				<% if (now == 1) { %>
@@ -178,24 +178,24 @@ ResultSet rs1=CommonDB.getTransitAll();
 
 
 <!-- 交通手段一覧表示 -->
-<table class="transitListCss" border="1">
-<tr bgcolor="#D7EEFF">
-<th class="transitname">交通機関</th>
-<th class="fromst">出発駅</th>
-<th class="tost">到着駅</th>
-<th class="price">金額</th>
-<th class="select"></th>
+<table class="table1" >
+<tr bgcolor="#D7EEFF" class="tr1" style="background-color: #c0c0c0;">
+<td class="td1" width="150px">交通機関</td>
+<td class="td1" width="150px">出発駅</td>
+<td class="td1" width="150px">到着駅</td>
+<td class="td1" width="150px">金額</td>
+<td class="td1" width="150px"></td>
 </tr>
 <%
 while(rs.next()){
 %>
 <form name="<%=rs.getString("data_id") %>"  method="get">
-<tr>
+<tr class="tr2">
 <!-- 交通し手段の値を表示 -->
-<td><%=rs.getString("transit_name") %></td>
-<td><%=rs.getString("from_st") %></td>
-<td><%=rs.getString("to_st") %></td>
-<td><%int Price=Integer.parseInt(rs.getString("price"));%><%=nf.format(Price)%>円</td>
+<td class="td1"><%=rs.getString("transit_name") %></td>
+<td class="td1"><%=rs.getString("from_st") %></td>
+<td class="td1"><%=rs.getString("to_st") %></td>
+<td class="td1"><%int Price=Integer.parseInt(rs.getString("price"));%><%=nf.format(Price)%>円</td>
 
 <!-- 選択した値を渡す用 -->
 <input name="data_id" type="hidden" value=<%=rs.getString("data_id") %>>
@@ -209,7 +209,7 @@ while(rs.next()){
 <input type="hidden" name="day" value="<%=day%>">
 <input type="hidden" name="route_no" value="<%=route_no%>">
 
-<td>
+<td class="td1">
 <%
 if(menuNo==1){
 %>
@@ -229,8 +229,7 @@ if(menuNo==1){
 %>
 <!-- 交通手段一覧からアクセスされてる場合 -->
 
-<input class="selectbt3" type="submit" formaction="transitDataEdit.jsp" value="編集" >
-<input class="selectbt3" type="submit" formaction="transitDataDelete.jsp" value="削除" >
+<input class="btn1 btn-border1" type="submit" formaction="transitDataEdit.jsp" value="編集" ><input class="btn1 btn-border1" type="submit" formaction="transitDataDelete.jsp" value="削除" >
 
 <%
 }
@@ -251,7 +250,7 @@ if(menuNo==1){
 
 
 <!-- ここにページング -->
-<form class="paging" action="TransitdataList" method="get">
+<form class="page" action="TransitdataList" method="get">
 <ul>
 			<li>
 				<% if (now == 1) { %>
@@ -331,16 +330,16 @@ if(menuNo==1){
 if(menuNo==1){
 %>
 <!-- 登録画面へ戻る -->
-<input class="returnbt" type="submit" formaction="Add" value="戻る">
+<input class="btn btn-border backbtn" type="submit" formaction="Add" value="戻る">
 <%
 }else if(menuNo==2){
 %>
 <!-- 編集画面へ戻る -->
-<input class="returnbt" type="submit" formaction="edit.jsp"  value="戻る">
+<input class="btn btn-border backbtn" type="submit" formaction="edit.jsp"  value="戻る">
 <%
 }else {
 %>
-<input class="returnbt" type="submit" formaction="List"  value="戻る">
+<input class="btn btn-border backbtn" type="submit" formaction="List"  value="戻る">
 <%
 }
 %>
