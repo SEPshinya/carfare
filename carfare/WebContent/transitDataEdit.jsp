@@ -26,10 +26,10 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="./css/edit.css">
-<title>交通手段編集画面</title>
+<title>交通費登録システム：交通手段編集画面</title>
 </head>
 <body>
-	<h2>交通費登録システム：交通手段編集画面</h2>
+	<h2>交通費登録システム：交通手段編集</h2>
 	<form action="TransitDataEdit" class="table">
 		<div class="errmsg">
 			<%
