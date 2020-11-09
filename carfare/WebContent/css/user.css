@@ -23,12 +23,23 @@ body {
 	margin-top: 30px;
 
 }
-
-
 .tablecheck{
 	margin-left:20%;
 }
 
+.tablesearch{
+	margin-left:20%;
+}
+
+.tableuseredit{
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 30px;
+}
+
+.tableusereditcheck{
+	margin-left:20%;
+}
 .aa{
 	margin-left:20%;
 }
@@ -150,6 +161,12 @@ html {
 	transform: translateX(0%);
 }
 
+
+.id{
+	width: 200px;
+	height: 18px;
+	margin: 5px;
+}
 .name {
 	width: 200px;
 	height: 18px;

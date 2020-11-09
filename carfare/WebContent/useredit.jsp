@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="./css/user.css" rel="stylesheet"></link>
 <meta charset="UTF-8">
 <title>ユーザー編集</title>
 </head>
@@ -18,7 +19,7 @@
 			if (rs != null) {
 				while (rs.next()) {
 		%>
-		<table>
+		<table class="tableuseredit">
 			<tr>
 				<th>ユーザーID:</th>
 				<td><%=rs.getInt("user_id")%><input type="hidden"
@@ -54,12 +55,6 @@
 						<option value="2" <%if (role_id == 2) {%> selected <%}%>>管理者</option>
 				</select></td>
 			</tr>
-			<tr>
-				<td></td>
-				<td><input type="submit" class="btn" formaction="UserEdit"
-					value="確認"><input type="submit" class="btn"
-					formaction="usersearch.jsp" value="戻る"></td>
-			</tr>
 		</table>
 		<%
 			}
@@ -67,7 +62,7 @@
 		<%
 			} else if (getErr=="") {
 		%>
-		<table>
+		<table class="tableuseredit">
 			<tr>
 				<th>ユーザーID:</th>
 				<td><%=request.getAttribute("user_id")%><input type="hidden"
@@ -104,17 +99,11 @@
 				</select></td>
 			</tr>
 
-			<tr>
-				<td></td>
-				<td><input type="submit" class="btn" formaction="UserEdit"
-					value="確認"><input type="submit" class="btn"
-					formaction="usersearch.jsp" value="戻る"></td>
-			</tr>
 		</table>
 		<%
 			} else {
 		%>
-		<table>
+		<table class="tableuseredit">
 			<tr>
 				<th>ユーザーID:</th>
 				<td><%=request.getParameter("user_id")%><input type="hidden"
@@ -150,18 +139,11 @@
 						<option value="2"<%if (role_id.equals("2")) {%>selected<%} %>>管理者</option>
 				</select></td>
 			</tr>
-
-			<tr>
-				<td></td>
-				<td><input type="submit" class="btn" formaction="UserEdit"
-					value="確認"><input type="submit" class="btn"
-					formaction="usersearch.jsp" value="戻る"></td>
-			</tr>
 		</table>
 		<%
 			}
 		%>
-
+		<input type="submit" class="btn btn-border" formaction="UserEdit"value="確認"><input type="submit" class="btn btn-border" formaction="usersearch.jsp" value="戻る">
 	</form>
 
 
