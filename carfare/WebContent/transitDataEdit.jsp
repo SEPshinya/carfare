@@ -12,11 +12,9 @@
 	String price = request.getParameter("price") == null ? ""
 			: request.getParameter("price").replace(",", "");
 	String menulist = request.getParameter("menulist") == null ? "3" : request.getParameter("menulist");
-
 	//使用する変数の宣言、初期値設定(Edit)
 	String errmsg = (String) request.getAttribute("errmsg") == null ? ""
 			: (String) request.getAttribute("errmsg");
-
 	//使用する変数の宣言、初期値設定(プルダウンメニュー作成)
 	ResultSet route_rs = CommonDB.getRouteAll();
 	ResultSet transit_rs = CommonDB.getTransitAll();
@@ -26,22 +24,22 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="./css/edit.css">
-<title>交通費登録システム：交通手段編集画面</title>
+<title>交通手段編集画面</title>
 </head>
 <body>
-	<h2>交通費登録システム：交通手段編集</h2>
-	<div class="errmsg">
-		<%
-			//入力された値に対してエラーがあればエラー文を表示する
-			if (!(errmsg.equals(""))) {
-		%>
-		<%=errmsg%>
-		<%
-			}
-		%>
-	</div>
-	<form action="TransitDataEdit" class="table">
-		<table>
+	<h2>交通費登録システム：交通手段編集画面</h2>
+	<form action="TransitDataEdit" >
+		<div class="errmsg">
+			<%
+				//入力された値に対してエラーがあればエラー文を表示する
+				if (!(errmsg.equals(""))) {
+			%>
+			<%=errmsg%><br>
+			<%
+				}
+			%>
+		</div>
+		<table class="tableedit">
 			<tr>
 				<th>交通機関</th>
 				<th>:</th>
@@ -78,19 +76,26 @@
 			<tr>
 				<th></th>
 				<th></th>
-				<td>※金額は片道分のみ。</td>
+
+				<td><br>※金額は片道分のみ。</td>
 			</tr>
 		</table>
 		<br> <input type="hidden" name="data_id" value="<%=data_id%>">
 		<!-- 交通手段編集確認画面へ遷移 -->
-		<div class="leftbtn">
-			<input type="submit" value="確認" class="btn btn-border">
-		</div>
-	</form>
-	<form action="TransitdataList" class="rightbtn">
-		<input type="hidden" name="menulist" value="<%=menulist%>"> <input
-			type="submit" value="戻る" class="btn btn-border">
-	</form>
+
+		<br>
+	<ul class="foo">
+		<li><input type="submit" value="確認" class="leftbtn2 btn btn-border"></li>
+
+		</form>
+
+		<!-- 一覧表示へ戻る -->
+
+		 <form action="TransitdataList">
+			 <li><input type="submit" value="戻る" class="rightbtn2 btn btn-border"></li>
+			<input type="hidden" name="menulist" value="<%=menulist%>">
+		</form>
+	</ul>
 
 </body>
 </html>

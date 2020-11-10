@@ -1,7 +1,9 @@
 @charset "UTF-8";
 
 body {
-	width: 920px;
+	min-width: 60%;
+	max-width: 960px;
+	position: center;
 }
 
 H2 {
@@ -17,29 +19,44 @@ input, select {
 	border: 1px solid #000;
 	background-color: #fff;
 }
-
-.btn1 {
+.btn1{
 	cursor: pointer;
 	cursor: hand;
 }
 
-table {
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 30px;
+.leftbtn {
+	width: 200px;
 }
 
-.errmsg {
-	margin: 0;
-	padding: 0;
-	margin-left: 200px;
+.rightbtn {
+	width: 200px;
 }
 
-.errmsg2 {
-	margin: 0;
-	padding: 0;
-	margin-left: 85px;
+.leftbtn2{
+	margin-right:200px;
 }
+
+ul.foo {
+    display:table;
+}
+
+ul.foo  li{
+	list-style: none;
+	display:table-cell;
+}
+
+.tableedit{
+	margin-left:20%;
+}
+
+
+.errmsg{
+	margin-left:200px;
+}
+.errmsg2{
+	margin-left:85px;
+}
+
 
 /* ボタンのデザイン編集*/
 *:before, *:after {
@@ -51,9 +68,8 @@ html {
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 }
-
 .btn {
-	margin-left: 80px;
+	margin-left:80px;
 	border: 1px solid #000;
 	background-color: #ffffff;
 	cursor: pointer;
@@ -70,9 +86,8 @@ html {
 	color: #212529;
 	height: 25px;
 	width: 200px;
-	margin-left: 20%;
-	cursor: pointer;
-	cursor: hand;
+	margin-left:20%;
+
 }
 
 .btn-border {
