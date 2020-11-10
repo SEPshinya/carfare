@@ -102,13 +102,13 @@ public class UserCommon {
 			String user_name) {
 		String ERRMSG_Pass01 = "パスワードを入力してください";
 		String ERRMSG_Pass02 = "確認用パスワードを入力してください";
-		String ERRMSG_Pass03 = "パスワードは半角16文字以内で入力してください";
+		String ERRMSG_Pass03 = "パスワードは16文字以内で入力してください";
 		String ERRMSG_Pass04 = "パスワードは半角で入力してください";
 		String ERRMSG_Pass05 = "パスワードが一致しません";
 		String ERRMSG_Address01 = "メールアドレスは254文字以内で入力してください";
 		String ERRMSG_Address02 = "メールアドレスは半角で入力してください";
 		String ERRMSG_Address03 = "メールアドレスは必須項目です";
-		String ERRMSG_Addserch = "このメールアドレスはほかのユーザーに使用されているため登録できません";
+		String ERRMSG_Addserch = "このメールアドレスはほかのユーザーに使用されているため変更できません";
 		String ERRMSG_Name01 = "氏名を入力してください";
 		String ERRMSG_Name02 = "氏名は16文字以内で入力してください";
 		String returnVal = "";
@@ -130,15 +130,16 @@ public class UserCommon {
 		//パスワード
 		if (Password.getBytes().length == 0) { //未入力
 			returnVal += ERRMSG_Pass01 + "<BR>";
-		} else if (isBytes(Password)) {
-			returnVal += ERRMSG_Pass04 + "<BR>"; //全角
 		}
-
-		if (stringDigits(Password) > 16) {
+		if (isBytes(Password)) {
+			returnVal += ERRMSG_Pass04 + "<BR>"; //全角
+		}else if (stringDigits(Password) > 16) {
 			returnVal += ERRMSG_Pass03 + "<BR>"; //16いない
 		}
 		if (Password2.getBytes().length == 0) { //pass2未入力
 			returnVal += ERRMSG_Pass02 + "<BR>";
+		} else if (!Password.equals(Password2)) {
+			returnVal += ERRMSG_Pass05 + "<BR>";
 		}
 
 		if (!address.equals(addressCH)) {
@@ -146,9 +147,7 @@ public class UserCommon {
 				returnVal += ERRMSG_Addserch + "<BR>";
 			}
 		}
-		if (!Password.equals(Password2)) {
-			returnVal += ERRMSG_Pass05 + "<BR>";
-		}
+
 		return returnVal;
 
 	}
