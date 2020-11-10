@@ -11,7 +11,6 @@ public class UserCommon {
 	private static final String USERNAME = "root";
 	private static final String PASSWORD = "";
 
-
 	//新規登録エラーチェック
 	public static String getErr(String Password, String Password2, String address, String role_id, String user_name) {
 		String ERRMSG_Pass01 = "パスワードを入力してください";
@@ -83,12 +82,16 @@ public class UserCommon {
 		//ID
 		if (user_id.getBytes().length == 0) { //未入力
 			returnVal += ERRMSG_ID01 + "<BR>";
-		} else if (isBytes(user_id)) {
+		} else if (!hecknumber(user_id)) {
 			returnVal += ERRMSG_ID02 + "<BR>";
-		}
+			return returnVal;
 
-		if (!userserch(user_id, user_name)) {
-			returnVal += ERRMSG_userserch + "<BR>";
+		}
+		if (returnVal.equals("")) {
+
+			if (!userserch(user_id, user_name)) {
+				returnVal += ERRMSG_userserch + "<BR>";
+			}
 		}
 
 		return returnVal;
@@ -224,6 +227,16 @@ public class UserCommon {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
+		}
+	}
+
+	//入力データが数字かチェック
+	private static boolean hecknumber(String user_id) {
+		try {
+			Integer.parseInt(user_id);
+			return true;
+		} catch (NumberFormatException e) {
+			return false;
 		}
 	}
 
