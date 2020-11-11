@@ -55,7 +55,8 @@
 			<input type="hidden" name="data_id" value="<%=data_id%>"> <input
 				type="hidden" name="menulist" value="3"> <input
 				type="hidden" name="transit_no" value="<%=transit_no%>">
-		<input type="submit" value="編集" class="btn btn-border"><input type="submit" value="戻る" formaction="./transitDataEdit.jsp" class="btn btn-border">
+				<br>
+		<input type="submit" value="編集" class=" leftbtn btn btn-border"><input type="submit" value="戻る" formaction="./transitDataEdit.jsp" class="btn btn-border">
 
 
 
