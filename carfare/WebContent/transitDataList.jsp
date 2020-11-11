@@ -215,14 +215,14 @@ if(menuNo==1){
 %>
 <!-- 登録画面へ持っていく -->
 
-<input class="selectbt" type="submit" formaction="Add" value="選択">
+<input class="btn-border1 selectbtn" type="submit" formaction="Add" value="選択">
 
 
 <%}else if(menuNo==2){ %>
 <!-- 編集画面へ持っていく -->
 
 <input type="hidden" name="id" value="<%=id%>">
-<input class="selectbt" type="submit" formaction="edit.jsp" value="選択">
+<input class="btn-border1 selectbtn" type="submit" formaction="edit.jsp" value="選択">
 
 <%
 }else{

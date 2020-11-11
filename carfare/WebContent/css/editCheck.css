@@ -18,6 +18,10 @@ table th {
 	margin-left:20%;
 }
 
+.leftbtn{
+	width: 200px;
+}
+
 /* ボタンのデザイン編集*/
 *:before, *:after {
 	-webkit-box-sizing: inherit;

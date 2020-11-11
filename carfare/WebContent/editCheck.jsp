@@ -30,7 +30,7 @@
 		*/
 	%>
 	<form action="./EditCheck" class="table">
-		<table>
+		<table class="tablecheck">
 			<tr>
 				<th>日付</th>
 				<th>:</th>

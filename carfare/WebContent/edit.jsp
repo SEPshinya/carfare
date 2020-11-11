@@ -52,7 +52,7 @@
 		//一覧表示に表示されていた値をinputの中へうめこむ
 	%>
 	<form action="./Edit" class="table">
-		<table>
+		<table class="tableedit">
 			<tr>
 				<th>日付</th>
 				<th>:</th>

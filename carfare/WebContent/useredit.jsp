@@ -14,7 +14,7 @@
 </head>
 <body>
 	<h2>交通費登録システム：ユーザー編集</h2>
-	<form action="UserEdit" method="post">
+	<form action="Test" method="post">
 		<%
 			if (rs != null) {
 				while (rs.next()) {
@@ -143,7 +143,7 @@
 		<%
 			}
 		%>
-		<input type="submit" class="btn btn-border" formaction="UserEdit"value="確認"><input type="submit" class="btn btn-border" formaction="usersearch.jsp" value="戻る">
+		<input type="submit" class="btn btn-border" value="確認"><input type="submit" class="btn btn-border" formaction="Test" value="戻る">
 	</form>
 
 

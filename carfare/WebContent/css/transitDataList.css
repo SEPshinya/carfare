@@ -1,40 +1,41 @@
 @charset "UTF-8";
 
-body{
+body {
 	/* font-family: "游ゴシック" ; */
-	width:960px;
+	width: 960px;
 	min-width: 50%;
 }
 
-h2{
+h2 {
 	margin-left: 80px;
 }
 
-.search{
-	margin-left:80px;
+.search {
+	margin-left: 80px;
 }
-.transitbtn{
-	width:100px;
-	height:23px;
+
+.transitbtn {
+	width: 100px;
+	height: 23px;
 	cursor: pointer;
 	cursor: hand;
-	margin-right:20px;
+	margin-right: 20px;
 }
 
-.frombtn{
-	width:150px;
-	height:23px;
-	margin-right:20px;
+.frombtn {
+	width: 150px;
+	height: 23px;
+	margin-right: 20px;
 }
 
-.tobtn{
-	width:150px;
-	height:23px;
-
+.tobtn {
+	width: 150px;
+	height: 23px;
 }
-.searchbtn{
-	width:50px;
-	height:23px;
+
+.searchbtn {
+	width: 50px;
+	height: 23px;
 	cursor: pointer;
 	cursor: hand;
 }
@@ -43,17 +44,19 @@ h2{
 	border-collapse: collapse;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top : 20px;
+	margin-top: 20px;
 	border: solid 1px black;
-	text-align:center;
+	text-align: center;
 }
 
 .tr1 {
 	border: solid 1px black;
 }
+
 .tr2 {
 	border: solid 1px black;
 }
+
 .td1 {
 	border: solid 1px black;
 }
@@ -62,56 +65,60 @@ h2{
 	margin-left: 5%;
 }
 
-li{
+li {
 	list-style: none;
-	display:inline-block;
-	font-size:20px;
+	display: inline-block;
+	font-size: 20px;
 }
 
-*,
-*:before,
-*:after {
-  -webkit-box-sizing: inherit;
-  box-sizing: inherit;
+*, *:before, *:after {
+	-webkit-box-sizing: inherit;
+	box-sizing: inherit;
 }
 
 html {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
-.backbtn{
-	margin-left:8%;
+.backbtn {
+	margin-left: 8%;
 	width: 200px;
 }
 
+.selectbtn {
+	width: 100%;
+	cursor: pointer;
+	cursor: hand;
+}
 
 .btn {
-  font-size: 15px;
-  font-weight: 700;
-  line-height: 1.5;
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  transition: all 0.3s;
-  text-align: center;
-  vertical-align: middle;
-  letter-spacing: 0.1em;
-  color: #212529;
-  border-radius: 0.5rem;
-  height: 25px;
-  cursor: pointer;
-  cursor: hand;
+	font-size: 15px;
+	font-weight: 700;
+	line-height: 1.5;
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+	transition: all 0.3s;
+	text-align: center;
+	vertical-align: middle;
+	letter-spacing: 0.1em;
+	color: #212529;
+	border-radius: 0.5rem;
+	height: 25px;
+	cursor: pointer;
+	cursor: hand;
 }
+
 .btn-border {
-  border: 2px solid #000;
-  border-radius: 0;
-  background: #fff;
+	border: 2px solid #000;
+	border-radius: 0;
+	background: #fff;
 }
 
 .btn-border:hover {
-  color: #fff;
-  background: #000;
+	color: #fff;
+	background: #000;
 }
 
 .btn1 {
@@ -121,27 +128,26 @@ html {
 }
 
 .btn-border1 {
-  border: 2px solid #000;
-  border-radius: 0;
-  background: #808080;
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;
+	border: 2px solid #000;
+	border-radius: 0;
+	background: #808080;
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
 }
 
 .btn-border1:before {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 5px;
-  height: 100%;
-  content: '';
-  -webkit-transition: all .3s;
-  transition: all .3s;
-  background: #FFF;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 5px;
+	height: 100%;
+	content: '';
+	-webkit-transition: all .3s;
+	transition: all .3s;
+	background: #FFF;
 }
 
 .btn-border1:hover {
-  color: #000;
-  background: #FFF;
+	color: #000;
+	background: #FFF;
 }
-
