@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.sql.ResultSet"%>
 <%
@@ -14,7 +15,7 @@
 </head>
 <body>
 	<h2>交通費登録システム：ユーザー編集</h2>
-	<form action="Test" method="post">
+	<form action="UserEdit" method="post">
 		<%
 			if (rs != null) {
 				while (rs.next()) {
@@ -60,7 +61,7 @@
 			}
 		%>
 		<%
-			} else if (getErr=="") {
+			} else if (getErr == "") {
 		%>
 		<table class="tableuseredit">
 			<tr>
@@ -95,7 +96,7 @@
 				<th>役職:</th>
 				<td><select name="role_id" class="role">
 						<option value="1">一般</option>
-						<option value="2" <%if (role_id.equals("2")) {%>selected<%} %>>管理者</option>
+						<option value="2" <%if (role_id.equals("2")) {%> selected <%}%>>管理者</option>
 				</select></td>
 			</tr>
 
@@ -136,14 +137,16 @@
 				<th>役職:</th>
 				<td><select name="role_id" class="role">
 						<option value="1">一般</option>
-						<option value="2"<%if (role_id.equals("2")) {%>selected<%} %>>管理者</option>
+						<option value="2" <%if (role_id.equals("2")) {%> selected <%}%>>管理者</option>
 				</select></td>
 			</tr>
 		</table>
 		<%
 			}
 		%>
-		<input type="submit" class="btn btn-border" value="確認"><input type="submit" class="btn btn-border" formaction="Test" value="戻る">
+		<input type="submit" class="btn btn-border" formaction="UserEdit"
+			value="確認"><input type="submit" class="btn btn-border"
+			formaction="usersearch.jsp" value="戻る">
 	</form>
 
 

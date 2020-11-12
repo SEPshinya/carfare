@@ -26,9 +26,6 @@ public class Usereditcheck extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
@@ -43,7 +40,6 @@ public class Usereditcheck extends HttpServlet {
 		PrintWriter out = response.getWriter();
 
 		//パスワード再登録
-
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA-256");
 			byte[] result = md.digest(address.getBytes());
